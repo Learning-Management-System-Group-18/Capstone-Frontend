@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const config = {
-  baseURL: "https://6299bdf76f8c03a9784873d7.mockapi.io/api/v1/"
+  baseURL: "http://54.227.80.34/api/",
 };
 
 export const axiosInstance = axios.create(config);
