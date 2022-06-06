@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
+import Ellipse from "../../assets/img/Ellipse 19.png";
+import Ellipse2 from "../../assets/img/Ellipse 20.png";
+import Banner from "../../assets/img/Group 108.png";
 import { Row, Col, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
+import "./style.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function Index() {
   const baseLogin = {
@@ -11,6 +16,7 @@ function Index() {
   const baseError = {
     email: "",
     password: "",
+    warna: "#ced4da",
   };
   const userLogin = [];
   const [user, setUser] = useState(userLogin);
@@ -24,12 +30,18 @@ function Index() {
     const value = e.target.value;
     if (name === "email") {
       if (!regexEmail.test(value)) {
-        setErrorMassage({ ...errorMassage, [name]: "Email Tidak Sesuai" });
+        setErrorMassage({
+          ...errorMassage,
+          [name]: "Email Tidak Sesuai",
+          warna: "red",
+        });
       } else {
-        setErrorMassage({ ...errorMassage, [name]: "" });
+        setErrorMassage({ ...errorMassage, [name]: "", warna: "#ced4da" });
       }
     }
-
+    if (name === "password") {
+      setErrorMassage({ ...errorMassage, [name]: "", warna: "#ced4da" });
+    }
     setLogin({ ...login, [name]: value });
   };
 
@@ -60,67 +72,78 @@ function Index() {
 
   useEffect(() => {
     if (user.length !== 0) {
-      axios.post("http://54.227.80.34/api/login", user[0]).then(
-        (response) => {
+      axios
+        .post("http://54.227.80.34/api/login", user[0])
+        .then((response) => {
           console.log(response.data.data.role);
           if (response.data.data.role[0] === "ROLE_ADMIN") {
             console.log("Navigate to role admin");
           } else {
             console.log("Navigate to home");
           }
-        },
-        (error) => {
+        })
+        .catch((error) => {
           console.log(error);
-        }
-      );
+          console.log("error");
+          setErrorMassage({
+            ...errorMassage,
+            email: "Email Salah",
+            password: "Password Salah",
+            warna: "red",
+          });
+          setUser(userLogin);
+        });
     }
   }, [user]);
   return (
-    <div>
-      <Row className="mt-5">
-        <Col className="text-center">
-          <img
-            className="mb-4"
-            src="https://images.unsplash.com/photo-1653857329139-b233fbf7795a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
-            alt=""
-            style={{ width: "250px" }}
-          />
-          <h4>Welcome Back</h4>
-          <h4>to Level Up, Please Login Here</h4>
-          <p>
-            Ini merupakan halaman login untuk admin Lorem ipsum dolor <br /> sit
-            amet, consectetur adipiscing elit. Mattis consequat mi amet
-            <br /> maecenas cursus tellus.
-          </p>
+    <div className="container-fluid">
+      <img className="ellipse" src={Ellipse} alt="" />
+      <img className="ellipse2" src={Ellipse2} alt="" />
+      {console.log(errorMassage)}
+      <Row>
+        <Col className=" bg_banner mx-auto py-4">
+          <img className="mb-4 img-fluid" src={Banner} alt="banner" />
+          <h5 className="position_text_title text-center">Welcome Back</h5>
+
+          <p className="position_text">Please login here to check your work</p>
         </Col>
         <Col>
-          <h1 className="text-center">Login</h1>
+          <div className="mt-5 ps-5 mb-5">
+            <h3 className=" title">Login to</h3>
+            <h3 className=" title">Your Account</h3>
+          </div>
+
           <div className="container">
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
+                <Form.Label className="title">Email</Form.Label>
                 <Form.Control
                   required
                   type="email"
                   name="email"
                   value={login.email}
                   onChange={handleChange}
-                  placeholder="Email"
-                  className="inputStyle text-center"
+                  placeholder="Enter your email"
+                  className="inputStyle "
+                  style={{ border: `1px solid ${errorMassage.warna}` }}
                 />
               </Form.Group>
+              <p className="err-Msg">{errorMassage.email}</p>
               <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
+                <Form.Label className="title">Password</Form.Label>
                 <Form.Control
                   required
                   type="password"
                   name="password"
                   value={login.password}
                   onChange={handleChange}
-                  placeholder="password"
-                  className="inputStyle text-center"
+                  placeholder="Enter your password"
+                  className="inputStyle "
+                  style={{ border: `1px solid ${errorMassage.warna}` }}
                 />
+                <button>halo</button>
               </Form.Group>
+              <p className="err-Msg">{errorMassage.password}</p>
               <Row>
                 <Col xs={9}>
                   <Form.Group className="mb-3" controlId="formBasicCheckbox">
@@ -133,18 +156,8 @@ function Index() {
                   </Form.Text>
                 </Col>
               </Row>
-
-              <div>
-                {Object.keys(errorMassage).map((key) => {
-                  if (errorMassage[key] !== "") {
-                    return <p key={key}>{errorMassage[key]}</p>;
-                  }
-                  return null;
-                })}
-              </div>
-
               <div className="p-3">
-                <input className="loginButton" type="submit" value="Login" />
+                <input className="button btn" type="submit" value="Login" />
               </div>
             </Form>
           </div>

@@ -5,9 +5,9 @@ import LoginAdmin from "./pages/LoginAdmin";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <LoginAdmin />
-    </div>
+    </>
   );
 }
 

@@ -1,0 +1,65 @@
+.bg_banner {
+  background-image: linear-gradient(60deg, #335ef7, #5f7bff);
+  height: 100vh;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.img-fluid {
+  width: 400px;
+  height: auto;
+  margin-right: auto;
+  margin-left: 17%;
+  margin-top: 27%;
+}
+
+.position_text_title {
+  color: #ffffff;
+  max-width: 20ch;
+  position: fixed;
+  top: 75%;
+  left: 25%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+.position_text {
+  color: #ffffff;
+  max-width: 50ch;
+  position: fixed;
+  top: 80%;
+  left: 25%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+.ellipse {
+  position: fixed;
+  bottom: 71%;
+  left: 3%;
+}
+.ellipse2 {
+  position: fixed;
+  bottom: 0%;
+  left: 0%;
+}
+.button {
+  background-color: #d9d9d9;
+  color: black;
+  font-weight: bold;
+}
+
+.button_2 {
+  border-color: black;
+  color: black;
+}
+
+.my-3 {
+  color: black;
+  text-align: center;
+}
+
+.err-Msg {
+  color: #ce3426;
+}
