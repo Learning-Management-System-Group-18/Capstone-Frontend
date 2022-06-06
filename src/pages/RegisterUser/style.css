@@ -1,6 +1,8 @@
 .bg_banner {
-  background-color: #d9d9d9;
-  height: 100vh;
+  /* background-color: #335EF7; */
+  /* height: 100%; */
+  top: 0;
+  bottom: 0;
 }
 
 .title {
@@ -12,7 +14,7 @@
   width: 400px;
   height: auto;
   margin-right: auto;
-  margin-left: 17%;
+  margin-left: 10%;
   margin-top: 10%;
 }
 
@@ -21,28 +23,25 @@
   position: fixed;
   top: 65%;
   left: 25%;
-  /* bring your own prefixes */
   transform: translate(-50%, -50%);
 }
 
 .position_text {
   max-width: 50ch;
   position: fixed;
-  top: 77%;
+  top: 73%;
   left: 25%;
-  /* bring your own prefixes */
   transform: translate(-50%, -50%);
 }
 
 .button {
-  background-color: #d9d9d9;
-  color: black;
+  color: rgb(255, 255, 255);
   font-weight: bold;
 }
 
 .button_2 {
   border-color: black;
-  color: black;
+  color: rgb(0, 0, 0);
 }
 
 .my-3 {
