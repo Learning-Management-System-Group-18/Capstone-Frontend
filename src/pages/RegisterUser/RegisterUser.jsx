@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './style.css';
 import banner_img from '../../assets/banner_img.svg';
 
@@ -8,6 +9,8 @@ const RegisterUser = () => {
     email: '',
     password: '',
   };
+  const userRegister = [];
+  const [user, setUser] = useState(userRegister);
   const [data, setData] = useState(newData);
   const namaRegex = /^[A-Za-z ]*$/;
   const emailRegex = /\S+@\S+\.\S+/;
@@ -47,7 +50,8 @@ const RegisterUser = () => {
       } else {
         SetErrMsg({
           ...err,
-          password: 'Password Yang Anda Masukan Harus Terdiri Dari minimal 8 Karakter ,1 Huruf Besar , 1 Huruf Kecil Dan 1 Angka',
+          password:
+            'Password Yang Anda Masukan Harus Terdiri Dari minimal 8 Karakter ,1 Huruf Besar , 1 Huruf Kecil Dan 1 Angka',
         });
       }
     }
@@ -67,18 +71,35 @@ const RegisterUser = () => {
       );
     } else {
       alert(`Data Pendaftaran atas nama "${data.nama}"Berhasil Diterima`);
+      const newUser = {
+        fullName: data.nama,
+        email: data.email,
+        password: data.password,
+      };
+      setUser(user.concat(newUser));
     }
   };
+
+  useEffect(() => {
+    if (user.length !== 0) {
+      console.log(user[0]);
+      axios
+        .post('http://54.227.80.34/api/register', user[0])
+        .then((response) => {
+          console.log(user);
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [user]);
 
   return (
     <div className="container-fluid">
       <div className="row">
         <div className="col bg_primary bg_banner mx-auto py-4">
-          <img
-            className="img-fluid"
-            src={banner_img}
-            alt="banner"
-          />
+          <img className="img-fluid" src={banner_img} alt="banner" />
           <h3 className="text-center text-light mt-5">
             Welcome to Level Up 🙌
           </h3>
@@ -94,8 +115,8 @@ const RegisterUser = () => {
             </p>
             <div>
               <form onSubmit={handleSubmit}>
-                <div className='mb-3 text-start'>
-                  <label className='form-label'>Name</label>
+                <div className="mb-3 text-start">
+                  <label className="form-label">Name</label>
                   <input
                     type="text"
                     placeholder="Masukan nama"
@@ -107,8 +128,8 @@ const RegisterUser = () => {
                   ></input>
                   <span className="err-Msg">{errMsg.nama ?? ''}</span>
                 </div>
-                <div className='mb-3 text-start'>
-                  <label className='form-label'>Email</label>
+                <div className="mb-3 text-start">
+                  <label className="form-label">Email</label>
                   <input
                     type="text"
                     placeholder="Masukan email"
@@ -120,8 +141,8 @@ const RegisterUser = () => {
                   ></input>
                   <span className="err-Msg">{errMsg.email ?? ''}</span>
                 </div>
-                <div className='mb-3 text-start'>
-                  <label className='form-label'>Password</label>
+                <div className="mb-3 text-start">
+                  <label className="form-label">Password</label>
                   <input
                     type="password"
                     placeholder="Masukan password"
@@ -134,10 +155,9 @@ const RegisterUser = () => {
                   <span className="err-Msg">{errMsg.password ?? ''}</span>
                 </div>
                 <div className="d-grid gap-2">
-                  <button
-                    className="btn button bg_primary mt-5"
-                    type="submit"
-                  >Sign Up</button>
+                  <button className="btn button bg_primary mt-5" type="submit">
+                    Sign Up
+                  </button>
                   <p className="my-3">
                     <b>or</b>
                   </p>
