@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const config = {
-  baseURL: "http://54.227.80.34/api/",
+  baseURL: process.env.REACT_APP_ENDPOINT,
 };
 
 export const axiosInstance = axios.create(config);

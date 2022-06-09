@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { axiosInstance } from "../../networks/apis";
 
 function Index() {
   const baseLogin = {
@@ -96,7 +97,7 @@ function Index() {
       };
 
       setUser(user.concat(newUser));
-
+      console.log(axiosInstance);
       resetForm();
     }
     e.preventDefault();
@@ -110,8 +111,8 @@ function Index() {
 
   useEffect(() => {
     if (user.length !== 0) {
-      axios
-        .post("http://54.227.80.34/api/login", user[0])
+      axiosInstance
+        .post("/login", user[0])
         .then((response) => {
           console.log(response.data.data.role);
           if (response.data.data.role[0] === "ROLE_ADMIN") {
@@ -135,10 +136,11 @@ function Index() {
   }, [user]);
   return (
     <>
+      {console.log(process.env.REACT_APP_ENDPOINT)}
       <div className="container-fluid">
         <img className="ellipse" src={Ellipse} alt="" />
         <img className="ellipse2" src={Ellipse2} alt="" />
-        {console.log(errorMassage)}
+
         <Row>
           <Col className=" bg_banner mx-auto py-4">
             <img className="img-fluid" src={Banner} alt="banner" />
