@@ -113,7 +113,7 @@ const Index = () => {
           </p>
         </div>
         <div className="col">
-          <div className="row mx-auto py-4">
+          <div className="row mx-auto py-5" style={{ padding: "54px 95px" }}>
             <h1 className="title">Create Account</h1>
             <p className="text-start mt-1 mb-5">
               Already have an account? Login{' '}
@@ -160,7 +160,7 @@ const Index = () => {
                   <span className="err-Msg">{errMsg.password ?? ''}</span>
                 </div>
                 <div className="d-grid gap-2">
-                  <button className="btn button bg_primary mt-5" type="submit">
+                  <button className="btn bg_primary text-light mt-5" type="submit">
                     Sign Up
                   </button>
                   <p className="my-3">
