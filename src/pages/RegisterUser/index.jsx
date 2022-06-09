@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "./style.css";
-import banner_img from "../../assets/banner_img.svg";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './style.css';
+import banner_img from '../../assets/banner_img.svg';
+import { axiosInstance } from '../../networks/apis';
 
 const Index = () => {
   const newData = {
-    nama: "",
-    email: "",
-    password: "",
+    nama: '',
+    email: '',
+    password: '',
   };
   const userRegister = [];
   const [user, setUser] = useState(userRegister);
@@ -16,9 +17,9 @@ const Index = () => {
   const emailRegex = /\S+@\S+\.\S+/;
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
   const [errMsg, SetErrMsg] = useState({
-    nama: "",
-    email: "",
-    password: "",
+    nama: '',
+    email: '',
+    password: '',
   });
 
   const handleInput = (e) => {
@@ -26,27 +27,27 @@ const Index = () => {
     const value = e.target.value;
     const err = { ...errMsg };
 
-    if (name === "nama") {
+    if (name === 'nama') {
       if (namaRegex.test(value)) {
-        SetErrMsg("");
+        SetErrMsg('');
       } else {
         SetErrMsg({
           ...err,
           nama: <i>Nama Yang Anda Masukan Harus Berupa Huruf</i>,
         });
       }
-    } else if (name === "email") {
-      if (emailRegex.test(value) || value === "") {
-        SetErrMsg("");
+    } else if (name === 'email') {
+      if (emailRegex.test(value) || value === '') {
+        SetErrMsg('');
       } else {
         SetErrMsg({
           ...err,
           email: <i>Email Yang Anda Masukan Tidak Sesuai</i>,
         });
       }
-    } else if (name === "password") {
-      if (passwordRegex.test(value) || value === "") {
-        SetErrMsg("");
+    } else if (name === 'password') {
+      if (passwordRegex.test(value) || value === '') {
+        SetErrMsg('');
       } else {
         SetErrMsg({
           ...err,
@@ -64,14 +65,14 @@ const Index = () => {
       ...data,
       [name]: value,
     });
-    console.log("data", data);
+    console.log('data', data);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (errMsg !== "") {
+    if (errMsg !== '') {
       alert(
-        "Data Pendaftaran Ada Yang Tidak Sesuai Silahkan Anda Cek Kembali Form Pengisian Anda"
+        'Data Pendaftaran Ada Yang Tidak Sesuai Silahkan Anda Cek Kembali Form Pengisian Anda'
       );
     } else {
       alert(`Data Pendaftaran atas nama "${data.nama}"Berhasil Diterima`);
@@ -87,8 +88,8 @@ const Index = () => {
   useEffect(() => {
     if (user.length !== 0) {
       console.log(user[0]);
-      axios
-        .post("http://54.227.80.34/api/register", user[0])
+      axiosInstance
+        .post('/register', user[0])
         .then((response) => {
           console.log(user);
           console.log(response);
@@ -108,14 +109,14 @@ const Index = () => {
             Welcome to Level Up 🙌
           </h3>
           <p className="text-light text-center">
-            Upgrade your skills, increase salary.{" "}
+            Upgrade your skills, increase salary.{' '}
           </p>
         </div>
         <div className="col">
           <div className="row mx-auto py-4">
             <h1 className="title">Create Account</h1>
             <p className="text-start mt-1 mb-5">
-              Already have an account? Login{" "}
+              Already have an account? Login{' '}
             </p>
             <div>
               <form onSubmit={handleSubmit}>
@@ -130,7 +131,7 @@ const Index = () => {
                     name="nama"
                     required
                   ></input>
-                  <span className="err-Msg">{errMsg.nama ?? ""}</span>
+                  <span className="err-Msg">{errMsg.nama ?? ''}</span>
                 </div>
                 <div className="mb-3 text-start">
                   <label className="form-label">Email</label>
@@ -143,7 +144,7 @@ const Index = () => {
                     name="email"
                     required
                   ></input>
-                  <span className="err-Msg">{errMsg.email ?? ""}</span>
+                  <span className="err-Msg">{errMsg.email ?? ''}</span>
                 </div>
                 <div className="mb-3 text-start">
                   <label className="form-label">Password</label>
@@ -156,7 +157,7 @@ const Index = () => {
                     name="password"
                     required
                   ></input>
-                  <span className="err-Msg">{errMsg.password ?? ""}</span>
+                  <span className="err-Msg">{errMsg.password ?? ''}</span>
                 </div>
                 <div className="d-grid gap-2">
                   <button className="btn button bg_primary mt-5" type="submit">
