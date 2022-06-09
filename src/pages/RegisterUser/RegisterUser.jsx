@@ -32,7 +32,7 @@ const RegisterUser = () => {
       } else {
         SetErrMsg({
           ...err,
-          nama: 'Nama Yang Anda Masukan Harus Berupa Huruf',
+          nama: <i>Nama Yang Anda Masukan Harus Berupa Huruf</i>,
         });
       }
     } else if (name === 'email') {
@@ -41,7 +41,7 @@ const RegisterUser = () => {
       } else {
         SetErrMsg({
           ...err,
-          email: 'Email Yang Anda Masukan Tidak Sesuai',
+          email: <i>Email Yang Anda Masukan Tidak Sesuai</i>,
         });
       }
     } else if (name === 'password') {
@@ -50,8 +50,12 @@ const RegisterUser = () => {
       } else {
         SetErrMsg({
           ...err,
-          password:
-            'Password Yang Anda Masukan Harus Terdiri Dari minimal 8 Karakter ,1 Huruf Besar , 1 Huruf Kecil Dan 1 Angka',
+          password: (
+            <i>
+              Password Yang Anda Masukan Harus Min 8 Karakter Yang Terdiri Dari
+              1 Huruf Besar, 1 Huruf Kecil serta 1 Angka
+            </i>
+          ),
         });
       }
     }
