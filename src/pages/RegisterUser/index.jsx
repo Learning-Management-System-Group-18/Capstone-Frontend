@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "./style.css";
-import banner_img from "../../assets/banner_img.svg";
-import { axiosInstance } from "../../networks/apis";
-import { Button, Card } from "../../components";
-
+import React, { useState, useEffect } from 'react';
+import './style.css';
+import banner_img from '../../assets/banner_img.svg';
+import { axiosInstance } from '../../networks/apis';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { Row, Col, Form } from 'react-bootstrap';
 const Index = () => {
   const newData = {
-    nama: "",
-    email: "",
-    password: "",
+    nama: '',
+    email: '',
+    password: '',
   };
   const userRegister = [];
   const [user, setUser] = useState(userRegister);
@@ -18,37 +17,44 @@ const Index = () => {
   const emailRegex = /\S+@\S+\.\S+/;
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
   const [errMsg, SetErrMsg] = useState({
-    nama: "",
-    email: "",
-    password: "",
+    nama: '',
+    email: '',
+    password: '',
   });
-
+  const [passwordType, setPasswordType] = useState('password');
+  const togglePassword = () => {
+    if (passwordType === 'password') {
+      setPasswordType('text');
+      return;
+    }
+    setPasswordType('password');
+  };
   const handleInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     const err = { ...errMsg };
 
-    if (name === "nama") {
+    if (name === 'nama') {
       if (namaRegex.test(value)) {
-        SetErrMsg("");
+        SetErrMsg('');
       } else {
         SetErrMsg({
           ...err,
           nama: <i>Nama Yang Anda Masukan Harus Berupa Huruf</i>,
         });
       }
-    } else if (name === "email") {
-      if (emailRegex.test(value) || value === "") {
-        SetErrMsg("");
+    } else if (name === 'email') {
+      if (emailRegex.test(value) || value === '') {
+        SetErrMsg('');
       } else {
         SetErrMsg({
           ...err,
           email: <i>Email Yang Anda Masukan Tidak Sesuai</i>,
         });
       }
-    } else if (name === "password") {
-      if (passwordRegex.test(value) || value === "") {
-        SetErrMsg("");
+    } else if (name === 'password') {
+      if (passwordRegex.test(value) || value === '') {
+        SetErrMsg('');
       } else {
         SetErrMsg({
           ...err,
@@ -66,14 +72,14 @@ const Index = () => {
       ...data,
       [name]: value,
     });
-    console.log("data", data);
+    console.log('data', data);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (errMsg !== "") {
+    if (errMsg !== '') {
       alert(
-        "Data Pendaftaran Ada Yang Tidak Sesuai Silahkan Anda Cek Kembali Form Pengisian Anda"
+        'Data Pendaftaran Ada Yang Tidak Sesuai Silahkan Anda Cek Kembali Form Pengisian Anda'
       );
     } else {
       alert(`Data Pendaftaran atas nama "${data.nama}"Berhasil Diterima`);
@@ -90,7 +96,7 @@ const Index = () => {
     if (user.length !== 0) {
       console.log(user[0]);
       axiosInstance
-        .post("/register", user[0])
+        .post('/register', user[0])
         .then((response) => {
           console.log(user);
           console.log(response);
@@ -110,19 +116,19 @@ const Index = () => {
             Welcome to Level Up 🙌
           </h3>
           <p className="text-light text-center">
-            Upgrade your skills, increase salary.{" "}
+            Upgrade your skills, increase salary.{' '}
           </p>
         </div>
         <div className="col">
-          <div className="row mx-auto py-5" style={{ padding: "54px 95px" }}>
+          <div className="row mx-auto py-5" style={{ padding: '54px 95px' }}>
             <h1 className="title">Create Account</h1>
             <p className="text-start mt-1 mb-5">
-              Already have an account? Login{" "}
+              Already have an account? Login{' '}
             </p>
             <div>
               <form onSubmit={handleSubmit}>
+                <Form.Label className="title">Nama</Form.Label>
                 <div className="mb-3 text-start">
-                  <label className="form-label">Name</label>
                   <input
                     type="text"
                     placeholder="Masukan nama"
@@ -132,10 +138,10 @@ const Index = () => {
                     name="nama"
                     required
                   ></input>
-                  <span className="err-Msg">{errMsg.nama ?? ""}</span>
+                  <span className="err-Msg">{errMsg.nama ?? ''}</span>
                 </div>
+                <Form.Label className="title">Email</Form.Label>
                 <div className="mb-3 text-start">
-                  <label className="form-label">Email</label>
                   <input
                     type="text"
                     placeholder="Masukan email"
@@ -145,21 +151,41 @@ const Index = () => {
                     name="email"
                     required
                   ></input>
-                  <span className="err-Msg">{errMsg.email ?? ""}</span>
+                  <span className="err-Msg">{errMsg.email ?? ''}</span>
                 </div>
-                <div className="mb-3 text-start">
-                  <label className="form-label">Password</label>
+                <Form.Label className="title">Password</Form.Label>
+                <div className="input-group">
                   <input
-                    type="password"
-                    placeholder="Masukan password"
-                    className="form-control mr-3 mb-4"
-                    onChange={handleInput}
-                    value={data.password}
-                    name="password"
                     required
-                  ></input>
-                  <span className="err-Msg">{errMsg.password ?? ""}</span>
+                    type={passwordType}
+                    name="password"
+                    value={data.password}
+                    onChange={handleInput}
+                    placeholder="Enter your password"
+                    className={
+                      errMsg.password
+                        ? `form-control border-end-0 border border-danger`
+                        : `form-control border-end-0`
+                    }
+                  />
+                  <span
+                    className={
+                      errMsg.password
+                        ? `input-group-text bg-transparent border border-danger`
+                        : `input-group-text bg-transparent`
+                    }
+                    onClick={togglePassword}
+                  >
+                    {passwordType === 'password' ? (
+                      <AiOutlineEye />
+                    ) : (
+                      <AiOutlineEyeInvisible />
+                    )}
+                  </span>
                 </div>
+                <span className="err-Msg ">
+                  <i>{errMsg.password}</i>
+                </span>
                 <div className="d-grid gap-2">
                   <button
                     className="btn bg_primary text-light mt-5"
