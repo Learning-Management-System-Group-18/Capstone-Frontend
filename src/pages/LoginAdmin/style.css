@@ -1,19 +1,30 @@
-.bg_banner {
-  background-image: linear-gradient(60deg, #335ef7, #5f7bff);
-  height: 100vh;
-}
-
-.title {
+.title{
   font-weight: bold;
+  width: 100% !important;
 }
 
-.img-fluid {
-  width: 400px;
-  height: auto;
-  margin-right: auto;
-  margin-left: 17%;
-  margin-top: 27%;
+.p-container{
+  padding: 3.4rem 6rem;
 }
+
+.bg_banner{
+  background-image: linear-gradient(60deg, #335ef7, #5f7bff);
+  box-sizing: border-box;
+}
+
+.left-content{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img{
+  width: 600px;
+  height: 470px;
+}
+
 
 .position_text_title {
   color: #ffffff;
