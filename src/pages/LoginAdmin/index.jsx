@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Ellipse from "../../assets/img/Ellipse 19.png";
 import Ellipse2 from "../../assets/img/Ellipse 20.png";
-import Banner from "../../assets/img/banner_login.png";
+import Banner from "../../assets/img/rafiki.png";
 import { Row, Col, Form } from "react-bootstrap";
 import "./style.css";
 import { axiosInstance } from "../../networks/apis";
@@ -113,9 +113,11 @@ function Index() {
         <Row>
           <Col className="bg_banner">
             <div className="left-content">
-              <img className="img" src={Banner} alt="banner" />
-              <h3 className="text-center text-light">Welcome Back 👋</h3>
-              <p className="text-light text-center">Please Login here</p>
+              <div className="banner">
+                <img className="img-fluid" src={Banner} alt="banner" />
+              </div>
+              <h3 className="text-light">Welcome Back 👋</h3>
+              <p className="text-light">Please Login here</p>
             </div>
           </Col>
           <Col>
@@ -177,7 +179,7 @@ function Index() {
                   <i>{errorMassage.password}</i>
                 </span>
 
-                <div className="d-flex justify-content-between mt-3">
+                <div className="d-flex justify-content-between mt-3 mb-5">
                   <div>
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                       <Form.Check type="checkbox" label="Remember me" />
@@ -190,7 +192,7 @@ function Index() {
                   </div>
                 </div>
 
-                <Col lg={12} style={{ marginTop: "3rem" }}>
+                <Col lg={12}>
                   <button className="btn btn-primary col-lg-12">Login</button>
                 </Col>
               </Form>
