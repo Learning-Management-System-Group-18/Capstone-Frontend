@@ -1,6 +1,5 @@
 .btn-save {
   color: white;
-  font-weight: bold;
   font-weight: 600;
   border-radius: 8px;
   background-color: #335ef7;
@@ -20,10 +19,24 @@
 
 .btn-next {
   color: white;
-  font-weight: bold;
   font-weight: 600;
   border-radius: 8px;
   background-color: #335ef7;
   width: 174px;
   height: 45px;
+}
+.btn-add {
+  color: white;
+  border-radius: 8px;
+  font-weight: 500;
+  background-color: #335ef7;
+  width: 173px;
+  height: 43px;
+}
+.icon-add {
+  margin-bottom: 5px;
+  align-items: center;
+  width: 15px;
+  height: 15px;
+  color: white 1px solid;
 }

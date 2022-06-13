@@ -1,8 +1,9 @@
 import React from 'react';
 import './style.css';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { AiOutlineArrowLeft, AiOutlinePlus } from 'react-icons/ai';
 
 const index = ({ type }) => {
+  // let type = 'add';
   return (
     <div>
       {type == 'save' ? (
@@ -22,6 +23,13 @@ const index = ({ type }) => {
       {type == 'back' ? (
         <button type="button" class="btn btn-back">
           <AiOutlineArrowLeft className="icon-back" /> Back
+        </button>
+      ) : (
+        ''
+      )}
+      {type == 'add' ? (
+        <button type="button" class="btn btn-add">
+          <AiOutlinePlus className="icon-add" /> Create Category
         </button>
       ) : (
         ''
