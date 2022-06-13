@@ -1,0 +1,36 @@
+.wrap{
+    width: 100%;
+    position: relative;
+    height: max-content;
+}
+
+.line{
+    height: 2px;
+    width: 15px;
+    background: green;
+}
+
+.circle{
+    background: green;
+    color: white;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    top: 0;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.progress{
+    position: absolute;
+    width: 100%;
+    top: 30%;
+    left: 15%;
+}
+
+.progres-info{
+    font-size: 12px;
+    font-weight: 600;
+    color: #425466;
+}
