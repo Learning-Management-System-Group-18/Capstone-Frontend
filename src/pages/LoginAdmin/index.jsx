@@ -198,9 +198,6 @@ function Index() {
                   <button className="btn btn-primary col-lg-12">Login</button>
                 </Col>
               </Form>
-
-              <br />
-              <ProgressBar />
             </div>
           </Col>
         </Row>

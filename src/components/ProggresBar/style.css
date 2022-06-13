@@ -4,14 +4,9 @@
     height: max-content;
 }
 
-.line{
-    height: 2px;
-    width: 15px;
-    background: green;
-}
 
 .circle{
-    background: green;
+    background: #7C8B99;
     color: white;
     width: 30px;
     height: 30px;
@@ -27,6 +22,8 @@
     width: 100%;
     top: 30%;
     left: 15%;
+    height: 2px; 
+    width: 75%;
 }
 
 .progres-info{
