@@ -7,8 +7,6 @@ import "./style.css";
 import { axiosInstance } from "../../networks/apis";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
-import ProgressBar from "../../components/ProggresBar";
-
 function Index() {
   const baseLogin = {
     email: "",
