@@ -1,0 +1,29 @@
+.btn-save {
+  color: white;
+  font-weight: bold;
+  font-weight: 600;
+  border-radius: 8px;
+  background-color: #335ef7;
+  width: 174px;
+  height: 45px;
+}
+.btn-back {
+  color: #425466;
+  background-color: transparent;
+  font-weight: 600;
+  width: 174px;
+  height: 45px;
+}
+.icon-back {
+  color: #425466;
+}
+
+.btn-next {
+  color: white;
+  font-weight: bold;
+  font-weight: 600;
+  border-radius: 8px;
+  background-color: #335ef7;
+  width: 174px;
+  height: 45px;
+}
