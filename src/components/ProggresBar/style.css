@@ -19,11 +19,11 @@
 
 .progress{
     position: absolute;
-    width: 100%;
     top: 30%;
-    left: 15%;
+    left: 24%;
+    right: 24%;
     height: 2px; 
-    width: 75%;
+    width: 56%;
 }
 
 .progres-info{

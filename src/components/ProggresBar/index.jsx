@@ -29,29 +29,31 @@ const Index = ({ proggres }) => {
 
   return (
     <>
-      <div className="wrap">
-        <div className="d-flex justify-content-between">
-          <div className="d-flex flex-column align-items-center">
-            <div className={proggres1 + ` circle`}>
-              {proggres == 2 || proggres == 3 ? <AiOutlineCheck /> : "1"}
+      <div className="container">
+        <div className="wrap">
+          <div className="d-flex justify-content-evenly">
+            <div className="d-flex flex-column align-items-center">
+              <div className={proggres1 + ` circle`}>
+                {proggres == 2 || proggres == 3 ? <AiOutlineCheck /> : "1"}
+              </div>
+              <div className="progres-info">Course Information</div>
             </div>
-            <div className="progres-info">Course Information</div>
-          </div>
-          <div className="d-flex flex-column align-items-center">
-            <div className={proggres2 + ` circle`}>
-              {proggres == 3 ? <AiOutlineCheck /> : "2"}
+            <div className="d-flex flex-column align-items-center">
+              <div className={proggres2 + ` circle`}>
+                {proggres == 3 ? <AiOutlineCheck /> : "2"}
+              </div>
+              <div className="progres-info">Attachment File</div>
             </div>
-            <div className="progres-info">Attachment File</div>
+            <div className="d-flex flex-column align-items-center">
+              <div className={proggres3 + ` circle`}>3</div>
+              <div className="progres-info">Create Section</div>
+            </div>
           </div>
-          <div className="d-flex flex-column align-items-center">
-            <div className={proggres3 + ` circle`}>3</div>
-            <div className="progres-info">Create Section</div>
-          </div>
+          <ProgressBar>
+            <ProgressBar now={100} variant={variant1} />
+            <ProgressBar now={100} variant={variant2} />
+          </ProgressBar>
         </div>
-        <ProgressBar>
-          <ProgressBar now={100} variant={variant1} />
-          <ProgressBar now={100} variant={variant2} />
-        </ProgressBar>
       </div>
     </>
   );

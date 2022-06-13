@@ -7,8 +7,6 @@ import "./style.css";
 import { axiosInstance } from "../../networks/apis";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
-import ProgressBar from "../../components/ProggresBar";
-
 function Index() {
   const baseLogin = {
     email: "",
@@ -58,10 +56,10 @@ function Index() {
 
   const handleSubmit = (e) => {
     if (errorMassage.email !== "") {
-      console.log("HEREEE");
+      // console.log("HEREEE");
       alert(`login Pendaftar Tidak Sesuai`);
     } else {
-      console.log("HEREE1");
+      // console.log("HEREE1");
 
       const newUser = {
         email: login.email,
@@ -69,14 +67,14 @@ function Index() {
       };
 
       setUser(user.concat(newUser));
-      console.log(axiosInstance);
+      // console.log(axiosInstance);
       resetForm();
     }
     e.preventDefault();
   };
 
   const resetForm = () => {
-    console.log(resetForm);
+    // console.log(resetForm);
     setLogin(baseLogin);
     setErrorMassage(baseError);
   };
@@ -111,7 +109,6 @@ function Index() {
       <div className="container-fluid">
         <img className="ellipse" src={Ellipse} alt="" />
         <img className="ellipse2" src={Ellipse2} alt="" />
-
         <Row>
           <Col className="bg_banner">
             <div className="left-content">
