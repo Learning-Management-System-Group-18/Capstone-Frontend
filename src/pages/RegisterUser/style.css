@@ -55,3 +55,14 @@
   color: red;
   bottom: 100%;
 }
+.button-navigate {
+  background-color: #ffffff;
+
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  color: #66659e;
+  font-family: "Montserrat", sans-serif;
+
+  text-decoration: none;
+}
