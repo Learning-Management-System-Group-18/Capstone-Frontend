@@ -11,9 +11,9 @@ const useAuth = () => {
   }
 };
 
-const ProtectedRoutes = () => {
+const PublicRoute = () => {
   const auth = useAuth();
-  return auth ? <Outlet /> : <Navigate to="/Login" />;
+  return auth ? <Navigate to="/dashboard" /> : <Outlet />;
 };
 
-export default ProtectedRoutes;
+export default PublicRoute;
