@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Rafiki, Ellipse, Ellipse2 } from "../../assets";
 import { Row, Col, Form } from "react-bootstrap";
 import "./style.css";
-import { axiosInstance } from "../../networks/apis";
+import axiosInstance from "../../networks/apis";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 

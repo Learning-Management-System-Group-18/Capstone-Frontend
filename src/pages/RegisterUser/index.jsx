@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import { Rafiki, Ellipse, Ellipse2 } from "../../assets";
-import { axiosInstance } from "../../networks/apis";
+import axiosInstance from "../../networks/apis";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -118,9 +118,7 @@ const Index = () => {
           <div className="banner">
             <img className="img-fluid" src={Rafiki} alt="banner" />
           </div>
-          <h3 className="text-center text-light mt-5">
-            Welcome to Level Up 🙌
-          </h3>
+          <h3 className="text-center text-light ">Welcome to Level Up 🙌</h3>
           <p className="text-light text-center">
             Upgrade your skills, increase salary.{" "}
           </p>
@@ -206,12 +204,6 @@ const Index = () => {
                     type="submit"
                   >
                     Sign Up
-                  </button>
-                  <p className="my-3">
-                    <b>or</b>
-                  </p>
-                  <button className="btn button_2">
-                    Sign Up with company email
                   </button>
                 </div>
               </form>
