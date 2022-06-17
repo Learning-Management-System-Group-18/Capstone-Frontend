@@ -13,11 +13,11 @@
 }
 
 .img-fluid {
-  width: 400px;
+  width: 100%;
   height: auto;
   margin-right: auto;
-  margin-left: 10%;
   margin-top: 10%;
+  z-index: 1;
 }
 
 .position_text_title {
@@ -54,4 +54,31 @@
 .err-Msg {
   color: red;
   bottom: 100%;
+}
+.button-navigate {
+  background-color: #ffffff;
+
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  color: #66659e;
+  font-family: "Montserrat", sans-serif;
+
+  text-decoration: none;
+}
+
+.banner {
+  width: 100%;
+  padding: 10% 10% 5% 10%;
+}
+
+.ellipse {
+  position: fixed;
+  bottom: 71%;
+  left: 3%;
+}
+.ellipse2 {
+  position: fixed;
+  bottom: 0%;
+  left: 0%;
 }
