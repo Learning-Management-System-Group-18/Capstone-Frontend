@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "../pages/LoginAdmin";
+import Login from "../pages/Login";
 import Register from "../pages/RegisterUser";
 import Home from "../pages/Home";
 import DashboardAdmin from "../pages/DashboardAdmin";

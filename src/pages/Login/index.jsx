@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Ellipse from "../../assets/img/Ellipse 19.png";
-import Ellipse2 from "../../assets/img/Ellipse 20.png";
-import Banner from "../../assets/img/rafiki.png";
+import { Rafiki, Ellipse, Ellipse2 } from "../../assets";
 import { Row, Col, Form } from "react-bootstrap";
 import "./style.css";
-import { axiosInstance } from "../../networks/apis";
+import axiosInstance from "../../networks/apis";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
@@ -137,7 +135,7 @@ function Index() {
           <Col className="bg_banner">
             <div className="left-content">
               <div className="banner">
-                <img className="img-fluid" src={Banner} alt="banner" />
+                <img className="img-fluid" src={Rafiki} alt="banner" />
               </div>
               <h3 className="text-light">Welcome Back 👋</h3>
               <p className="text-light">Please Login here</p>

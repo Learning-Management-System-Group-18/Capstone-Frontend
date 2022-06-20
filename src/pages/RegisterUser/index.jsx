@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-import banner_img from "../../assets/banner_img.svg";
-import { axiosInstance } from "../../networks/apis";
+import { Rafiki, Ellipse, Ellipse2 } from "../../assets";
+import axiosInstance from "../../networks/apis";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -111,12 +111,14 @@ const Index = () => {
 
   return (
     <div className="container-fluid">
+      <img className="ellipse" src={Ellipse} alt="" />
+      <img className="ellipse2" src={Ellipse2} alt="" />
       <div className="row">
         <div className="col bg_primary bg_banner mx-auto py-4">
-          <img className="img-fluid" src={banner_img} alt="banner" />
-          <h3 className="text-center text-light mt-5">
-            Welcome to Level Up 🙌
-          </h3>
+          <div className="banner">
+            <img className="img-fluid" src={Rafiki} alt="banner" />
+          </div>
+          <h3 className="text-center text-light ">Welcome to Level Up 🙌</h3>
           <p className="text-light text-center">
             Upgrade your skills, increase salary.{" "}
           </p>
@@ -202,12 +204,6 @@ const Index = () => {
                     type="submit"
                   >
                     Sign Up
-                  </button>
-                  <p className="my-3">
-                    <b>or</b>
-                  </p>
-                  <button className="btn button_2">
-                    Sign Up with company email
                   </button>
                 </div>
               </form>
