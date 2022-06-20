@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import './style.css';
-import banner_img from '../../assets/banner_img.svg';
-import { axiosInstance } from '../../networks/apis';
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import { Row, Col, Form } from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
+import "./style.css";
+import { Rafiki, Ellipse, Ellipse2 } from "../../assets";
+import axiosInstance from "../../networks/apis";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 const Index = () => {
   const newData = {
-    nama: '',
-    email: '',
-    password: '',
+    nama: "",
+    email: "",
+    password: "",
   };
   const userRegister = [];
   const [user, setUser] = useState(userRegister);
@@ -16,45 +17,46 @@ const Index = () => {
   const namaRegex = /^[A-Za-z ]*$/;
   const emailRegex = /\S+@\S+\.\S+/;
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+  const navigate = useNavigate();
   const [errMsg, SetErrMsg] = useState({
-    nama: '',
-    email: '',
-    password: '',
+    nama: "",
+    email: "",
+    password: "",
   });
-  const [passwordType, setPasswordType] = useState('password');
+  const [passwordType, setPasswordType] = useState("password");
   const togglePassword = () => {
-    if (passwordType === 'password') {
-      setPasswordType('text');
+    if (passwordType === "password") {
+      setPasswordType("text");
       return;
     }
-    setPasswordType('password');
+    setPasswordType("password");
   };
   const handleInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     const err = { ...errMsg };
 
-    if (name === 'nama') {
+    if (name === "nama") {
       if (namaRegex.test(value)) {
-        SetErrMsg('');
+        SetErrMsg("");
       } else {
         SetErrMsg({
           ...err,
           nama: <i>Nama Yang Anda Masukan Harus Berupa Huruf</i>,
         });
       }
-    } else if (name === 'email') {
-      if (emailRegex.test(value) || value === '') {
-        SetErrMsg('');
+    } else if (name === "email") {
+      if (emailRegex.test(value) || value === "") {
+        SetErrMsg("");
       } else {
         SetErrMsg({
           ...err,
           email: <i>Email Yang Anda Masukan Tidak Sesuai</i>,
         });
       }
-    } else if (name === 'password') {
-      if (passwordRegex.test(value) || value === '') {
-        SetErrMsg('');
+    } else if (name === "password") {
+      if (passwordRegex.test(value) || value === "") {
+        SetErrMsg("");
       } else {
         SetErrMsg({
           ...err,
@@ -72,14 +74,14 @@ const Index = () => {
       ...data,
       [name]: value,
     });
-    console.log('data', data);
+    console.log("data", data);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (errMsg !== '') {
+    if (errMsg !== "") {
       alert(
-        'Data Pendaftaran Ada Yang Tidak Sesuai Silahkan Anda Cek Kembali Form Pengisian Anda'
+        "Data Pendaftaran Ada Yang Tidak Sesuai Silahkan Anda Cek Kembali Form Pengisian Anda"
       );
     } else {
       alert(`Data Pendaftaran atas nama "${data.nama}"Berhasil Diterima`);
@@ -96,7 +98,7 @@ const Index = () => {
     if (user.length !== 0) {
       console.log(user[0]);
       axiosInstance
-        .post('/register', user[0])
+        .post("/register", user[0])
         .then((response) => {
           console.log(user);
           console.log(response);
@@ -109,21 +111,31 @@ const Index = () => {
 
   return (
     <div className="container-fluid">
+      <img className="ellipse" src={Ellipse} alt="" />
+      <img className="ellipse2" src={Ellipse2} alt="" />
       <div className="row">
         <div className="col bg_primary bg_banner mx-auto py-4">
-          <img className="img-fluid" src={banner_img} alt="banner" />
-          <h3 className="text-center text-light mt-5">
-            Welcome to Level Up 🙌
-          </h3>
+          <div className="banner">
+            <img className="img-fluid" src={Rafiki} alt="banner" />
+          </div>
+          <h3 className="text-center text-light ">Welcome to Level Up 🙌</h3>
           <p className="text-light text-center">
-            Upgrade your skills, increase salary.{' '}
+            Upgrade your skills, increase salary.{" "}
           </p>
         </div>
         <div className="col">
-          <div className="row mx-auto py-5" style={{ padding: '54px 95px' }}>
+          <div className="row mx-auto py-5" style={{ padding: "54px 95px" }}>
             <h1 className="title">Create Account</h1>
             <p className="text-start mt-1 mb-5">
-              Already have an account? Login{' '}
+              Already have an account?
+              <button
+                className="button-navigate"
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                Login
+              </button>
             </p>
             <div>
               <form onSubmit={handleSubmit}>
@@ -138,7 +150,7 @@ const Index = () => {
                     name="nama"
                     required
                   ></input>
-                  <span className="err-Msg">{errMsg.nama ?? ''}</span>
+                  <span className="err-Msg">{errMsg.nama ?? ""}</span>
                 </div>
                 <Form.Label className="title">Email</Form.Label>
                 <div className="mb-3 text-start">
@@ -151,7 +163,7 @@ const Index = () => {
                     name="email"
                     required
                   ></input>
-                  <span className="err-Msg">{errMsg.email ?? ''}</span>
+                  <span className="err-Msg">{errMsg.email ?? ""}</span>
                 </div>
                 <Form.Label className="title">Password</Form.Label>
                 <div className="input-group">
@@ -176,7 +188,7 @@ const Index = () => {
                     }
                     onClick={togglePassword}
                   >
-                    {passwordType === 'password' ? (
+                    {passwordType === "password" ? (
                       <AiOutlineEye />
                     ) : (
                       <AiOutlineEyeInvisible />
@@ -192,12 +204,6 @@ const Index = () => {
                     type="submit"
                   >
                     Sign Up
-                  </button>
-                  <p className="my-3">
-                    <b>or</b>
-                  </p>
-                  <button className="btn button_2">
-                    Sign Up with company email
                   </button>
                 </div>
               </form>
