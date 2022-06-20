@@ -1,0 +1,39 @@
+.background {
+  height: 800px;
+  background: #dde5e969;
+}
+.nav-info {
+  background: white;
+  width: 100%;
+  height: 81px;
+}
+
+.title-nav {
+  font-weight: 500;
+  font-size: 14px;
+  color: #7c8b99;
+}
+
+.background-item {
+  border-radius: 16px 16px 0px 0px;
+  margin-left: 50px;
+  margin-right: 50px;
+  color: #232945;
+  background-color: white;
+}
+.category-name {
+  margin-top: 30px;
+  font-weight: 600;
+  font-size: 24px;
+  color: #232945;
+  font-size: 24px;
+}
+.button-add {
+  margin-top: 30px;
+}
+.search-item {
+  margin-top: 10px;
+}
+.notification-item {
+  margin-top: 10px;
+}

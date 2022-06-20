@@ -1,0 +1,21 @@
+.search {
+  background: white;
+  border: 1px solid #bdc0c7;
+  border-radius: 100px;
+  width: 280px;
+  height: 36px;
+}
+
+.input-search {
+  color: #7c8b99;
+  border: none;
+  margin-top: 3px;
+  margin-left: 10px;
+  background: transparent;
+}
+.icon-search {
+  margin-left: 50px;
+  color: #bdc0c7;
+  width: 20px;
+  height: 20px;
+}
