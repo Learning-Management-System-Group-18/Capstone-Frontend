@@ -8,13 +8,16 @@
 
 .input-search {
   color: #7c8b99;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
   border: none;
+  outline: none;
   margin-top: 3px;
   margin-left: 10px;
   background: transparent;
 }
 .icon-search {
-  margin-left: 50px;
+  margin-left: 7px;
   color: #bdc0c7;
   width: 20px;
   height: 20px;
