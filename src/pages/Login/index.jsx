@@ -97,7 +97,7 @@ function Index() {
   useEffect(() => {
     if (user.length !== 0) {
       axiosInstance
-        .post("/login", user[0])
+        .post("/api/login", user[0])
         .then((response) => {
           localStorage.setItem("role", response.data.data.role[0]);
           localStorage.setItem("token", response.data.data.token);

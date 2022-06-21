@@ -98,7 +98,7 @@ const Index = () => {
     if (user.length !== 0) {
       console.log(user[0]);
       axiosInstance
-        .post("/register", user[0])
+        .post("/api/register", user[0])
         .then((response) => {
           console.log(user);
           console.log(response);
