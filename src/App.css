@@ -76,12 +76,24 @@
   background-color: #335EF7;
 }
 
+.primary {
+  color: #335EF7;
+}
+
 .bg_secondary_1 {
   background-color: #FF8819;
 }
 
+.secondary_1 {
+  color: #FF8819;
+}
+
 .bg_secondary_2 {
   background-color: #232945;
+}
+
+.secondary_2 {
+  color: #232945;
 }
 
 .success {
@@ -92,22 +104,42 @@
   background-color: #CE3426;
 }
 
-.neutral_1 {
+.bg_neutral_1 {
   background-color: #F5F8FB;
 }
 
-.neutral_2 {
+.neutral_1 {
+  color: #F5F8FB;
+}
+
+.bg_neutral_2 {
   background-color: #7C8B99;
 }
 
-.neutral_3 {
+.neutral_2 {
+  color: #7C8B99;
+}
+
+.bg_neutral_3 {
   background-color: #425466;
 }
 
-.neutral_4 {
+.neutral_3 {
+  color: #425466;
+}
+
+.bg_neutral_4 {
   background-color: #FFFFFF;
 }
 
-.neutral_5 {
+.neutral_4 {
+  color: #FFFFFF;
+}
+
+.bg_neutral_5 {
   background-color: #B5B5BD;
+}
+
+.neutral_5 {
+  color: #B5B5BD;
 }
