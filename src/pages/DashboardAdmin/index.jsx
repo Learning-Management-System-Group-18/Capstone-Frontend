@@ -25,12 +25,14 @@ const index = () => {
       desc: 'Android developer adalah course yang mempelajari cara mengembangkan aplikasi mobile dengan bahasa Dar...',
       course: '12 Course',
       employee: 'Coba',
+      icon: 'https://img.icons8.com/ultraviolet/344/play-button-circled.png',
     },
     {
       title: 'HTML',
       desc: 'Android developer adalah course yang mempelajari cara mengembangkan aplikasi mobile dengan bahasa Dar...',
       course: '12 Course',
       employee: 'Coba',
+      icon: 'https://img.icons8.com/color/344/apple-app-store--v1.png',
     },
   ];
 
@@ -59,9 +61,9 @@ const index = () => {
         </div>
 
         <div className="container background-table px-5 pb-5 mt-5">
-          <div className="button">
+          {/* <div className="button">
             <Button type={'btn-add'} />
-          </div>
+          </div> */}
 
           <Table tHead={tHead} data={data} tableTitle={tableTitle} />
         </div>

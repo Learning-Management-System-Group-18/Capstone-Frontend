@@ -9,16 +9,17 @@ const Index = ({ tHead, data, tableTitle }) => {
     const location = useLocation();
 
     return (
-        <div className='rounded p-3 bg-light'>
-            <div className='mb-5'>
+        <div className='rounded p-3 bg_neutral_4'>
+            <div className='table_header mb-3'>
                 <h3 className='heading_4 secondary_2'>{tableTitle}</h3>
+                <Button type={'btn-add'} />
             </div>
-            <div className='px-4'>
+            <div className='px-1'>
                 {
                     location.pathname === '/dashboard' ? (
                         <table className='table table-hover'>
                             <thead>
-                                <div className='row rounded bg-light text-dark align-items-center p-2'>
+                                <div className='row rounded bg_neutral_4 text-dark align-items-center p-2'>
                                     {
                                         tHead.map((head, headIdx) => (
                                             <div className='col text-center body_2 neutral_2' key={headIdx}>{head}</div>
@@ -33,7 +34,10 @@ const Index = ({ tHead, data, tableTitle }) => {
                                             <div className='row rounded bg-light text-dark align-items-center' key={itemIdx}>
                                                 <Accordion.Item eventKey={itemIdx}>
                                                     <Accordion.Header>
-                                                        <div className='col text-center caption_1 secondary_2'>{item.title}</div>
+                                                        <img className='icon' src={item.icon} alt={item.title} />
+                                                        <div className='col text-center caption_1 secondary_2'>
+                                                            {item.title}
+                                                        </div>
                                                         <div className='col text-center caption_1 secondary_2'>{item.desc.length >= 70 ? `${item.desc.substring(0, 70)}...` : item.desc}</div>
                                                         <div className='col text-center caption_1 secondary_2'>{item.course}</div>
                                                         <div className='col text-center caption_1 secondary_2'>{item.employee}</div>
