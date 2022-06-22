@@ -28,6 +28,10 @@
     border-radius: 12px;
 }
 
+.radius-8{
+    border-radius: 8px;
+}
+
 .start{
     width: 24px;
     height: 24px;
