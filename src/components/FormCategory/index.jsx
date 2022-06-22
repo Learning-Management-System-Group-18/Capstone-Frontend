@@ -1,10 +1,10 @@
 import React, { useState, useCallback } from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, Modal } from 'react-bootstrap';
 import { useDropzone } from 'react-dropzone';
 import './style.css';
 import uploadIcon from '../../assets/img/upload-icon.svg';
 
-const Index = ({ handleClose, handleShow }) => {
+const Index = ({ handleClose, handleShow, show, setShow, modalType }) => {
 
     const [imageBase64, setImageBase64] = useState('');
 
@@ -67,45 +67,56 @@ const Index = ({ handleClose, handleShow }) => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit} >
-                <Form.Label className="title">Input Title</Form.Label>
-                <div className="mb-3 text-start">
-                    <input
-                        type="text"
-                        placeholder="Type something here"
-                        className="form-control mr-3 mb-4"
-                        onChange={handleInput}
-                        value={data.title}
-                        name="title"
-                        required
-                    ></input>
-                </div>
-                <Form.Label className="title">Input Description</Form.Label>
-                <div className="mb-3 text-start">
-                    <textarea
-                        type="text"
-                        placeholder="Type something here"
-                        className="form-control mr-3 mb-4"
-                        onChange={handleInput}
-                        value={data.description}
-                        name="description"
-                        rows={5}
-                        required
-                    ></textarea>
-                </div>
-                <Form.Label className="title">Upload Image</Form.Label>
-                <div className='form-control py-5 mb-3' {...getRootProps()} id="uploadImage">
-                    <input name="image" defaultValue={imageBase64} {...getInputProps()} />
-                    <img src={uploadIcon} alt="upload-icon" />
-                    <p>Drag & drop image here</p>
-                </div>
-                <button className="btn btn-secondary" onClick={handleClose}>
-                    Close
-                </button>
-                <button type="submit" className="btn btn-primary">
-                    Save Changes
-                </button>
-            </form>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>
+                        {
+                            modalType === 'create' ? 'Create Category' : 'Edit Category'
+                        }
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <form onSubmit={handleSubmit} >
+                        <Form.Label className="title">Input Title</Form.Label>
+                        <div className="mb-3 text-start">
+                            <input
+                                type="text"
+                                placeholder="Type something here"
+                                className="form-control mr-3 mb-4"
+                                onChange={handleInput}
+                                value={data.title}
+                                name="title"
+                                required
+                            ></input>
+                        </div>
+                        <Form.Label className="title">Input Description</Form.Label>
+                        <div className="mb-3 text-start">
+                            <textarea
+                                type="text"
+                                placeholder="Type something here"
+                                className="form-control mr-3 mb-4"
+                                onChange={handleInput}
+                                value={data.description}
+                                name="description"
+                                rows={5}
+                                required
+                            ></textarea>
+                        </div>
+                        <Form.Label className="title">Upload Image</Form.Label>
+                        <div className='form-control py-5 mb-3' {...getRootProps()} id="uploadImage">
+                            <input name="image" defaultValue={imageBase64} {...getInputProps()} />
+                            <img src={uploadIcon} alt="upload-icon" />
+                            <p>Drag & drop image here</p>
+                        </div>
+                        <button className="btn btn-secondary" onClick={handleClose}>
+                            Close
+                        </button>
+                        <button type="submit" className="btn btn-primary">
+                            Save Changes
+                        </button>
+                    </form>
+                </Modal.Body>
+            </Modal>
         </div>
     );
 }
