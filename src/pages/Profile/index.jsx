@@ -11,20 +11,6 @@ const Index = () => {
     <>
       <NavbarAdmin />
       <div className="background-profile pb-4   ">
-        <div className="nav-info">
-          <div className="container d-flex justify-content-between py-3">
-            <div className="nav-name">
-              <span className="title-nav">Welcome back</span>
-              <h5>Latifa Salsabila 👋</h5>
-            </div>
-
-            <div className="d-flex align-items-center gap-3">
-              <SearchBar />
-              <Notification />
-            </div>
-          </div>
-        </div>
-
         <div className="container">
           <div className="row">
             <div className="col-12 mt-4">
