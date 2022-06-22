@@ -24,6 +24,10 @@
     position: relative;
 }
 
+.radius-12{
+    border-radius: 12px;
+}
+
 .start{
     width: 24px;
     height: 24px;

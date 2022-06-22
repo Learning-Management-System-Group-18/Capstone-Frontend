@@ -126,10 +126,7 @@ const Index = () => {
                       <input type="text" className="form-control" />
                     </div>
 
-                    <Button
-                      className="col-6 offset-3 mt-4 mb-4 py-3 px-4 rounded"
-                      disabled
-                    >
+                    <Button className="col-8 offset-2 bg_primary subtitle_2 mt-5 mb-4 py-3 px-4 radius-12">
                       Save Changes
                     </Button>
                   </form>
