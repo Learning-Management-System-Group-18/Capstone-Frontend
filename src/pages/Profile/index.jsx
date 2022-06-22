@@ -1,5 +1,5 @@
 import React from "react";
-import { NavbarAdmin, SearchBar, Notification } from "../../components";
+import { NavbarAdmin } from "../../components";
 import { Form, Button } from "react-bootstrap";
 import { ProfileImg } from "../../assets";
 import { BsFillStarFill } from "react-icons/bs";
