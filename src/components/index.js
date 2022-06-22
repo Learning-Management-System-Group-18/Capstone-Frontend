@@ -5,13 +5,15 @@ import NavbarAdmin from "./NavbarAdmin";
 import SearchBar from "./SearchBar";
 import Notification from "./Notification";
 import ProgressBar from "./ProggresBar";
+import FormCategory from "./FormCategory";
 
 export {
-  Button,
-  Card,
-  Table,
-  NavbarAdmin,
-  SearchBar,
-  Notification,
-  ProgressBar,
+    Button,
+    Card,
+    Table,
+    NavbarAdmin,
+    SearchBar,
+    Notification,
+    ProgressBar,
+    FormCategory
 };
