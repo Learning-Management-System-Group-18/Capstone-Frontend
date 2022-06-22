@@ -1,4 +1,4 @@
-.wrap{
+.wrap-progress{
     width: 100%;
     position: relative;
     height: max-content;
@@ -20,13 +20,13 @@
 .progress{
     position: absolute;
     top: 30%;
-    left: 24%;
+    left: 25%;
     right: 24%;
     height: 2px; 
-    width: 56%;
+    width: 50%;
 }
 
-.progres-info{
+.progress-info{
     font-size: 12px;
     font-weight: 600;
     color: #425466;

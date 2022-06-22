@@ -1,47 +1,145 @@
-.App {
-  
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.display {
+  font-family: 'Inter', sans-serif;
+  font-size: 42px;
+  font-weight: 600;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.heading_1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 36px;
+  font-weight: 600;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.heading_2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.heading_3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
 }
 
-.App-link {
-  color: #61dafb;
+.heading_4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+.heading_5 {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+}
 
-  to {
-    transform: rotate(360deg);
-  }
+.subtitle_1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.subtitle_2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.body_1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.body_2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.caption_1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.caption_2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .bg_primary {
   background-color: #335EF7;
 }
 
+.primary {
+  color: #335EF7;
+}
+
 .bg_secondary_1 {
-  background-color: #5F7BFF;
+  background-color: #FF8819;
+}
+
+.secondary_1 {
+  color: #FF8819;
+}
+
+.bg_secondary_2 {
+  background-color: #232945;
+}
+
+.secondary_2 {
+  color: #232945;
+}
+
+.success {
+  background-color: #157F40;
+}
+
+.error {
+  background-color: #CE3426;
+}
+
+.bg_neutral_1 {
+  background-color: #F5F8FB;
+}
+
+.neutral_1 {
+  color: #F5F8FB;
+}
+
+.bg_neutral_2 {
+  background-color: #7C8B99;
+}
+
+.neutral_2 {
+  color: #7C8B99;
+}
+
+.bg_neutral_3 {
+  background-color: #425466;
+}
+
+.neutral_3 {
+  color: #425466;
+}
+
+.bg_neutral_4 {
+  background-color: #FFFFFF;
+}
+
+.neutral_4 {
+  color: #FFFFFF;
+}
+
+.bg_neutral_5 {
+  background-color: #B5B5BD;
+}
+
+.neutral_5 {
+  color: #B5B5BD;
 }

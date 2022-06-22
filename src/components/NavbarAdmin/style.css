@@ -2,18 +2,21 @@
   background: #335ef7;
   color: white;
 }
-.navbar-brand {
-  margin-left: 30px;
-}
+
 .nav-item {
   text-decoration: none;
   padding: 5px 16px;
   color: white;
 }
+
+.nav-item:hover{
+  cursor: pointer;
+  color: white;
+}
+
 .decoration {
   width: 106px;
   height: 37px;
-  padding: 5px 16px;
   border: 1.5px solid #ffffff;
   border-radius: 100px;
 }

@@ -1,9 +1,10 @@
 import React from "react";
-import Login from "../pages/LoginAdmin";
+import Login from "../pages/Login";
 import Register from "../pages/RegisterUser";
 import Home from "../pages/Home";
 import DashboardAdmin from "../pages/DashboardAdmin";
 import ProtectedRoutes from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -15,7 +16,9 @@ function Index() {
           <Route path="/dashboard" element={<DashboardAdmin />} />
         </Route>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route element={<PublicRoute />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
         <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>

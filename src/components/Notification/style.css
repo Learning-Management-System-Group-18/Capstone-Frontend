@@ -1,0 +1,11 @@
+.icon-notif {
+  color: black;
+  width: 20px;
+  height: 20px;
+}
+.circle-notif {
+  background: #ce3426;
+  border-radius: 100px;
+  width: 5px;
+  height: 5px;
+}

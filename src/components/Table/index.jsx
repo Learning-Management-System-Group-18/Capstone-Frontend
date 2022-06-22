@@ -1,43 +1,72 @@
 import React from 'react';
+import './style.css';
+import { Accordion } from 'react-bootstrap';
+import { useLocation, Link } from 'react-router-dom';
+import { Button } from '../';
 
-const Index = ({ tHead, data }) => {
+const Index = ({ tHead, data, tableTitle }) => {
+
+    const location = useLocation();
+
     return (
-        <div>
-            <table className='table table-hover'>
-                <thead>
-                    <tr className='rounded bg-light text-dark align-items-center p-2'>
-                        {
-                            tHead.map((head, headIdx) => (
-                                <th className='text-center' key={headIdx}>{head}</th>
-                            ))
-                        }
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        {
-                            data.map((row, rowIdx) => (
-                                <td className='py-4 rounded bg-light text-dark align-items-center p-2'>
-                                    {row}
-                                </td>
-                            ))
-                            // data.map((item, itemIdx) => (
-                            //     <div className='rounded align-items-center p-2 bg-light row mb-2 card_post' key={itemIdx}>
-                            //         <div className='col-1 text-center'>{itemIdx + 1}</div>
-                            //         <div className='col text-center'>{item.judul}</div>
-                            //         <div className='col text-center'>{item.user.nama}</div>
-                            //         <div className='col text-center'>
-                            //             <Link to={`/dashboard/edit-post/${item.id}`} className='btn btn-sm btn-outline-warning mx-2'>Edit</Link>
-                            //             <button onClick={() => {
-                            //                 handleDeletePostButton(item.id)
-                            //             }} className='btn btn-sm btn-outline-danger'>Delete</button>
-                            //         </div>
-                            //     </div>
-                            // ))
-                        }
-                    </tr>
-                </tbody>
-            </table>
+        <div className='rounded p-3 bg_neutral_4'>
+            <div className='table_header mb-3'>
+                <h3 className='heading_4 secondary_2'>{tableTitle}</h3>
+                <Button type={'btn-add'} />
+            </div>
+            <div className='px-1'>
+                {
+                    location.pathname === '/dashboard' ? (
+                        <table className='table table-hover'>
+                            <thead>
+                                <div className='row rounded bg_neutral_4 text-dark align-items-center p-2'>
+                                    {
+                                        tHead.map((head, headIdx) => (
+                                            <div className='col text-center body_2 neutral_2' key={headIdx}>{head}</div>
+                                        ))
+                                    }
+                                </div>
+                            </thead>
+                            <tbody>
+                                {
+                                    data.map((item, itemIdx) => (
+                                        <Accordion>
+                                            <div className='row rounded bg-light text-dark align-items-center' key={itemIdx}>
+                                                <Accordion.Item eventKey={itemIdx}>
+                                                    <Accordion.Header>
+                                                        <img className='icon' src={item.icon} alt={item.title} />
+                                                        <div className='col text-center caption_1 secondary_2'>
+                                                            {item.title}
+                                                        </div>
+                                                        <div className='col text-center caption_1 secondary_2'>{item.desc.length >= 70 ? `${item.desc.substring(0, 70)}...` : item.desc}</div>
+                                                        <div className='col text-center caption_1 secondary_2'>{item.course}</div>
+                                                        <div className='col text-center caption_1 secondary_2'>{item.employee}</div>
+                                                        <div className='col d-flex justify-content-end mx-3'>
+                                                            <Button type={"btn-edit"} />
+                                                        </div>
+                                                    </Accordion.Header>
+                                                    <Accordion.Body>
+                                                        <div className='d-flex justify-content-end px-4'>
+                                                            <div className='mx-2 card_alert'>
+                                                                <span className='alert_delete caption_1 secondary_2'>Delete this category, will remove all the items and the courses in this category</span>
+                                                            </div>
+                                                            <Button type={"btn-delete"} />
+                                                        </div>
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
+                                        </Accordion>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                    ) : (
+                        <div>
+                            <h1>bukan dashboard</h1>
+                        </div>
+                    )
+                }
+            </div>
         </div>
     );
 }
