@@ -1,0 +1,54 @@
+.background-profile {
+    background: #f5f8fb;
+  }
+
+
+.wrap-user{
+    border-radius: 16px;
+    background: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.wrap-data-user{
+    background: #FFFFFF;
+    border-radius: 16px;
+    width: 100%;
+}
+
+.img-profile{
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    object-fit: cover;
+    position: relative;
+}
+
+.start{
+    width: 24px;
+    height: 24px;
+    margin: 5px;
+}
+
+
+.edit-user{
+    border-radius: 100%;
+    cursor:pointer;
+    width: 35px;
+    height: 35px;
+    border:2px solid white;
+    position: absolute;
+    bottom: 1%;
+    right: 4%;
+    z-index: 1;
+    color :white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.label-input-user{
+    font-family: 'Inter';
+    font-weight: 500;
+    font-size: 14px;
+}
