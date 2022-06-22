@@ -7,6 +7,12 @@
   text-decoration: none;
   padding: 5px 16px;
   color: white;
+  font-family: 'Inter';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  padding: 7px 20px;
+  margin: 7px 0;
 }
 
 .nav-item:hover{
@@ -15,8 +21,6 @@
 }
 
 .decoration {
-  width: 106px;
-  height: 37px;
   border: 1.5px solid #ffffff;
   border-radius: 100px;
 }
