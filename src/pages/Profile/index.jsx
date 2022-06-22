@@ -51,13 +51,13 @@ const Index = () => {
                     </div>
                     <div className="form-group col-6">
                       <label className="label-input-user neutral_5">
-                        Input Title
+                        First Name
                       </label>
                       <input type="text" className="form-control" />
                     </div>
                     <div className="form-group col-6">
                       <label className="label-input-user neutral_5">
-                        Input Title
+                        Last Name
                       </label>
                       <input type="text" className="form-control" />
                     </div>
