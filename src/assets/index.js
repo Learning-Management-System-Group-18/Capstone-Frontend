@@ -7,6 +7,7 @@ import categoriesIcon from "./img/Frame 366(2).png";
 import ProfileImg from "./img/profile.jpg";
 import deletepopupIcon from './img/Group 115.png';
 import totalMentorIcon from './img/total_mentor_icon.png';
+import arrowRightIcon from './img/Arrow_right.svg';
 
 export {
     Rafiki,
@@ -17,5 +18,6 @@ export {
     categoriesIcon,
     deletepopupIcon,
     ProfileImg,
-    totalMentorIcon
+    totalMentorIcon,
+    arrowRightIcon
 };

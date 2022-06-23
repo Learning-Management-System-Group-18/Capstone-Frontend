@@ -2,8 +2,6 @@ import React from 'react';
 import './style.css';
 import { Accordion } from 'react-bootstrap';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import { Button } from '../';
-import { useLocation, Link } from 'react-router-dom';
 import { Button, FormCategory, PopupDelete } from '../';
 import { useState } from 'react';
 import { AiOutlineArrowLeft, AiOutlinePlus } from 'react-icons/ai';
@@ -11,6 +9,7 @@ import { RiPencilFill } from 'react-icons/ri';
 import { FaTrash } from 'react-icons/fa';
 
 const Index = ({ tHead, data, tableTitle }) => {
+    const navigate = useNavigate();
     const location = useLocation();
     const [show, setShow] = useState(false);
 
@@ -29,6 +28,10 @@ const Index = ({ tHead, data, tableTitle }) => {
     const deleteShow = () => {
         setShowDelete(true);
     };
+
+    const handleCategoryButton = (categoryName) => {
+        navigate(`/dashboard/${categoryName}`);
+    }
 
     return (
         <div className="rounded p-3 bg_neutral_4">
@@ -71,7 +74,7 @@ const Index = ({ tHead, data, tableTitle }) => {
                                                     src={item.icon}
                                                     alt={item.title}
                                                 />
-                                                <div className="col text-center caption_1 secondary_2">
+                                                <div onClick={() => handleCategoryButton(item.title)} className="col text-center caption_1 secondary_2">
                                                     {item.title}
                                                 </div>
                                                 <div className="col text-center caption_1 secondary_2">
