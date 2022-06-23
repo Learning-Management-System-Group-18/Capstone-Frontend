@@ -1,0 +1,29 @@
+.content-popupDelete {
+  margin-top: 8px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+}
+.wrapContentDeletePopup {
+  display: flex;
+  gap: 36px;
+  margin-top: 15px;
+  margin-bottom: 40px;
+  margin-left: 15px;
+}
+.icon-popupdelete {
+  width: 80px;
+  height: 80px;
+}
+.warpbtn-popupdelete {
+  justify-content: center;
+  display: flex;
+  gap: 24px;
+}
+.icon-closedelete {
+  margin-top: 5px;
+  width: 15px;
+  height: 15px;
+  margin-left: 95%;
+}

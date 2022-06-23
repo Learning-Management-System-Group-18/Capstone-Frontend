@@ -1,0 +1,20 @@
+#uploadImage {
+  border: 2px #bdc0c7;
+  border-style: dashed;
+  text-align: center;
+  border-radius: 8px;
+}
+.warpbtn-popup {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+.icon-title {
+  font-weight: 500;
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+}
+.radiusborder {
+  border-radius: 8px;
+}
