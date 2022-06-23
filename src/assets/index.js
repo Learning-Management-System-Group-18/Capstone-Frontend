@@ -5,6 +5,7 @@ import employIcon from "./img/Frame 366.png";
 import courseIcon from "./img/Frame 366(1).png";
 import categoriesIcon from "./img/Frame 366(2).png";
 import ProfileImg from "./img/profile.jpg";
+import deletepopupIcon from './img/Group 115.png';
 
 export {
   Rafiki,
@@ -13,5 +14,6 @@ export {
   employIcon,
   courseIcon,
   categoriesIcon,
+  deletepopupIcon,
   ProfileImg,
 };
