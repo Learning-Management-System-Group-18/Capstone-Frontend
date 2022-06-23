@@ -6,14 +6,18 @@ import courseIcon from "./img/Frame 366(1).png";
 import categoriesIcon from "./img/Frame 366(2).png";
 import ProfileImg from "./img/profile.jpg";
 import deletepopupIcon from './img/Group 115.png';
+import totalMentorIcon from './img/total_mentor_icon.png';
+import arrowRightIcon from './img/Arrow_right.svg';
 
 export {
-  Rafiki,
-  Ellipse,
-  Ellipse2,
-  employIcon,
-  courseIcon,
-  categoriesIcon,
-  deletepopupIcon,
-  ProfileImg,
+    Rafiki,
+    Ellipse,
+    Ellipse2,
+    employIcon,
+    courseIcon,
+    categoriesIcon,
+    deletepopupIcon,
+    ProfileImg,
+    totalMentorIcon,
+    arrowRightIcon
 };
