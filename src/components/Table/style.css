@@ -6,6 +6,29 @@
 .icon {
     width: 40px;
     height: 40px;
+    margin-right: -12px;
+}
+
+.mentor_img_1 {
+    border-radius: 50%;
+    border: 2px solid #FFFFFF;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.mentor_img_2 {
+    border-radius: 50%;
+    border: 2px solid #FFFFFF;
+    margin-left: -12px;
+    margin-right: 8px;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.title {
+    margin-left: -8px;
 }
 
 thead {

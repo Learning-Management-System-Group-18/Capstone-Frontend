@@ -7,32 +7,40 @@ import {
     SearchBar,
     Notification,
 } from '../../components';
-import { employIcon, categoriesIcon, courseIcon, arrowRightIcon } from '../../assets';
+import { employIcon, categoriesIcon, courseIcon, arrowRightIcon, totalMentorIcon } from '../../assets';
 import './style.css';
+import { useParams } from 'react-router-dom';
 
-const index = () => {
-    const tableTitle = ['Category'];
+const Index = () => {
+
+    const { categoryName } = useParams();
+
+    console.log(categoryName);
+
+    const tableTitle = ['Course'];
     const tHead = [
-        'Category Name',
-        'Description',
-        'Course',
+        'Course Title',
+        'Mentor',
+        'Section',
         'Employee',
         'Action',
     ];
     const data = [
         {
             title: 'Android Developer',
-            desc: 'Android developer adalah course yang mempelajari cara mengembangkan aplikasi mobile dengan bahasa Dar...',
-            course: '12 Course',
-            employee: 'Coba',
-            icon: 'https://img.icons8.com/ultraviolet/344/play-button-circled.png',
+            mentor: ['mentor 1', 'mentor 2'],
+            section: '12 Section',
+            employee: '34 Employees',
+            iconTitle: 'https://img.icons8.com/ultraviolet/344/play-button-circled.png',
+            mentorImg: ['https://akcdn.detik.net.id/visual/2016/08/31/46968e0b-a0db-4348-920b-94a64aad2efd_169.jpg?w=650', 'https://akcdn.detik.net.id/visual/2016/08/31/46968e0b-a0db-4348-920b-94a64aad2efd_169.jpg?w=650']
         },
         {
-            title: 'HTML',
-            desc: 'Android developer adalah course yang mempelajari cara mengembangkan aplikasi mobile dengan bahasa Dar...',
-            course: '12 Course',
-            employee: 'Coba',
-            icon: 'https://img.icons8.com/color/344/apple-app-store--v1.png',
+            title: 'Android Developer',
+            mentor: ['mentor 1', 'mentor 2'],
+            section: '12 Section',
+            employee: '34 Employees',
+            iconTitle: 'https://img.icons8.com/color/344/apple-app-store--v1.png',
+            mentorImg: ['https://akcdn.detik.net.id/visual/2016/08/31/46968e0b-a0db-4348-920b-94a64aad2efd_169.jpg?w=650', 'https://akcdn.detik.net.id/visual/2016/08/31/46968e0b-a0db-4348-920b-94a64aad2efd_169.jpg?w=650']
         },
     ];
 
@@ -41,12 +49,12 @@ const index = () => {
             <NavbarAdmin />
             <div className="background">
                 <div className="nav-info">
-                    <div className="container d-flex justify-content-between py-3">
+                    <div className="container d-flex justify-content-between py-4">
                         <div className="nav-name">
-                            <span className='align-middle caption_2'>Dashboard <img src={arrowRightIcon} alt="arrow-right" /> Marketing </span>
+                            <span className='align-middle caption_2'>Dashboard <img src={arrowRightIcon} alt="arrow-right" /> {categoryName} </span>
                         </div>
 
-                        <div className="d-flex align-middle align-items-center gap-3">
+                        <div className="d-flex align-items-center gap-3">
                             <SearchBar />
                             <Notification />
                         </div>
@@ -54,9 +62,9 @@ const index = () => {
                 </div>
 
                 <div className="container d-flex gap-4 mt-4">
-                    <Card icon={categoriesIcon} total={7} desc={'Total of Categories'} />
-                    <Card icon={courseIcon} total={7} desc={'Total of Course'} />
-                    <Card icon={employIcon} total={7} desc={'Total of Employess'} />
+                    <Card icon={courseIcon} total={14} desc={'Total of Course'} />
+                    <Card icon={totalMentorIcon} total={5} desc={'Total of Mentor'} />
+                    <Card icon={employIcon} total={121} desc={'Total of Employees'} />
                 </div>
 
                 <div className="container background-table px-5 pb-5 mt-5">
@@ -68,4 +76,4 @@ const index = () => {
     );
 };
 
-export default index;
+export default Index;
