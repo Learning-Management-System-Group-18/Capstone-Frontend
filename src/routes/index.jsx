@@ -3,6 +3,7 @@ import Login from "../pages/Login";
 import Register from "../pages/RegisterUser";
 import Home from "../pages/Home";
 import DashboardCategory from "../pages/DashboardAdmin/Category";
+import Profile from "../pages/Profile";
 import ProtectedRoutes from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 
@@ -14,6 +15,7 @@ function Index() {
       <Routes>
         <Route element={<ProtectedRoutes />}>
           <Route path="/dashboard" element={<DashboardCategory />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
         <Route path="/" element={<Home />} />
         <Route element={<PublicRoute />}>
