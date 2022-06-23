@@ -83,3 +83,11 @@
   width: 14px;
   height: 14px;
 }
+.btn-popupdelete {
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  background-color: rgba(206, 52, 38, 1);
+  width: 200px;
+  height: 45px;
+}
