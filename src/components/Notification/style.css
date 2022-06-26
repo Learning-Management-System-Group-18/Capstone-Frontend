@@ -1,3 +1,11 @@
+.notification{
+  display: flex;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: 0px  !important;
+  outline: 0px !important;
+}
+
 .icon-notif {
   color: black;
   width: 20px;
@@ -5,7 +13,59 @@
 }
 .circle-notif {
   background: #ce3426;
+  color: #ce3426;
   border-radius: 100px;
   width: 5px;
   height: 5px;
 }
+
+.circle-read {
+  background: #335EF7;
+  color: #335EF7;
+  border-radius: 100%;
+  width: 8px;
+  height: 8px;
+  margin-right: 10px;
+}
+
+.notif-content:hover{
+  background-color: #F5F8FB;
+}
+
+.notif-content{
+  outline: 0px;
+}
+
+.header-mark{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.date{
+  margin: 1% 0% 0% 6% !important;
+}
+
+.scroll{
+  box-shadow: 0px 0px 30px rgba(19, 10, 46, 0.08), 0px 0px 20px rgba(19, 10, 46, 0.07);
+  border-radius: 16px 0px 0px 16px;
+  border: 0;
+  height:70vh;
+  overflow-y: scroll;
+}
+
+.dropdown-menu::-webkit-scrollbar{
+  width: 5px;
+  height: 90px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb{
+  border-radius: 200px;
+  background: #B5B5BD;;  
+}
+
+.dropdown-menu::-webkit-scrollbar-track{
+  background-color: white;
+}
+
