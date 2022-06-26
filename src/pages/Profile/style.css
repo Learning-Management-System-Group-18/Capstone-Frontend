@@ -24,6 +24,21 @@
     position: relative;
 }
 
+.input-profile-img{
+    color: transparent;
+    cursor: pointer;
+}
+.input-profile-img::-webkit-file-upload-button{
+    visibility: hidden;
+    position: absolute;
+    z-index:1;
+}
+
+.icons-edit{
+    position:absolute;
+    z-index: -1;
+}
+
 .radius-12{
     border-radius: 12px;
 }
@@ -41,7 +56,6 @@
 
 .edit-user{
     border-radius: 100%;
-    cursor:pointer;
     width: 35px;
     height: 35px;
     border:2px solid white;
