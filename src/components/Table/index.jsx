@@ -37,7 +37,7 @@ const Index = ({ tHead, data, tableTitle }) => {
         <div className="rounded p-3 bg_neutral_4">
             <div className="table_header mb-3">
                 <h3 className="heading_4 secondary_2">{tableTitle}</h3>
-                <Button type={'btn-add'} onClick={() => handleShow('create')} />
+                <Button type={location.pathname === '/dashboard' ? 'btn-add' : 'btn-add-course'} onClick={() => handleShow('create')} />
             </div>
             <FormCategory
                 handleShow={handleShow}
