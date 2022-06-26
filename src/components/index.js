@@ -5,7 +5,7 @@ import NavbarAdmin from "./NavbarAdmin";
 import SearchBar from "./SearchBar";
 import Notification from "./Notification";
 import ProgressBar from "./ProggresBar";
-
+import FormSection from "./FormSection";
 export {
   Button,
   Card,
@@ -14,4 +14,5 @@ export {
   SearchBar,
   Notification,
   ProgressBar,
+  FormSection,
 };
