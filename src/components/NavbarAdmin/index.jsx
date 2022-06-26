@@ -1,13 +1,14 @@
-import React from 'react';
-import './style.css';
-import { Link, useLocation } from 'react-router-dom';
-import { Dropdown, NavDropdown, Nav, Navbar, Container } from 'react-bootstrap';
-import { logoutIcon } from '../../assets';
+import React from "react";
+import "./style.css";
+import { Link, useLocation } from "react-router-dom";
+import { Dropdown, NavDropdown, Nav, Navbar, Container } from "react-bootstrap";
+import { logoutIcon } from "../../assets";
 
 const Index = () => {
   const location = useLocation();
   const locationLink = location.pathname;
-  console.log(location.pathname);
+  const link = locationLink.split("/");
+  // console.log(link[1]);
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark">
@@ -21,9 +22,7 @@ const Index = () => {
                 <Link
                   to="/dashboard"
                   className={`${
-                    locationLink == '/dashboard'
-                      ? `item-nav decoration`
-                      : `item-nav`
+                    link[1] == "dashboard" ? `item-nav decoration` : `item-nav`
                   }`}
                 >
                   Dasboard
@@ -33,9 +32,7 @@ const Index = () => {
                 <Link
                   to="/order"
                   className={`${
-                    locationLink == '/order'
-                      ? `item-nav decoration`
-                      : `item-nav`
+                    link[1] == "order" ? `item-nav decoration` : `item-nav`
                   }`}
                 >
                   Order
@@ -46,9 +43,7 @@ const Index = () => {
                   title="Profile"
                   id="basic-nav-dropdown"
                   className={`${
-                    locationLink == '/profile'
-                      ? `drop-nav decoration`
-                      : `drop-nav`
+                    link[1] == "profile" ? `drop-nav decoration` : `drop-nav`
                   }`}
                 >
                   <NavDropdown.Item className="drop-item-nav">
