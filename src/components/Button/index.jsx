@@ -38,6 +38,15 @@ const Index = ({ type, onClick }) => {
       ) : (
         ''
       )}
+      {type == 'btn-add-course' ? (
+        <>
+          <button type="button" class="btn btn-add" onClick={onClick}>
+            <AiOutlinePlus className="icon-add" /> Create Course
+          </button>
+        </>
+      ) : (
+        ''
+      )}
       {type == 'btn-popupsave' ? (
         <button type="submit" class="btn btn-popupsave">
           Save
