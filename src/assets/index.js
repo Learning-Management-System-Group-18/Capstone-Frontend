@@ -10,6 +10,7 @@ import totalMentorIcon from './img/total_mentor_icon.png';
 import arrowRightIcon from './img/Arrow_right.svg';
 import logoutIcon from './img/FrameLogout.png';
 
+
 export {
   Rafiki,
   Ellipse,

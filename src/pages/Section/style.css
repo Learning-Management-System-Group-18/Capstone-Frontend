@@ -1,0 +1,84 @@
+.test {
+  color: yellowgreen;
+}
+.dropdown-toggle-1 {
+  white-space: nowrap !important;
+}
+.dropdown-toggle-1::after {
+  border: none;
+}
+
+.thumbnail {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  border-radius: 10px;
+  height: 200px;
+  width: 200px;
+}
+.thumbnail:hover {
+  opacity: 0.3;
+}
+.thumbnail:active {
+  position: relative;
+  top: 10px;
+}
+
+.button-preview {
+  opacity: 0;
+  font-size: 30px;
+  border: none;
+  background: none;
+  color: white;
+  margin-top: 70px;
+}
+.button-preview:hover {
+  opacity: 1;
+}
+
+.function-button {
+  border: none;
+  background: none;
+  font-size: 18px;
+  color: #7c8b99;
+}
+.function-button:hover {
+  color: black;
+}
+.function-button:active {
+  position: relative;
+  top: 10px;
+}
+
+.create-button {
+  color: #7c8b99;
+  font-weight: 400;
+  font-size: 12px;
+}
+.create-button:hover {
+  color: #335ef7;
+  background-color: #5f7bff;
+}
+
+.Video {
+  color: #ff8819;
+  background-color: #f6e7d9;
+  padding: 8px 10px 8px 10px;
+  font-weight: 500;
+  border-radius: 4px;
+}
+.Task {
+  color: #157f40;
+  background-color: #d3e6df;
+  padding: 8px 10px 8px 10px;
+  font-weight: 500;
+  border-radius: 4px;
+}
+.Reading {
+  color: #335ef7;
+  background-color: #d8e1fa;
+  padding: 8px 10px 8px 10px;
+  font-weight: 500;
+  border-radius: 4px;
+}

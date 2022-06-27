@@ -8,6 +8,7 @@ import Order from "../pages/Order";
 import Profile from "../pages/Profile";
 import ProtectedRoutes from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
+import Section from "../pages/Section";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -26,6 +27,7 @@ function Index() {
           <Route path="/login" element={<Login />} />
         </Route>
         <Route path="/register" element={<Register />} />
+        <Route path="/section" element={<Section />} />
       </Routes>
     </BrowserRouter>
   );
