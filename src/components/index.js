@@ -1,4 +1,3 @@
-
 import Button from './Button';
 import Card from './Card';
 import Table from './Table';
@@ -8,8 +7,10 @@ import Notification from './Notification';
 import ProgressBar from './ProggresBar';
 import FormCategory from './FormCategory';
 import PopupDelete from './PopUpDeleteButton';
-import FormSection from "./FormSection";
-import Preview from "./Preview";
+import FormSection from './FormSection';
+import Preview from './Preview';
+import PopupDetailOrder from './PopUpDetailOrder';
+import PopupLogout from './PopUpLogout';
 
 export {
   Button,
@@ -23,5 +24,6 @@ export {
   PopupDelete,
   FormSection,
   Preview,
-
+  PopupDetailOrder,
+  PopupLogout,
 };
