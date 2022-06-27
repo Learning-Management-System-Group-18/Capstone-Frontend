@@ -1,14 +1,22 @@
-import React from "react";
-import "./style.css";
-import { Link, useLocation } from "react-router-dom";
-import { Dropdown, NavDropdown, Nav, Navbar, Container } from "react-bootstrap";
-import { logoutIcon } from "../../assets";
+import { React, useState } from 'react';
+import './style.css';
+import { Link, useLocation } from 'react-router-dom';
+import { Dropdown, NavDropdown, Nav, Navbar, Container } from 'react-bootstrap';
+import { logoutIcon } from '../../assets';
+import { PopupLogout } from '../';
 
 const Index = () => {
   const location = useLocation();
   const locationLink = location.pathname;
-  const link = locationLink.split("/");
+  const link = locationLink.split('/');
   // console.log(link[1]);
+
+  const [showLogout, setShowLogout] = useState(false);
+
+  const handleCloseLogout = () => setShowLogout(false);
+  const logoutShow = () => {
+    setShowLogout(true);
+  };
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark">
@@ -22,7 +30,7 @@ const Index = () => {
                 <Link
                   to="/dashboard"
                   className={`${
-                    link[1] == "dashboard" ? `item-nav decoration` : `item-nav`
+                    link[1] == 'dashboard' ? `item-nav decoration` : `item-nav`
                   }`}
                 >
                   Dasboard
@@ -32,7 +40,7 @@ const Index = () => {
                 <Link
                   to="/order"
                   className={`${
-                    link[1] == "order" ? `item-nav decoration` : `item-nav`
+                    link[1] == 'order' ? `item-nav decoration` : `item-nav`
                   }`}
                 >
                   Order
@@ -43,14 +51,23 @@ const Index = () => {
                   title="Profile"
                   id="basic-nav-dropdown"
                   className={`${
-                    link[1] == "profile" ? `drop-nav decoration` : `drop-nav`
+                    link[1] == 'profile' ? `drop-nav decoration` : `drop-nav`
                   }`}
                 >
                   <NavDropdown.Item className="drop-item-nav">
                     <Link to="/profile">Account Setting</Link>
                   </NavDropdown.Item>
                   <NavDropdown.Item className="drop-item-nav">
-                    Logout <img src={logoutIcon} className="ms-2" />
+                    Logout
+                    <img
+                      src={logoutIcon}
+                      className="ms-2"
+                      onClick={logoutShow}
+                    />
+                    <PopupLogout
+                      show={showLogout}
+                      handleClose={handleCloseLogout}
+                    />
                   </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
