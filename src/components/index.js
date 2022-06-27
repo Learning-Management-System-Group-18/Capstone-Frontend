@@ -6,6 +6,7 @@ import SearchBar from "./SearchBar";
 import Notification from "./Notification";
 import ProgressBar from "./ProggresBar";
 import FormSection from "./FormSection";
+import Preview from "./Preview";
 export {
   Button,
   Card,
@@ -15,4 +16,5 @@ export {
   Notification,
   ProgressBar,
   FormSection,
+  Preview,
 };

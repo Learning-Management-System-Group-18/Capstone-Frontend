@@ -57,6 +57,8 @@ function Index({
       if (edit) {
         setData(edit);
         setEdit(edit);
+      } else {
+        resetForm();
       }
     };
     updateForm();
@@ -64,6 +66,7 @@ function Index({
 
   return (
     <div>
+      {console.log(show)}
       <Modal show={show} onHide={handleClose} size="lg" backdrop="static">
         <Modal.Body className="m-5">
           <div className="d-flex justify-content-start mb-4">

@@ -5,8 +5,9 @@ import {
   NavbarAdmin,
   Notification,
   FormSection,
+  Preview,
 } from "../../components";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Form } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import {
@@ -19,6 +20,7 @@ import {
 } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import axiosInstance from "../../networks/apis";
+import { Prev } from "react-bootstrap/esm/PageItem";
 
 function Index() {
   useEffect(() => {
@@ -26,6 +28,7 @@ function Index() {
       const allContent = await axiosInstance.get("api/content", {
         params: { sectionId: 1, page: 1, size: 3 },
       });
+
       const video = allContent.data.data.video;
       const quiz = allContent.data.data.quiz;
       const slide = allContent.data.data.slide;
@@ -69,15 +72,38 @@ function Index() {
       link: "https://youtu.be/0sOvCWFmrtA",
       jenis: "Video",
     },
+    {
+      id: "4",
+      title: "Intro Java 2",
+      description: "Ini Java 2",
+      link: "https://docs.google.com/presentation/d/1nA7LF0yAlvuxN8Zf4QZgox6lxnMfOpVsonyrz0CQgqo/edit?usp=sharing",
+      jenis: "Reading",
+    },
+    {
+      id: "5",
+      title: "Intro Java 2",
+      description: "Ini Java 2",
+      link: "https://docs.google.com/presentation/d/1X3xSz4FBMbdfeWRDv-i7bidhXR1SGIWQXIM-luJjlLw/edit?usp=sharing",
+      jenis: "Reading",
+    },
+    {
+      id: "6",
+      title: "Intro Java 2",
+      description: "Ini Java 2",
+      link: "https://docs.google.com/forms/d/e/1FAIpQLSepp7j41-ZqN3lfj9UtvCAk0CiMKokhIYQ-s0bwqku1R_RflA/viewform",
+      jenis: "Task",
+    },
   ];
 
   const [show, setShow] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
   const [modalType, setModalType] = useState("");
   const [edit, setEdit] = useState();
   const { categoryName } = useParams();
   const handleClose = () => {
     setShow(false);
     setEdit();
+    setShowPreview(false);
   };
   const [data, setData] = useState(section);
   const handleShow = (type) => {
@@ -90,6 +116,11 @@ function Index() {
     setEdit(data);
     setShow(true);
     setModalType(data.jenis);
+  };
+
+  const handlePreview = (data) => {
+    setShowPreview(true);
+    console.log("Halo");
   };
 
   const tambah = (newData) => {
@@ -153,13 +184,32 @@ function Index() {
             <Col xs={2} className="me-4 mb-5">
               <div
                 className="thumbnail"
-                style={{
-                  backgroundImage: `url(${`https://i.ytimg.com/vi/${data.link.substring(
-                    17
-                  )}/hq720.jpg`})`,
-                }}
+                style={
+                  data.jenis === "Video"
+                    ? {
+                        backgroundImage: `url(${`https://i.ytimg.com/vi/${data.link.substring(
+                          17
+                        )}/hq720.jpg`})`,
+                      }
+                    : data.jenis === "Reading"
+                    ? {
+                        backgroundImage: `url(${`https://lh3.google.com/u/0/d/${data.link.substring(
+                          39,
+                          83
+                        )}=w208-h117`})`,
+                      }
+                    : {
+                        backgroundImage: `url(${`https://lh3.google.com/u/0/d/${data.link.substring(
+                          34,
+                          90
+                        )}=w208-h117`})`,
+                      }
+                }
               >
-                <button className="button-preview  ps-4">
+                <button
+                  className="button-preview  ps-4"
+                  onClick={() => handlePreview()}
+                >
                   <AiFillPlayCircle /> Preview
                 </button>
               </div>
@@ -190,6 +240,14 @@ function Index() {
         <Button type={"btn-back"} />
         <Button type={"btn-save"} />
       </div>
+      {console.log(Preview)}
+      {console.log(FormSection)}
+      <Preview
+        handleClose={handleClose}
+        showPreview={showPreview}
+        handlePreview={handlePreview}
+        show={show}
+      />
       <FormSection
         show={show}
         modalType={modalType}
