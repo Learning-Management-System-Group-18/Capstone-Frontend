@@ -8,8 +8,8 @@ import ProfileImg from './img/profile.jpg';
 import deletepopupIcon from './img/Group 115.png';
 import totalMentorIcon from './img/total_mentor_icon.png';
 import arrowRightIcon from './img/Arrow_right.svg';
+import logoutpopupIcon from './img/IconLogoutPopup.png';
 import logoutIcon from './img/FrameLogout.png';
-
 
 export {
   Rafiki,
@@ -22,5 +22,6 @@ export {
   ProfileImg,
   totalMentorIcon,
   arrowRightIcon,
+  logoutpopupIcon,
   logoutIcon,
 };
