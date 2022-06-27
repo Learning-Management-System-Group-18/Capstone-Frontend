@@ -1,11 +1,22 @@
-import React from "react";
-import { NavbarAdmin, SearchBar, Notification } from "../../components";
-import { Dropdown, DropdownButton, Form } from "react-bootstrap";
-import { GoDash } from "react-icons/go";
-
-import "./style.css";
+import React from 'react';
+import {
+  NavbarAdmin,
+  SearchBar,
+  Notification,
+  PopupDetailOrder,
+} from '../../components';
+import { Dropdown, DropdownButton, Form } from 'react-bootstrap';
+import { GoDash } from 'react-icons/go';
+import { useState } from 'react';
+import './style.css';
 
 const Index = () => {
+  const [showDetail, setShowDetail] = useState(false);
+
+  const handleCloseDetail = () => setShowDetail(false);
+  const detailShow = () => {
+    setShowDetail(true);
+  };
   return (
     <>
       <NavbarAdmin />
@@ -106,7 +117,16 @@ const Index = () => {
                 <td className="py-3">Android Development</td>
                 <td className="py-3">Programming</td>
                 <td className="py-3">
-                  <button className="btn detail bg_primary">See Detail</button>
+                  <button
+                    className="btn detail bg_primary"
+                    onClick={detailShow}
+                  >
+                    See Detail
+                  </button>
+                  <PopupDetailOrder
+                    show={showDetail}
+                    handleClose={handleCloseDetail}
+                  />
                 </td>
               </tr>
               <tr className="caption_1 neutral_3 data-order">
@@ -119,7 +139,16 @@ const Index = () => {
                 <td className="py-3">Android Development</td>
                 <td className="py-3">Programming</td>
                 <td className="py-3">
-                  <button className="btn detail bg_primary">See Detail</button>
+                  <button
+                    className="btn detail bg_primary"
+                    onClick={detailShow}
+                  >
+                    See Detail
+                  </button>
+                  <PopupDetailOrder
+                    show={showDetail}
+                    handleClose={handleCloseDetail}
+                  />
                 </td>
               </tr>
               <tr className="caption_1 neutral_3 data-order">
@@ -132,7 +161,16 @@ const Index = () => {
                 <td className="py-3">Android Development</td>
                 <td className="py-3">Programming</td>
                 <td className="py-3">
-                  <button className="btn detail bg_primary">See Detail</button>
+                  <button
+                    className="btn detail bg_primary"
+                    onClick={detailShow}
+                  >
+                    See Detail
+                  </button>
+                  <PopupDetailOrder
+                    show={showDetail}
+                    handleClose={handleCloseDetail}
+                  />
                 </td>
               </tr>
               <tr className="caption_1 neutral_3 data-order">
@@ -145,7 +183,16 @@ const Index = () => {
                 <td className="py-3">Android Development</td>
                 <td className="py-3">Programming</td>
                 <td className="py-3">
-                  <button className="btn detail bg_primary">See Detail</button>
+                  <button
+                    className="btn detail bg_primary"
+                    onClick={detailShow}
+                  >
+                    See Detail
+                  </button>
+                  <PopupDetailOrder
+                    show={showDetail}
+                    handleClose={handleCloseDetail}
+                  />
                 </td>
               </tr>
               <tr className="caption_1 neutral_3 data-order">
@@ -158,7 +205,16 @@ const Index = () => {
                 <td className="py-3">Android Development</td>
                 <td className="py-3">Programming</td>
                 <td className="py-3">
-                  <button className="btn detail bg_primary">See Detail</button>
+                  <button
+                    className="btn detail bg_primary"
+                    onClick={detailShow}
+                  >
+                    See Detail
+                  </button>
+                  <PopupDetailOrder
+                    show={showDetail}
+                    handleClose={handleCloseDetail}
+                  />
                 </td>
               </tr>
             </tbody>
