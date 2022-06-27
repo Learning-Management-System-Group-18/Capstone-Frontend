@@ -1,0 +1,152 @@
+.labelTitleDetail1 {
+  font-family: 'Inter';
+  margin-left: 13px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+}
+.labelTitleDetail2 {
+  margin-left: 13px;
+  margin-top: 30px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+}
+.labelDetail {
+  margin-top: 15px;
+  margin-left: 13px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #7c8b99;
+}
+.inputDetailDate {
+  text-align: end;
+  margin-left: 7%;
+  border: none;
+  width: 70%;
+  height: 20px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #425466;
+}
+.inputDetailID {
+  text-align: start;
+  margin-left: 2%;
+  border: none;
+  width: 70%;
+  height: 20px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #425466;
+}
+.inputDetailNama {
+  text-align: end;
+  margin-left: 15%;
+  border: none;
+  width: 70%;
+  height: 20px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #425466;
+}
+.inputDetailEmail {
+  text-align: end;
+  margin-left: 16%;
+  border: none;
+  width: 70%;
+  height: 20px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #425466;
+}
+.inputDetailCourseId {
+  text-align: end;
+  margin-left: 8%;
+  border: none;
+  width: 70%;
+  height: 20px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #425466;
+}
+.inputDetailCourseName {
+  text-align: end;
+  margin-left: 3%;
+  border: none;
+  width: 70%;
+  height: 20px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #425466;
+}
+.inputDetailCategory {
+  text-align: end;
+  margin-left: 9%;
+  border: none;
+  width: 70%;
+  height: 20px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #425466;
+}
+.inputDetailLevel {
+  text-align: end;
+  margin-left: 15%;
+  border: none;
+  width: 70%;
+  height: 20px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #425466;
+}
+.icon-titleDetail {
+  font-weight: 500;
+  margin-right: 3px;
+  width: 80px;
+  height: 18px;
+}
+.titleDetail {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.btn-Detail {
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  margin-top: 15%;
+  margin-bottom: 5%;
+  margin-left: 28px;
+  background-color: #335ef7;
+  width: 400px;
+  height: 50px;
+}
+.btn-Detail:hover {
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  margin-top: 15%;
+  margin-bottom: 5%;
+  margin-left: 28px;
+  background-color: #232945;
+  width: 400px;
+  height: 50px;
+}
