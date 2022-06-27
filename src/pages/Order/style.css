@@ -1,0 +1,85 @@
+.table{
+    --bs-table-hover-bg: rgba(245, 248, 251, 1) !important;
+}
+
+
+.date-order-page{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.table-order{
+    background-color: white
+}
+
+.thead{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.detail{
+    width: 87px;
+    height: 31px;
+    font-size: 12px;
+    color: white;
+    border-radius:8px ;
+}
+
+.detail:hover{
+    color: white;
+    background: #232945;;
+}
+
+
+.filter-date{
+    font-family: 'Inter';
+    font-style: normal;
+    border-radius: 8px;
+}
+
+.input-filter-date{
+    box-sizing: border-box;
+    width: 130px;
+    height: 40px;
+    padding: 8px 12px;
+    border: 1px solid rgba(51, 94, 247, 0.15);
+    border-radius: 8px;
+    outline:0px;
+    color: #7C8B99;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.btn-filter{
+    width: 308px;
+    height: 45px;
+    color: white;
+    border: 0;
+    background-color: #335EF7;;
+    border-radius: 8px;
+}
+
+.btn-filter:hover{
+    color: white;
+    background:#232945;
+}
+
+.btn-filter-secondary{
+    width: 308px;
+    height: 45px;
+    background: transparent;
+    color: #5F7BFF;
+    border-color:#5F7BFF;;
+    border-radius: 8px;
+}
+
+.btn-filter-secondary:hover{
+    color: #5F7BFF;
+}
+
