@@ -8,7 +8,7 @@ import { AiOutlineArrowLeft, AiOutlinePlus } from 'react-icons/ai';
 import { RiPencilFill } from 'react-icons/ri';
 import { FaTrash } from 'react-icons/fa';
 
-const Index = ({ tHead, data, tableTitle }) => {
+const Index = ({ tHead, data, tableTitle, urlParams }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [show, setShow] = useState(false);
@@ -33,11 +33,15 @@ const Index = ({ tHead, data, tableTitle }) => {
         navigate(`/dashboard/${categoryName}`);
     }
 
+    const handleCourseButton = (urlParams) => {
+        navigate(`/dashboard/${urlParams}/add-course`);
+    }
+
     return (
         <div className="rounded p-3 bg_neutral_4">
             <div className="table_header mb-3">
                 <h3 className="heading_4 secondary_2">{tableTitle}</h3>
-                <Button type={location.pathname === '/dashboard' ? 'btn-add' : 'btn-add-course'} onClick={() => handleShow('create')} />
+                <Button type={location.pathname === '/dashboard' ? 'btn-add' : 'btn-add-course'} onClick={location.pathname === '/dashboard' ? () => handleShow('create') : () => handleCourseButton(urlParams)} />
             </div>
             <FormCategory
                 handleShow={handleShow}

@@ -77,7 +77,7 @@ const Index = () => {
                 </div>
 
                 <div className="container background-table px-5 pb-5 mt-4">
-                    <Table tHead={tHead} data={data} tableTitle={tableTitle} />
+                    <Table tHead={tHead} data={data} tableTitle={tableTitle} urlParams={categoryName} />
                 </div>
             </div>
         </>
