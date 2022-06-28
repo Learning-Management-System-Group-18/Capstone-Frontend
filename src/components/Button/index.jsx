@@ -16,7 +16,7 @@ const Index = ({ type, onClick }) => {
         ''
       )}
       {type == 'btn-next' ? (
-        <button type="button" class="btn btn-save">
+        <button type="button" class="btn btn-save" onClick={onClick}>
           Next Step
         </button>
       ) : (
