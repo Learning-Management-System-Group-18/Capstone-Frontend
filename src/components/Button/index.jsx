@@ -9,21 +9,21 @@ const Index = ({ type, onClick }) => {
   return (
     <div>
       {type == 'btn-save' ? (
-        <button type="button" class="btn btn-save">
+        <button type="button" className="btn btn-save">
           Save
         </button>
       ) : (
         ''
       )}
       {type == 'btn-next' ? (
-        <button type="button" class="btn btn-save">
+        <button type="button" className="btn btn-save">
           Next Step
         </button>
       ) : (
         ''
       )}
       {type == 'btn-back' ? (
-        <button type="button" class="btn btn-back">
+        <button type="button" className="btn btn-back">
           <AiOutlineArrowLeft className="icon-back" /> Back
         </button>
       ) : (
@@ -31,7 +31,7 @@ const Index = ({ type, onClick }) => {
       )}
       {type == 'btn-add' ? (
         <>
-          <button type="button" class="btn btn-add" onClick={onClick}>
+          <button type="button" className="btn btn-add" onClick={onClick}>
             <AiOutlinePlus className="icon-add" /> Create Category
           </button>
         </>
@@ -40,7 +40,7 @@ const Index = ({ type, onClick }) => {
       )}
       {type == 'btn-add-course' ? (
         <>
-          <button type="button" class="btn btn-add" onClick={onClick}>
+          <button type="button" className="btn btn-add" onClick={onClick}>
             <AiOutlinePlus className="icon-add" /> Create Course
           </button>
         </>
@@ -48,35 +48,35 @@ const Index = ({ type, onClick }) => {
         ''
       )}
       {type == 'btn-popupsave' ? (
-        <button type="submit" class="btn btn-popupsave">
+        <button type="submit" className="btn btn-popupsave">
           Save
         </button>
       ) : (
         ''
       )}
       {type == 'btn-popupcancel' ? (
-        <button type="button" class="btn btn-popupcancel" onClick={onClick}>
+        <button type="button" className="btn btn-popupcancel" onClick={onClick}>
           Cancel
         </button>
       ) : (
         ''
       )}
       {type == 'btn-edit' ? (
-        <button type="button" class="btn btn-edit" onClick={onClick}>
+        <button type="button" className="btn btn-edit" onClick={onClick}>
           <RiPencilFill className="icon-edit" /> Edit
         </button>
       ) : (
         ''
       )}
       {type == 'btn-delete' ? (
-        <button type="button" class="btn btn-delete" onClick={onClick}>
+        <button type="button" className="btn btn-delete" onClick={onClick}>
           <FaTrash className="icon-delete" /> Delete
         </button>
       ) : (
         ''
       )}
       {type == 'btn-popupdelete' ? (
-        <button type="button" class="btn btn-popupdelete">
+        <button type="button" className="btn btn-popupdelete">
           Delete
         </button>
       ) : (

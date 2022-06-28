@@ -5,7 +5,7 @@ import './style.css';
 import { deletepopupIcon } from '../../assets';
 import { GrClose } from 'react-icons/gr';
 
-const index = ({ handleClose, show }) => {
+const Index = ({ handleClose, show }) => {
   return (
     <div>
       <Modal show={show} onHide={handleClose}>
@@ -40,4 +40,4 @@ const index = ({ handleClose, show }) => {
   );
 };
 
-export default index;
+export default Index;

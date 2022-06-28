@@ -5,12 +5,6 @@ import { useState } from 'react';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 const Index = ({ handleClose, show }) => {
-  const data = [
-    {
-      id: '1',
-    },
-  ];
-
   return (
     <div>
       <Modal show={show} onHide={handleClose} backdrop="static">
@@ -101,7 +95,7 @@ const Index = ({ handleClose, show }) => {
               </div>
             </form>
           </div>
-          <button class="btn btn-Detail" onClick={handleClose}>
+          <button className="btn btn-Detail" onClick={handleClose}>
             Oke
           </button>
         </Modal.Body>

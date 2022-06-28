@@ -139,16 +139,7 @@ const Index = () => {
                 <td className="py-3">Android Development</td>
                 <td className="py-3">Programming</td>
                 <td className="py-3">
-                  <button
-                    className="btn detail bg_primary"
-                    onClick={detailShow}
-                  >
-                    See Detail
-                  </button>
-                  <PopupDetailOrder
-                    show={showDetail}
-                    handleClose={handleCloseDetail}
-                  />
+                  <button className="btn detail bg_primary">See Detail</button>
                 </td>
               </tr>
               <tr className="caption_1 neutral_3 data-order">
@@ -161,16 +152,7 @@ const Index = () => {
                 <td className="py-3">Android Development</td>
                 <td className="py-3">Programming</td>
                 <td className="py-3">
-                  <button
-                    className="btn detail bg_primary"
-                    onClick={detailShow}
-                  >
-                    See Detail
-                  </button>
-                  <PopupDetailOrder
-                    show={showDetail}
-                    handleClose={handleCloseDetail}
-                  />
+                  <button className="btn detail bg_primary">See Detail</button>
                 </td>
               </tr>
               <tr className="caption_1 neutral_3 data-order">
@@ -183,16 +165,7 @@ const Index = () => {
                 <td className="py-3">Android Development</td>
                 <td className="py-3">Programming</td>
                 <td className="py-3">
-                  <button
-                    className="btn detail bg_primary"
-                    onClick={detailShow}
-                  >
-                    See Detail
-                  </button>
-                  <PopupDetailOrder
-                    show={showDetail}
-                    handleClose={handleCloseDetail}
-                  />
+                  <button className="btn detail bg_primary">See Detail</button>
                 </td>
               </tr>
               <tr className="caption_1 neutral_3 data-order">
@@ -205,16 +178,7 @@ const Index = () => {
                 <td className="py-3">Android Development</td>
                 <td className="py-3">Programming</td>
                 <td className="py-3">
-                  <button
-                    className="btn detail bg_primary"
-                    onClick={detailShow}
-                  >
-                    See Detail
-                  </button>
-                  <PopupDetailOrder
-                    show={showDetail}
-                    handleClose={handleCloseDetail}
-                  />
+                  <button className="btn detail bg_primary">See Detail</button>
                 </td>
               </tr>
             </tbody>

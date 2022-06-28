@@ -3,8 +3,17 @@ import { Modal } from 'react-bootstrap';
 import { Button } from '..';
 import './style.css';
 import { logoutpopupIcon } from '../../assets';
+import { useNavigate } from 'react-router-dom';
 
-const index = ({ handleClose, show }) => {
+const Index = ({ handleClose, show }) => {
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    handleClose();
+    navigate('/login');
+  };
+
   return (
     <div>
       <Modal show={show} onHide={handleClose}>
@@ -23,7 +32,9 @@ const index = ({ handleClose, show }) => {
 
           <div className="warpbtn-popuplogout">
             <Button type={'btn-popupcancel'} onClick={handleClose} />
-            <button class="btn btn-logout">Logout</button>
+            <button className="btn btn-logout" onClick={handleLogOut}>
+              Logout
+            </button>
           </div>
         </Modal.Body>
       </Modal>
@@ -31,4 +42,4 @@ const index = ({ handleClose, show }) => {
   );
 };
 
-export default index;
+export default Index;

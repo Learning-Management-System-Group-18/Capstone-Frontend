@@ -2,7 +2,7 @@ import React from 'react';
 import { FiSearch } from 'react-icons/fi';
 import './style.css';
 
-const index = () => {
+const Index = () => {
   return (
     <div className="search">
       <input
@@ -15,4 +15,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
