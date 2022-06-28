@@ -1,5 +1,5 @@
 .background {
-  height: 800px;
+  height: max-content !important;
   background: #f5f8fb;
 }
 .nav-info {

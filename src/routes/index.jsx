@@ -2,7 +2,7 @@ import React from "react";
 import Login from "../pages/Login";
 import Register from "../pages/RegisterUser";
 import Home from "../pages/Home";
-import DashboardCategory from "../pages/DashboardAdmin/Category";
+import DashboardCategory from "../pages/Category";
 import Course from "../pages/Course";
 import Order from "../pages/Order";
 import Profile from "../pages/Profile";
