@@ -1,14 +1,14 @@
-import { React, useState } from 'react';
-import './style.css';
-import { Link, useLocation } from 'react-router-dom';
-import { Dropdown, NavDropdown, Nav, Navbar, Container } from 'react-bootstrap';
-import { logoutIcon } from '../../assets';
-import { PopupLogout } from '../';
+import { React, useState } from "react";
+import "./style.css";
+import { Link, useLocation } from "react-router-dom";
+import { Dropdown, NavDropdown, Nav, Navbar, Container } from "react-bootstrap";
+import { logoutIcon } from "../../assets";
+import { PopupLogout } from "../";
 
 const Index = () => {
   const location = useLocation();
   const locationLink = location.pathname;
-  const link = locationLink.split('/');
+  const link = locationLink.split("/");
   // console.log(link[1]);
 
   const [showLogout, setShowLogout] = useState(false);
@@ -21,16 +21,16 @@ const Index = () => {
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark">
         <div className="container">
-          <Link to="/dashboard" class="navbar-brand">
+          <Link to="/dashboard" className="navbar-brand">
             Logo
           </Link>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <Nav className="mx-auto">
               <Nav>
                 <Link
                   to="/dashboard"
                   className={`${
-                    link[1] == 'dashboard' ? `item-nav decoration` : `item-nav`
+                    link[1] == "dashboard" ? `item-nav decoration` : `item-nav`
                   }`}
                 >
                   Dasboard
@@ -40,7 +40,7 @@ const Index = () => {
                 <Link
                   to="/order"
                   className={`${
-                    link[1] == 'order' ? `item-nav decoration` : `item-nav`
+                    link[1] == "order" ? `item-nav decoration` : `item-nav`
                   }`}
                 >
                   Order
@@ -51,24 +51,23 @@ const Index = () => {
                   title="Profile"
                   id="basic-nav-dropdown"
                   className={`${
-                    link[1] == 'profile' ? `drop-nav decoration` : `drop-nav`
+                    link[1] == "profile" ? `drop-nav decoration` : `drop-nav`
                   }`}
                 >
                   <NavDropdown.Item className="drop-item-nav">
                     <Link to="/profile">Account Setting</Link>
                   </NavDropdown.Item>
-                  <NavDropdown.Item className="drop-item-nav">
+                  <NavDropdown.Item
+                    className="drop-item-nav"
+                    onClick={logoutShow}
+                  >
                     Logout
-                    <img
-                      src={logoutIcon}
-                      className="ms-2"
-                      onClick={logoutShow}
-                    />
-                    <PopupLogout
-                      show={showLogout}
-                      handleClose={handleCloseLogout}
-                    />
+                    <img src={logoutIcon} className="ms-2" />
                   </NavDropdown.Item>
+                  <PopupLogout
+                    show={showLogout}
+                    handleClose={handleCloseLogout}
+                  />
                 </NavDropdown>
               </Nav>
             </Nav>
