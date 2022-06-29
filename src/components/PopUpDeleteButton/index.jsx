@@ -5,7 +5,11 @@ import './style.css';
 import { deletepopupIcon } from '../../assets';
 import { GrClose } from 'react-icons/gr';
 
-const Index = ({ handleClose, show }) => {
+const Index = ({ handleClose, show, idDelete, deleteData }) => {
+  const handleDelete = () => {
+    deleteData(idDelete);
+    handleClose();
+  };
   return (
     <div>
       <Modal show={show} onHide={handleClose}>
@@ -32,7 +36,7 @@ const Index = ({ handleClose, show }) => {
 
           <div className="warpbtn-popupdelete">
             <Button type={'btn-popupcancel'} onClick={handleClose} />
-            <Button type={'btn-popupdelete'} />
+            <Button type={'btn-popupdelete'} onClick={handleDelete} />
           </div>
         </Modal.Body>
       </Modal>

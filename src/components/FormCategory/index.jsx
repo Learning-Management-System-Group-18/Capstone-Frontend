@@ -1,12 +1,12 @@
-import React, { useState, useCallback } from "react";
-import { Form, Modal } from "react-bootstrap";
-import { useDropzone } from "react-dropzone";
-import "./style.css";
-import uploadIcon from "../../assets/img/upload-icon.svg";
-import { Button } from "../";
-import { AiOutlineArrowLeft } from "react-icons/ai";
-import axiosInstance from "../../networks/apis";
-import { useEffect } from "react";
+import React, { useState, useCallback } from 'react';
+import { Form, Modal } from 'react-bootstrap';
+import { useDropzone } from 'react-dropzone';
+import './style.css';
+import uploadIcon from '../../assets/img/upload-icon.svg';
+import { Button } from '../';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
+import axiosInstance from '../../networks/apis';
+import { useEffect } from 'react';
 
 const Index = ({
   handleClose,
@@ -45,9 +45,9 @@ const Index = ({
   // };
 
   const newData = {
-    title: "",
-    description: "",
-    image: "",
+    title: '',
+    description: '',
+    image: '',
   };
 
   const newCategoryData = [];
@@ -58,7 +58,7 @@ const Index = ({
     const name = e.target.name;
     const value = e.target.value;
 
-    if (modalType == "create") {
+    if (modalType == 'create') {
       setData({
         ...data,
         [name]: value,
@@ -69,8 +69,8 @@ const Index = ({
         [name]: value,
       });
     }
-    console.log("data", data);
-    console.log("data", newDataEdit);
+    console.log('data', data);
+    console.log('data', newDataEdit);
   };
 
   const [file, setFile] = useState(null);
@@ -127,20 +127,22 @@ const Index = ({
   // for Edit Data
   const getDataId = async () => {
     await axiosInstance
-      .get("api/category", {
+      .get('api/category', {
         params: {
           id: idEdit,
         },
       })
       .then((response) => {
-        console.log("from API", response.data.data);
+        console.log('from API', response.data.data);
         setNewDataEdit(response.data.data);
       })
       .catch((error) => console.log(error));
   };
 
   useEffect(() => {
-    getDataId();
+    if (idEdit !== 0) {
+      getDataId();
+    }
   }, [idEdit]);
 
   console.log(newDataEdit);
@@ -151,7 +153,7 @@ const Index = ({
   //   url_image: newDataEdit.url_image || "",
   // });
 
-  if (modalType === "create") {
+  if (modalType === 'create') {
     return (
       <div>
         <Modal show={show} onHide={handleClose}>
@@ -220,8 +222,8 @@ const Index = ({
               /> */}
 
               <div className="warpbtn-popup">
-                <Button type={"btn-popupcancel"} onClick={handleClose} />
-                <Button type={"btn-popupsave"} />
+                <Button type={'btn-popupcancel'} onClick={handleClose} />
+                <Button type={'btn-popupsave'} />
               </div>
             </form>
           </Modal.Body>
@@ -291,8 +293,8 @@ const Index = ({
               </div>
 
               <div className="warpbtn-popup mt-4">
-                <Button type={"btn-popupcancel"} onClick={handleClose} />
-                <Button type={"btn-popupsave"} />
+                <Button type={'btn-popupcancel'} onClick={handleClose} />
+                <Button type={'btn-popupsave'} />
               </div>
             </form>
           </Modal.Body>

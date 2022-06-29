@@ -76,7 +76,7 @@ const Index = ({ type, onClick }) => {
         ''
       )}
       {type == 'btn-popupdelete' ? (
-        <button type="button" className="btn btn-popupdelete">
+        <button type="button" className="btn btn-popupdelete" onClick={onClick}>
           Delete
         </button>
       ) : (
