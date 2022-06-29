@@ -13,9 +13,6 @@ function Index({
 }) {
   return (
     <div>
-      {console.log(showPreview)}
-      {console.log(showPreview)}
-
       <Modal
         show={showPreview}
         onHide={handleClose}

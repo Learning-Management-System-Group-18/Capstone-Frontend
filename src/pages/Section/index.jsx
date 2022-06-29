@@ -7,7 +7,7 @@ import {
   FormSection,
   Preview,
 } from "../../components";
-import { Row, Col, Form } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import {
@@ -16,84 +16,12 @@ import {
   AiFillDelete,
   AiFillBook,
   AiFillCheckCircle,
-  AiOutlineArrowRight,
 } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import axiosInstance from "../../networks/apis";
-import { Prev } from "react-bootstrap/esm/PageItem";
 
 function Index() {
-  useEffect(() => {
-    const fetchData = async () => {
-      const allContent = await axiosInstance.get("api/content", {
-        params: { sectionId: 1, page: 1, size: 3 },
-      });
-
-      const video = allContent.data.data.video;
-      const quiz = allContent.data.data.quiz;
-      const slide = allContent.data.data.slide;
-      const videos = {
-        jenis: "Video",
-      };
-      const readings = {
-        jenis: "Reading",
-      };
-      const tasks = {
-        jenis: "Task",
-      };
-      const mapVideo = video.map((data) => ({ ...data, ...videos }));
-      const mapQuiz = quiz.map((data) => ({ ...data, ...readings }));
-      const mapSlide = slide.map((data) => ({ ...data, ...tasks }));
-
-      setData(data.concat(mapVideo, mapQuiz, mapSlide));
-    };
-    fetchData();
-  }, []);
-
-  const section = [
-    {
-      id: "1",
-      title: "Intro Java 1",
-      description: "Ini Java",
-      link: "https://youtu.be/n-E1gnMvzng",
-      jenis: "Video",
-    },
-    {
-      id: "2",
-      title: "Intro Java 2",
-      description: "Ini Java 2",
-      link: "https://youtu.be/5SejM_hBvMM",
-      jenis: "Video",
-    },
-    {
-      id: "3",
-      title: "Intro Java 2",
-      description: "Ini Java 2",
-      link: "https://youtu.be/0sOvCWFmrtA",
-      jenis: "Video",
-    },
-    {
-      id: "4",
-      title: "Intro Java 2",
-      description: "Ini Java 2",
-      link: "https://docs.google.com/presentation/d/1nA7LF0yAlvuxN8Zf4QZgox6lxnMfOpVsonyrz0CQgqo/edit?usp=sharing",
-      jenis: "Reading",
-    },
-    {
-      id: "5",
-      title: "Intro Java 2",
-      description: "Ini Java 2",
-      link: "https://docs.google.com/presentation/d/1X3xSz4FBMbdfeWRDv-i7bidhXR1SGIWQXIM-luJjlLw/edit?usp=sharing",
-      jenis: "Reading",
-    },
-    {
-      id: "6",
-      title: "Intro Java 2",
-      description: "Ini Java 2",
-      link: "https://docs.google.com/forms/d/e/1FAIpQLSepp7j41-ZqN3lfj9UtvCAk0CiMKokhIYQ-s0bwqku1R_RflA/viewform",
-      jenis: "Task",
-    },
-  ];
+  const section = [];
 
   const [show, setShow] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
@@ -127,6 +55,53 @@ function Index() {
     console.log(newData);
     setData(data.concat(newData));
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const allContent = await axiosInstance.get("api/content", {
+        params: { sectionId: 1, page: 1, size: 7 },
+      });
+      console.log(allContent);
+      const video = allContent.data.data.video;
+      const quiz = allContent.data.data.quiz;
+      const slide = allContent.data.data.slide;
+      const videos = {
+        jenis: "Video",
+      };
+      const slides = {
+        jenis: "Slide",
+      };
+      const tasks = {
+        jenis: "Task",
+      };
+      const mapVideo = video.map((data) => ({ ...data, ...videos }));
+      const mapQuiz = quiz.map((data) => ({ ...data, ...slides }));
+      const mapSlide = slide.map((data) => ({ ...data, ...tasks }));
+
+      setData(data.concat(mapVideo, mapQuiz, mapSlide));
+    };
+    fetchData();
+  }, []);
+
+  const create = async (type, newData) => {
+    const types = type.toLowerCase();
+    await axiosInstance
+      .post(
+        `api/admin/${types}`,
+        newData,
+
+        {
+          params: { sectionId: 1 },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
       <NavbarAdmin />
@@ -161,7 +136,7 @@ function Index() {
               <Dropdown.Item
                 as="button"
                 className="create-button"
-                onClick={() => handleShow("Materi")}
+                onClick={() => handleShow("Slide")}
               >
                 <span>
                   <AiFillBook /> Upload Materi
@@ -218,6 +193,7 @@ function Index() {
               <h5>Title </h5>
               <p> {data.title}</p>
               <h5>Description</h5>
+              {console.log(data.jenis)}
               <p className="pb-2">{data.description}</p>
               <span className={data.jenis}>{data.jenis}</span>
             </Col>
@@ -240,8 +216,7 @@ function Index() {
         <Button type={"btn-back"} />
         <Button type={"btn-save"} />
       </div>
-      {console.log(Preview)}
-      {console.log(FormSection)}
+
       <Preview
         handleClose={handleClose}
         showPreview={showPreview}
@@ -256,6 +231,7 @@ function Index() {
         edit={edit}
         tambah={tambah}
         data={data}
+        create={create}
       />
     </div>
   );

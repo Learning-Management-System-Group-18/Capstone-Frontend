@@ -12,6 +12,7 @@ function Index({
   modalType,
   edit,
   tambah,
+  create,
 }) {
   const newSection = {
     title: "",
@@ -36,15 +37,16 @@ function Index({
       title: data.title,
       description: data.description,
       link: data.link,
-      jenis: modalType,
     };
 
     if (edits) {
       console.log("halo edit");
     } else {
       tambah(newData);
+      create(modalType, newData);
+      console.log("halo tambah");
     }
-    resetForm();
+
     event.preventDefault();
   };
 
@@ -56,7 +58,6 @@ function Index({
     const updateForm = () => {
       if (edit) {
         setData(edit);
-        setEdit(edit);
       } else {
         resetForm();
       }
@@ -66,7 +67,6 @@ function Index({
 
   return (
     <div>
-      {console.log(show)}
       <Modal show={show} onHide={handleClose} size="lg" backdrop="static">
         <Modal.Body className="m-5">
           <div className="d-flex justify-content-start mb-4">
@@ -118,11 +118,7 @@ function Index({
               ></input>
             </div>
             <div className=" d-flex justify-content-center">
-              <button
-                type="submit"
-                className="upload-button mt-5"
-                onClick={handleClose}
-              >
+              <button type="submit" className="upload-button mt-5">
                 {edit ? "Save Changes" : `Upload${modalType}`}
               </button>
             </div>
