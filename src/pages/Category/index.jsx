@@ -42,7 +42,7 @@ const Index = () => {
         },
       })
       .then((response) => {
-        setSuccess(true);
+        setSuccess(!success);
       })
       .catch((error) => console.log(error));
   };
@@ -52,7 +52,7 @@ const Index = () => {
         params: { id: idDelete },
       })
       .then((x) => {
-        setSuccess(true);
+        setSuccess(!success);
       })
       .catch((r) => {
         console.log(r);
