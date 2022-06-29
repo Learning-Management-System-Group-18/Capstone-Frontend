@@ -1,19 +1,20 @@
-import React from "react";
-import "./style.css";
-import { Accordion } from "react-bootstrap";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Button, FormCategory, PopupDelete } from "../";
-import { useState } from "react";
+import React from 'react';
+import './style.css';
+import { Accordion } from 'react-bootstrap';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Button, FormCategory, PopupDelete } from '../';
+import { useState } from 'react';
 
-const Index = ({ tHead, data, tableTitle, insertData }) => {
+const Index = ({ tHead, data, tableTitle, insertData, deleteData }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [show, setShow] = useState(false);
 
   const [showDelete, setShowDelete] = useState(false);
 
-  const [modalType, setModalType] = useState("");
+  const [modalType, setModalType] = useState('');
   const [id, setId] = useState();
+  const [idDelete, setIdDelete] = useState('');
 
   const handleClose = () => setShow(false);
   const handleShow = (type, id) => {
@@ -25,7 +26,9 @@ const Index = ({ tHead, data, tableTitle, insertData }) => {
   };
 
   const handleCloseDelete = () => setShowDelete(false);
-  const deleteShow = () => {
+  const deleteShow = (id) => {
+    setIdDelete(id);
+    console.log(id);
     setShowDelete(true);
   };
 
@@ -39,9 +42,9 @@ const Index = ({ tHead, data, tableTitle, insertData }) => {
         <h3 className="heading_4 secondary_2">{tableTitle}</h3>
         <Button
           type={
-            location.pathname === "/dashboard" ? "btn-add" : "btn-add-course"
+            location.pathname === '/dashboard' ? 'btn-add' : 'btn-add-course'
           }
-          onClick={() => handleShow("create")}
+          onClick={() => handleShow('create')}
         />
       </div>
       <FormCategory
@@ -52,13 +55,20 @@ const Index = ({ tHead, data, tableTitle, insertData }) => {
         insertData={insertData}
         idEdit={id || 0}
       />
+
+      <PopupDelete
+        show={showDelete}
+        handleClose={handleCloseDelete}
+        idDelete={idDelete || ''}
+        deleteData={deleteData}
+      />
       <div className="px-1">
-        {location.pathname === "/dashboard" ? (
+        {location.pathname === '/dashboard' ? (
           <table className="table table-hover">
             <thead>
               <div className="row rounded bg_neutral_4 text-dark align-items-center p-2">
                 {tHead.map((head, headIdx) => {
-                  if (head === "Category Name") {
+                  if (head === 'Category Name') {
                     return (
                       <div
                         className="col-2 text-center body_2 neutral_2"
@@ -67,7 +77,7 @@ const Index = ({ tHead, data, tableTitle, insertData }) => {
                         {head}
                       </div>
                     );
-                  } else if (head === "Description") {
+                  } else if (head === 'Description') {
                     return (
                       <div
                         className="col-4 text-center body_2 neutral_2"
@@ -122,8 +132,8 @@ const Index = ({ tHead, data, tableTitle, insertData }) => {
                         </div>
                         <div className="col d-flex justify-content-end mx-3">
                           <Button
-                            type={"btn-edit"}
-                            onClick={() => handleShow("edit", item.id)}
+                            type={'btn-edit'}
+                            onClick={() => handleShow('edit', item.id)}
                           />
                         </div>
                       </Accordion.Header>
@@ -135,13 +145,11 @@ const Index = ({ tHead, data, tableTitle, insertData }) => {
                               and the courses in this category
                             </span>
                           </div>
-                          <Button type={"btn-delete"} onClick={deleteShow} />
+                          <Button
+                            type={'btn-delete'}
+                            onClick={() => deleteShow(item.id)}
+                          />
                         </div>
-
-                        <PopupDelete
-                          show={showDelete}
-                          handleClose={handleCloseDelete}
-                        />
                       </Accordion.Body>
                     </Accordion.Item>
                   </div>
@@ -154,7 +162,7 @@ const Index = ({ tHead, data, tableTitle, insertData }) => {
             <thead>
               <div className="row rounded bg_neutral_4 text-dark align-items-center p-2">
                 {tHead.map((head, headIdx) => {
-                  if (head === "Course Title") {
+                  if (head === 'Course Title') {
                     return (
                       <div
                         className="col text-center body_2 neutral_2"
@@ -163,7 +171,7 @@ const Index = ({ tHead, data, tableTitle, insertData }) => {
                         {head}
                       </div>
                     );
-                  } else if (head === "Mentor") {
+                  } else if (head === 'Mentor') {
                     return (
                       <div
                         className="col-4 text-center body_2 neutral_2"
@@ -172,7 +180,7 @@ const Index = ({ tHead, data, tableTitle, insertData }) => {
                         {head}
                       </div>
                     );
-                  } else if (head === "Employee") {
+                  } else if (head === 'Employee') {
                     return (
                       <div className="col ps-5 body_2 neutral_2" key={headIdx}>
                         {head}
@@ -219,7 +227,7 @@ const Index = ({ tHead, data, tableTitle, insertData }) => {
                             src={item.mentorImg[1]}
                             alt={item.mentor[1]}
                           />
-                          {item.mentor[0] + " , " + item.mentor[1]}
+                          {item.mentor[0] + ' , ' + item.mentor[1]}
                         </div>
                         <div className="col text-center caption_1 secondary_2">
                           {item.section}
@@ -228,7 +236,7 @@ const Index = ({ tHead, data, tableTitle, insertData }) => {
                           {item.employee}
                         </div>
                         <div className="col d-flex justify-content-end mx-3">
-                          <Button type={"btn-edit"} />
+                          <Button type={'btn-edit'} />
                         </div>
                       </Accordion.Header>
                       <Accordion.Body>
@@ -239,7 +247,7 @@ const Index = ({ tHead, data, tableTitle, insertData }) => {
                               and the courses in this category
                             </span>
                           </div>
-                          <Button type={"btn-delete"} />
+                          <Button type={'btn-delete'} />
                         </div>
                       </Accordion.Body>
                     </Accordion.Item>
