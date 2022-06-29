@@ -1,24 +1,24 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React from 'react';
+import { useState, useEffect } from 'react';
 import {
   Card,
   Table,
   NavbarAdmin,
   SearchBar,
   Notification,
-} from "../../components";
-import { employIcon, categoriesIcon, courseIcon } from "../../assets";
-import "./style.css";
-import axiosInstance from "./../../networks/apis";
+} from '../../components';
+import { employIcon, categoriesIcon, courseIcon } from '../../assets';
+import './style.css';
+import axiosInstance from './../../networks/apis';
 
 const Index = () => {
-  const tableTitle = ["Category"];
-  const tHead = ["Category Name", "Description", "Course", "Employee", ""];
+  const tableTitle = ['Category'];
+  const tHead = ['Category Name', 'Description', 'Course', 'Employee', ''];
   const [dataCategory, setDataCategory] = useState([]);
 
   const getData = async () => {
     await axiosInstance
-      .get("api/categories", {
+      .get('api/categories', {
         params: { page: 1, size: 20 },
       })
       .then((response) => {
@@ -33,12 +33,12 @@ const Index = () => {
   const [success, setSuccess] = useState(false);
 
   const insertData = async (data) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     await axiosInstance
-      .post("api/admin/category", data, {
+      .post('api/admin/category', data, {
         headers: {
-          authorization: `Bearer ${token}`,
-          "content-type": "multipart/form-data",
+          // authorization: Bearer ${token},
+          'content-type': 'multipart/form-data',
         },
       })
       .then((response) => {
@@ -46,7 +46,18 @@ const Index = () => {
       })
       .catch((error) => console.log(error));
   };
-
+  const deleteData = async (idDelete) => {
+    await axiosInstance
+      .delete('api/admin/category', {
+        params: { id: idDelete },
+      })
+      .then((x) => {
+        setSuccess(true);
+      })
+      .catch((r) => {
+        console.log(r);
+      });
+  };
   useEffect(() => {
     getData();
   }, []);
@@ -64,7 +75,7 @@ const Index = () => {
   //   axiosInstance
   //     .post("api/admin/category", data, {
   //       headers: {
-  //         authorization: `Bearer ${token}`,
+  //         authorization: Bearer ${token},
   //         "content-type": "multipart/form-data",
   //       },
   //     })
@@ -127,25 +138,27 @@ const Index = () => {
           </div>
         </div>
 
-        {/* <form action="">
-          <input
-            type="text"
-            name="title"
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <input
-            type="text"
-            name="description"
-            onChange={(e) => setDesc(e.target.value)}
-          />
-          <input type="file" name="image" onChange={handleFileUpload} />
-          <button onClick={handleClickTest}>Kirim</button>
+        {/* <form action=""> 
+          <input 
+            type="text" 
+            name="title" 
+            onChange={(e) => setTitle(e.target.value)} 
+          /> 
+          <input 
+            type="text" 
+            name="description" 
+            onChange={(e) => setDesc(e.target.value)} 
+          /> 
+          <input type="file" name="image"
+
+onChange={handleFileUpload} /> 
+          <button onClick={handleClickTest}>Kirim</button> 
         </form> */}
 
         <div className="container d-flex gap-4 mt-4">
-          <Card icon={categoriesIcon} total={7} desc={"Total of Categories"} />
-          <Card icon={courseIcon} total={7} desc={"Total of Course"} />
-          <Card icon={employIcon} total={7} desc={"Total of Employess"} />
+          <Card icon={categoriesIcon} total={7} desc={'Total of Categories'} />
+          <Card icon={courseIcon} total={7} desc={'Total of Course'} />
+          <Card icon={employIcon} total={7} desc={'Total of Employess'} />
         </div>
 
         <div className="container background-table px-5 pt-2 pb-5 mt-5">
@@ -154,6 +167,7 @@ const Index = () => {
             data={dataCategory || []}
             tableTitle={tableTitle}
             insertData={insertData}
+            deleteData={deleteData}
           />
         </div>
       </div>
