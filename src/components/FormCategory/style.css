@@ -66,8 +66,74 @@
 }
 
 
+.image-edit{
+  position: relative;
+  height: max-content;
+}
+
+.input-edit-image{
+  position: absolute;
+  top:0%;
+  left: 0%;
+  color: transparent;
+  border-radius: 8px;
+  width: 100px;
+  height: 100px;
+}
+
+.input-edit-image:hover{
+  background-color: #bdc0c7;
+  opacity: 0.86;
+  cursor: pointer;
+}
+
+.input-edit-image::after{
+  position: absolute;
+  box-sizing: border-box;
+  content: 'Change Photo';
+  font-size: 12px;
+  height: max-content;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 8px;
+  padding: 5px;
+  line-height: 12px;
+  z-index: 1;
+  color: #FFF;
+  top:40%;
+  left: 5%;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.input-edit-image::-webkit-file-upload-button{
+  visibility: hidden;
+  position: absolute;
+  z-index:1;
+}
+
 .image-before{
   width: 100px;
   height: 100px;
   border-radius: 16px;
+}
+
+.name-file{
+  margin-top: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap:5px;
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 14px;
+  color: #232945;
+}
+
+.added{
+  color: #157F40;
+  padding: 2px 8px;
+  background: rgba(21, 127, 64, 0.2);
+  border-radius: 100px;
 }

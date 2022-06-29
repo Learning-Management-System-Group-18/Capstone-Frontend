@@ -1,24 +1,24 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React from "react";
+import { useState, useEffect } from "react";
 import {
   Card,
   Table,
   NavbarAdmin,
   SearchBar,
   Notification,
-} from '../../components';
-import { employIcon, categoriesIcon, courseIcon } from '../../assets';
-import './style.css';
-import axiosInstance from './../../networks/apis';
+} from "../../components";
+import { employIcon, categoriesIcon, courseIcon } from "../../assets";
+import "./style.css";
+import axiosInstance from "./../../networks/apis";
 
 const Index = () => {
-  const tableTitle = ['Category'];
-  const tHead = ['Category Name', 'Description', 'Course', 'Employee', ''];
+  const tableTitle = ["Category"];
+  const tHead = ["Category Name", "Description", "Course", "Employee", ""];
   const [dataCategory, setDataCategory] = useState([]);
 
-  const getData = async () => {
+  const getDataCategory = async () => {
     await axiosInstance
-      .get('api/categories', {
+      .get("api/categories", {
         params: { page: 1, size: 20 },
       })
       .then((response) => {
@@ -32,13 +32,11 @@ const Index = () => {
 
   const [success, setSuccess] = useState(false);
 
-  const insertData = async (data) => {
-    const token = localStorage.getItem('token');
+  const insertDataCategory = async (data) => {
     await axiosInstance
-      .post('api/admin/category', data, {
+      .post("api/admin/category", data, {
         headers: {
-          // authorization: Bearer ${token},
-          'content-type': 'multipart/form-data',
+          "content-type": "multipart/form-data",
         },
       })
       .then((response) => {
@@ -46,9 +44,23 @@ const Index = () => {
       })
       .catch((error) => console.log(error));
   };
-  const deleteData = async (idDelete) => {
+
+  const editDataCategory = async (data, id) => {
     await axiosInstance
-      .delete('api/admin/category', {
+      .put("api/admin/category", data, {
+        params: {
+          id: id,
+        },
+      })
+      .then((response) => {
+        setSuccess(!success);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const deleteDataCategory = async (idDelete) => {
+    await axiosInstance
+      .delete("api/admin/category", {
         params: { id: idDelete },
       })
       .then((x) => {
@@ -59,49 +71,12 @@ const Index = () => {
       });
   };
   useEffect(() => {
-    getData();
+    getDataCategory();
   }, []);
 
   useEffect(() => {
-    getData();
+    getDataCategory();
   }, [success]);
-
-  // const [title, setTitle] = useState("");
-  // const [desc, setDesc] = useState("");
-  // const [file, setFile] = useState(null);
-  // const token = localStorage.getItem("token");
-
-  // const insertData = (data) => {
-  //   axiosInstance
-  //     .post("api/admin/category", data, {
-  //       headers: {
-  //         authorization: Bearer ${token},
-  //         "content-type": "multipart/form-data",
-  //       },
-  //     })
-  //     .then((response) => console.log(response))
-  //     .catch((error) => console.log(error));
-  // };
-
-  // const handleFileUpload = async (e) => {
-  //   if (e.target.files[0]) setFile(e.target.files[0]);
-  // };
-
-  // const handleClickTest = (e) => {
-  //   e.preventDefault();
-  //   // const data = new FormData();
-  //   // data.append("title", title);
-  //   // data.append("description", desc);
-  //   // data.append("image", file);
-  //   const data = {
-  //     title: title,
-  //     description: desc,
-  //     image: file,
-  //   };
-
-  //   insertData(data);
-  //   console.log(data);
-  // };
 
   // const data = [
   //   {
@@ -138,27 +113,10 @@ const Index = () => {
           </div>
         </div>
 
-        {/* <form action=""> 
-          <input 
-            type="text" 
-            name="title" 
-            onChange={(e) => setTitle(e.target.value)} 
-          /> 
-          <input 
-            type="text" 
-            name="description" 
-            onChange={(e) => setDesc(e.target.value)} 
-          /> 
-          <input type="file" name="image"
-
-onChange={handleFileUpload} /> 
-          <button onClick={handleClickTest}>Kirim</button> 
-        </form> */}
-
         <div className="container d-flex gap-4 mt-4">
-          <Card icon={categoriesIcon} total={7} desc={'Total of Categories'} />
-          <Card icon={courseIcon} total={7} desc={'Total of Course'} />
-          <Card icon={employIcon} total={7} desc={'Total of Employess'} />
+          <Card icon={categoriesIcon} total={7} desc={"Total of Categories"} />
+          <Card icon={courseIcon} total={7} desc={"Total of Course"} />
+          <Card icon={employIcon} total={7} desc={"Total of Employess"} />
         </div>
 
         <div className="container background-table px-5 pt-2 pb-5 mt-5">
@@ -166,8 +124,9 @@ onChange={handleFileUpload} />
             tHead={tHead}
             data={dataCategory || []}
             tableTitle={tableTitle}
-            insertData={insertData}
-            deleteData={deleteData}
+            insertDataCategory={insertDataCategory}
+            deleteDataCategory={deleteDataCategory}
+            editDataCategory={editDataCategory}
           />
         </div>
       </div>

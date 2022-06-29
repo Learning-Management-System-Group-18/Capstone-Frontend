@@ -1,12 +1,13 @@
-import React, { useState, useCallback } from 'react';
-import { Form, Modal } from 'react-bootstrap';
-import { useDropzone } from 'react-dropzone';
-import './style.css';
-import uploadIcon from '../../assets/img/upload-icon.svg';
-import { Button } from '../';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
-import axiosInstance from '../../networks/apis';
-import { useEffect } from 'react';
+import React, { useState, useCallback } from "react";
+import { Form, Modal } from "react-bootstrap";
+import "./style.css";
+import uploadIcon from "../../assets/img/upload-icon.svg";
+import { Button } from "../";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import axiosInstance from "../../networks/apis";
+import { useEffect } from "react";
+import { BsFileEarmarkImage, BsCheck } from "react-icons/bs";
+import { AiOutlineClose } from "react-icons/ai";
 
 const Index = ({
   handleClose,
@@ -14,7 +15,8 @@ const Index = ({
   show,
   setShow,
   modalType,
-  insertData,
+  insertDataCategory,
+  editDataCategory,
   idEdit,
 }) => {
   // const [imageBase64, setImageBase64] = useState("");
@@ -45,20 +47,36 @@ const Index = ({
   // };
 
   const newData = {
-    title: '',
-    description: '',
-    image: '',
+    title: "",
+    description: "",
+    image: "",
   };
 
   const newCategoryData = [];
   const [category, setCategory] = useState(newCategoryData);
   const [data, setData] = useState(newData);
   const [newDataEdit, setNewDataEdit] = useState({});
+
+  // for Edit Data
+  const getDataIdCategory = async () => {
+    await axiosInstance
+      .get("api/category", {
+        params: {
+          id: idEdit,
+        },
+      })
+      .then((response) => {
+        console.log("from API", response.data.data);
+        setNewDataEdit(response.data.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
   const handleInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
 
-    if (modalType == 'create') {
+    if (modalType == "create") {
       setData({
         ...data,
         [name]: value,
@@ -69,8 +87,8 @@ const Index = ({
         [name]: value,
       });
     }
-    console.log('data', data);
-    console.log('data', newDataEdit);
+    // console.log("data", data);
+    // console.log("data", newDataEdit);
   };
 
   const [file, setFile] = useState(null);
@@ -78,82 +96,57 @@ const Index = ({
     if (e.target.files[0]) setFile(e.target.files[0]);
   };
 
-  // const insertData = (data) => {
-  //   const token = localStorage.getItem("token");
-  //   axiosInstance
-  //     .post("api/admin/category", data, {
-  //       headers: {
-  //         authorization: `Bearer ${token}`,
-  //         "content-type": "multipart/form-data",
-  //       },
-  //     })
-  //     .then((response) => console.log(response))
-  //     .catch((error) => console.log(error));
-  // };
+  // console.log(file);
 
   const handleSubmit = async (event) => {
     // console.log(data);
     event.preventDefault();
-    const newCategory = {
-      title: data.title,
-      description: data.description,
-      // image: imageBase64,
-      image: file,
-    };
 
-    await insertData(newCategory);
+    if (modalType === "create") {
+      const newCategory = {
+        title: data.title,
+        description: data.description,
+        image: file,
+      };
+      await insertDataCategory(newCategory);
+      console.log(newCategory);
+      setCategory(category.concat(newCategory));
+      setData(newData);
+    } else if (modalType === "edit") {
+      console.log(newDataEdit);
 
-    console.log(newCategory);
-    setCategory(category.concat(newCategory));
-    setData(newData);
+      const id = newDataEdit.id;
+      let dataUpdate = {};
+      if (file === null) {
+        dataUpdate = {
+          title: newDataEdit.title,
+          description: newDataEdit.description,
+        };
+        await editDataCategory(dataUpdate, id);
+        console.log("without Image :", dataUpdate, file);
+      } else {
+        dataUpdate = {
+          title: newDataEdit.title,
+          description: newDataEdit.description,
+          image: file,
+        };
+        await editDataCategory(dataUpdate, id);
+        console.log("with Image", dataUpdate, file);
+      }
+
+      console.log(id, dataUpdate);
+    }
+
     handleClose();
-  };
-
-  const handleSubmitEdit = (event) => {
-    // console.log(data);
-    event.preventDefault();
-    const newCategory = {
-      title: data.title,
-      description: data.description,
-      image: file,
-    };
-
-    insertData(newCategory);
-
-    console.log(newCategory);
-    setCategory(category.concat(newCategory));
-  };
-
-  // for Edit Data
-  const getDataId = async () => {
-    await axiosInstance
-      .get('api/category', {
-        params: {
-          id: idEdit,
-        },
-      })
-      .then((response) => {
-        console.log('from API', response.data.data);
-        setNewDataEdit(response.data.data);
-      })
-      .catch((error) => console.log(error));
   };
 
   useEffect(() => {
     if (idEdit !== 0) {
-      getDataId();
+      getDataIdCategory();
     }
   }, [idEdit]);
 
-  console.log(newDataEdit);
-
-  // setData({
-  //   title: newDataEdit.title || "",
-  //   description: newDataEdit.description || "",
-  //   url_image: newDataEdit.url_image || "",
-  // });
-
-  if (modalType === 'create') {
+  if (modalType === "create") {
     return (
       <div>
         <Modal show={show} onHide={handleClose}>
@@ -210,20 +203,12 @@ const Index = ({
                   title="Upload Image"
                   id="uploadImage"
                   accept="image/x-png,image/gif,image/jpeg, image/jpg, image/svg"
-                  // defaultValue={imageBase64}
                 />
               </div>
 
-              {/* <input
-                type="file"
-                name="image"
-                className="mb-4"
-                onChange={handleFileUpload}
-              /> */}
-
               <div className="warpbtn-popup">
-                <Button type={'btn-popupcancel'} onClick={handleClose} />
-                <Button type={'btn-popupsave'} />
+                <Button type={"btn-popupcancel"} onClick={handleClose} />
+                <Button type={"btn-popupsave"} />
               </div>
             </form>
           </Modal.Body>
@@ -242,7 +227,7 @@ const Index = ({
               />
               Edit Category
             </div>
-            <form onSubmit={handleSubmitEdit}>
+            <form onSubmit={handleSubmit}>
               <Form.Label className="title-form-category">
                 Input Title
               </Form.Label>
@@ -276,25 +261,46 @@ const Index = ({
                 Upload Image
               </Form.Label>
               <div className="d-flex flex-column gap-2 mb-5">
-                <img
-                  src={newDataEdit.url_image}
-                  alt=""
-                  className="image-before"
-                />
+                <div className="image-edit">
+                  <img
+                    src={
+                      file ? URL.createObjectURL(file) : newDataEdit.url_image
+                    }
+                    alt=""
+                    className="image-before"
+                  />
 
-                <input
-                  name="image"
-                  type="file"
-                  onChange={handleFileUpload}
-                  title="Upload Image"
-                  // id="uploadImage"
-                  accept="image/x-png,image/gif,image/jpeg, image/jpg, image/svg"
-                />
+                  <input
+                    name="image"
+                    type="file"
+                    className="input-edit-image"
+                    onChange={handleFileUpload}
+                    title="Upload Image"
+                    accept="image/x-png,image/gif,image/jpeg, image/jpg, image/svg"
+                  />
+                </div>
+                {file ? (
+                  <div className="name-file">
+                    <div className="d-flex gap-2 align-items-center fst-italic">
+                      <BsFileEarmarkImage />
+                      {file ? file.name : ""}
+                    </div>
+                    <div className="d-flex gap-2 align-items-center me-3">
+                      <div className="added">
+                        <BsCheck />
+                        added
+                      </div>
+                      <AiOutlineClose onClick={() => setFile(0)} />
+                    </div>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
 
               <div className="warpbtn-popup mt-4">
-                <Button type={'btn-popupcancel'} onClick={handleClose} />
-                <Button type={'btn-popupsave'} />
+                <Button type={"btn-popupcancel"} onClick={handleClose} />
+                <Button type={"btn-popupsave"} />
               </div>
             </form>
           </Modal.Body>
