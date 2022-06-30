@@ -56,6 +56,7 @@ const Index = ({
   const [category, setCategory] = useState(newCategoryData);
   const [data, setData] = useState(newData);
   const [newDataEdit, setNewDataEdit] = useState({});
+  const [defaultData, setDefaultData] = useState({});
 
   // for Edit Data
   const getDataIdCategory = async () => {
@@ -68,6 +69,7 @@ const Index = ({
       .then((response) => {
         console.log("from API", response.data.data);
         setNewDataEdit(response.data.data);
+        setDefaultData(response.data.data);
       })
       .catch((error) => console.log(error));
   };
@@ -99,9 +101,7 @@ const Index = ({
   // console.log(file);
 
   const handleSubmit = async (event) => {
-    // console.log(data);
     event.preventDefault();
-
     if (modalType === "create") {
       const newCategory = {
         title: data.title,
@@ -137,6 +137,13 @@ const Index = ({
       console.log(id, dataUpdate);
     }
 
+    setFile(null);
+    handleClose();
+  };
+
+  const handleCancel = (type) => {
+    type === "add" ? setData(newData) : setNewDataEdit(defaultData);
+    setFile(null);
     handleClose();
   };
 
@@ -207,7 +214,10 @@ const Index = ({
               </div>
 
               <div className="warpbtn-popup">
-                <Button type={"btn-popupcancel"} onClick={handleClose} />
+                <Button
+                  type={"btn-popupcancel"}
+                  onClick={() => handleCancel("add")}
+                />
                 <Button type={"btn-popupsave"} />
               </div>
             </form>
@@ -299,7 +309,10 @@ const Index = ({
               </div>
 
               <div className="warpbtn-popup mt-4">
-                <Button type={"btn-popupcancel"} onClick={handleClose} />
+                <Button
+                  type={"btn-popupcancel"}
+                  onClick={() => handleCancel("edit")}
+                />
                 <Button type={"btn-popupsave"} />
               </div>
             </form>

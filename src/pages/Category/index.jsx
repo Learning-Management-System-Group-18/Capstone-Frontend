@@ -46,10 +46,11 @@ const Index = () => {
   };
 
   const editDataCategory = async (data, id) => {
+    const params = `?id=` + id;
     await axiosInstance
-      .put("api/admin/category", data, {
-        params: {
-          id: id,
+      .put(`api/admin/category${params}`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
         },
       })
       .then((response) => {
