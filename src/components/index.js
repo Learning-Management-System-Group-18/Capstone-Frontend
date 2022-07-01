@@ -1,16 +1,17 @@
-import Button from './Button';
-import Card from './Card';
-import Table from './Table';
-import NavbarAdmin from './NavbarAdmin';
-import SearchBar from './SearchBar';
-import Notification from './Notification';
-import ProgressBar from './ProggresBar';
-import FormCategory from './FormCategory';
-import PopupDelete from './PopUpDeleteButton';
-import FormSection from './FormSection';
-import Preview from './Preview';
-import PopupDetailOrder from './PopUpDetailOrder';
-import PopupLogout from './PopUpLogout';
+import Button from "./Button";
+import Card from "./Card";
+import Table from "./Table";
+import NavbarAdmin from "./NavbarAdmin";
+import SearchBar from "./SearchBar";
+import Notification from "./Notification";
+import ProgressBar from "./ProggresBar";
+import FormCategory from "./FormCategory";
+import PopupDelete from "./PopUpDeleteButton";
+import FormSection from "./FormSection";
+import Preview from "./Preview";
+import PopupDetailOrder from "./PopUpDetailOrder";
+import PopupLogout from "./PopUpLogout";
+import MyCourse from "./MyCourse";
 
 export {
   Button,
@@ -26,4 +27,5 @@ export {
   Preview,
   PopupDetailOrder,
   PopupLogout,
+  MyCourse,
 };
