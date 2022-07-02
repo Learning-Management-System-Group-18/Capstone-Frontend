@@ -12,6 +12,7 @@ import Preview from './Preview';
 import PopupDetailOrder from './PopUpDetailOrder';
 import PopupLogout from './PopUpLogout';
 import NavbarUser from './NavbarUser';
+import FooterUser from './FooterUser';
 
 export {
   Button,
@@ -28,4 +29,5 @@ export {
   PopupDetailOrder,
   PopupLogout,
   NavbarUser,
+  FooterUser,
 };

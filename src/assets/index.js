@@ -12,6 +12,10 @@ import logoutpopupIcon from './img/IconLogoutPopup.png';
 import logoutIcon from './img/FrameLogout.png';
 import navUserIcon from './img/iconNavUser.png';
 import profileUserIcon from './img/iconProfileUser.jpg';
+import fbIcon from './img/fbIcon.png';
+import igIcon from './img/igIcon.png';
+import twitterIcon from './img/twitterIcon.png';
+import linkedIcon from './img/linkedIcon.png';
 export {
   Rafiki,
   Ellipse,
@@ -27,4 +31,8 @@ export {
   logoutIcon,
   navUserIcon,
   profileUserIcon,
+  fbIcon,
+  igIcon,
+  twitterIcon,
+  linkedIcon,
 };
