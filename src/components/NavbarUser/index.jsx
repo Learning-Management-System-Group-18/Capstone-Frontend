@@ -17,7 +17,7 @@ const Index = () => {
   //   setShowLogout(true);
   // };
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark" id="nav-user">
       <div className="container ms-4">
         <Link to="/home">
           <img src={navUserIcon} alt="navUserIcon" className="icon-navuser" />
