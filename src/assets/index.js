@@ -10,6 +10,7 @@ import totalMentorIcon from './img/total_mentor_icon.png';
 import arrowRightIcon from './img/Arrow_right.svg';
 import logoutpopupIcon from './img/IconLogoutPopup.png';
 import logoutIcon from './img/FrameLogout.png';
+import arrowRightOrange from './img/arrow_right_orange.png';
 
 export {
   Rafiki,
@@ -24,4 +25,5 @@ export {
   arrowRightIcon,
   logoutpopupIcon,
   logoutIcon,
+  arrowRightOrange
 };
