@@ -13,6 +13,7 @@ function Index({
   edit,
   tambah,
   create,
+  update,
 }) {
   const newSection = {
     title: "",
@@ -21,7 +22,6 @@ function Index({
   };
 
   const [data, setData] = useState(newSection);
-  const [edits, setEdit] = useState(edit);
 
   const handleInput = (e) => {
     const name = e.target.name;
@@ -39,15 +39,15 @@ function Index({
       link: data.link,
     };
 
-    if (edits) {
-      console.log("halo edit");
+    if (edit) {
+      update(modalType, newData, data.id);
     } else {
       tambah(newData);
       create(modalType, newData);
-      console.log("halo tambah");
     }
-
+    resetForm();
     event.preventDefault();
+    handleClose();
   };
 
   const resetForm = () => {

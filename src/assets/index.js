@@ -16,6 +16,8 @@ import fbIcon from './img/fbIcon.png';
 import igIcon from './img/igIcon.png';
 import twitterIcon from './img/twitterIcon.png';
 import linkedIcon from './img/linkedIcon.png';
+import arrowRightOrange from './img/arrow_right_orange.png';
+
 export {
   Rafiki,
   Ellipse,
@@ -29,6 +31,7 @@ export {
   arrowRightIcon,
   logoutpopupIcon,
   logoutIcon,
+  arrowRightOrange,
   navUserIcon,
   profileUserIcon,
   fbIcon,
