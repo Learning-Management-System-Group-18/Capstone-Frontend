@@ -1,0 +1,29 @@
+.btn-submit-review{
+    padding: 16px 36px 16px 16px;
+    width: 400px;
+    /* height: 51px; */
+    background: #335EF7;
+    border-radius: 100px;
+    color: white;
+    border: none;
+}
+
+.rating{
+    width: 35px;
+    height: 35px;
+}
+
+.color_default{
+    color: rgba(221, 229, 233, 1);
+}
+
+.rating:hover{
+    cursor: pointer;
+}
+
+
+.icon-close-popup{
+    position: absolute;
+    top:5%;
+    right: 7%;
+}

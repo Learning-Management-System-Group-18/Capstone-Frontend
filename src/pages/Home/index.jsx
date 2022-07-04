@@ -15,7 +15,7 @@ function Index() {
         Login
       </button>
 
-      <MyCourse />
+      {/* <MyCourse /> */}
     </div>
   );
 }

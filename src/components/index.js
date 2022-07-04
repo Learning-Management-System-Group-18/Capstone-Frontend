@@ -1,4 +1,5 @@
 import MyCourse from "./MyCourse";
+import PopupSubmitReview from "./PopUpSubmitReview";
 import Button from './Button';
 import Card from './Card';
 import Table from './Table';
@@ -15,6 +16,7 @@ import PopupLogout from './PopUpLogout';
 import NavbarUser from './NavbarUser';
 import FooterUser from './FooterUser';
 
+
 export {
   Button,
   Card,
@@ -30,6 +32,7 @@ export {
   PopupDetailOrder,
   PopupLogout,
   MyCourse,
+  PopupSubmitReview,
   NavbarUser,
   FooterUser,
 };
