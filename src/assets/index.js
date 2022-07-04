@@ -10,6 +10,12 @@ import totalMentorIcon from './img/total_mentor_icon.png';
 import arrowRightIcon from './img/Arrow_right.svg';
 import logoutpopupIcon from './img/IconLogoutPopup.png';
 import logoutIcon from './img/FrameLogout.png';
+import navUserIcon from './img/iconNavUser.png';
+import profileUserIcon from './img/iconProfileUser.jpg';
+import fbIcon from './img/fbIcon.png';
+import igIcon from './img/igIcon.png';
+import twitterIcon from './img/twitterIcon.png';
+import linkedIcon from './img/linkedIcon.png';
 import arrowRightOrange from './img/arrow_right_orange.png';
 
 export {
@@ -25,5 +31,11 @@ export {
   arrowRightIcon,
   logoutpopupIcon,
   logoutIcon,
-  arrowRightOrange
+  arrowRightOrange,
+  navUserIcon,
+  profileUserIcon,
+  fbIcon,
+  igIcon,
+  twitterIcon,
+  linkedIcon,
 };
