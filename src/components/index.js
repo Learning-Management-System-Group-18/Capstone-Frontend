@@ -15,6 +15,8 @@ import PopupDetailOrder from './PopUpDetailOrder';
 import PopupLogout from './PopUpLogout';
 import NavbarUser from './NavbarUser';
 import FooterUser from './FooterUser';
+import PopularClassCard from './PopularClassCard';
+import StarRating from './StarRating';
 
 
 export {
@@ -35,4 +37,6 @@ export {
   PopupSubmitReview,
   NavbarUser,
   FooterUser,
+  PopularClassCard,
+  StarRating
 };
