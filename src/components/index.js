@@ -1,3 +1,4 @@
+import MyCourse from "./MyCourse";
 import Button from './Button';
 import Card from './Card';
 import Table from './Table';
@@ -28,6 +29,7 @@ export {
   Preview,
   PopupDetailOrder,
   PopupLogout,
+  MyCourse,
   NavbarUser,
   FooterUser,
 };

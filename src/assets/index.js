@@ -1,3 +1,4 @@
+import imageCourse from "./img/course.jpg";
 import Rafiki from './img/rafiki.png';
 import Ellipse from './img/Ellipse 19.png';
 import Ellipse2 from './img/Ellipse 20.png';
@@ -18,6 +19,7 @@ import twitterIcon from './img/twitterIcon.png';
 import linkedIcon from './img/linkedIcon.png';
 import arrowRightOrange from './img/arrow_right_orange.png';
 
+
 export {
   Rafiki,
   Ellipse,
@@ -31,6 +33,7 @@ export {
   arrowRightIcon,
   logoutpopupIcon,
   logoutIcon,
+  imageCourse,
   arrowRightOrange,
   navUserIcon,
   profileUserIcon,
