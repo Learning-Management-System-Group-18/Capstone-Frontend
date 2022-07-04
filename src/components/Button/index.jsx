@@ -54,6 +54,13 @@ const Index = ({ type, onClick }) => {
       ) : (
         ''
       )}
+      {type == 'btn-seedetail' ? (
+        <button type="submit" onClick={onClick} className="btn btn-seedetail">
+          See Detail
+        </button>
+      ) : (
+        ''
+      )}
       {type == 'btn-popupcancel' ? (
         <button type="button" className="btn btn-popupcancel" onClick={onClick}>
           Cancel
