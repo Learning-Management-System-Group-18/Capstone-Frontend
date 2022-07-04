@@ -16,6 +16,7 @@ import {
   AiFillDelete,
   AiFillBook,
   AiFillCheckCircle,
+  AiOutlineClose,
 } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import axiosInstance from "../../networks/apis";
@@ -37,7 +38,6 @@ function Index() {
   const handleShow = (type) => {
     setShow(true);
     setModalType(type);
-    console.log(type);
   };
 
   const handleEdit = (data) => {
@@ -48,23 +48,27 @@ function Index() {
 
   const handlePreview = (data) => {
     setShowPreview(true);
-    console.log("Halo");
   };
 
   const tambah = (newData) => {
-    console.log(newData);
     setData(data.concat(newData));
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const allContent = await axiosInstance.get("api/content", {
+      const allVideo = await axiosInstance.get("api/videos", {
         params: { sectionId: 1, page: 1, size: 7 },
       });
-      console.log(allContent);
-      const video = allContent.data.data.video;
-      const quiz = allContent.data.data.quiz;
-      const slide = allContent.data.data.slide;
+      const allSlide = await axiosInstance.get("api/slides", {
+        params: { sectionId: 1, page: 1, size: 7 },
+      });
+      const allQuiz = await axiosInstance.get("api/quizzes", {
+        params: { sectionId: 1, page: 1, size: 7 },
+      });
+
+      const video = allVideo.data.data;
+      const quiz = allSlide.data.data;
+      const slide = allQuiz.data.data;
       const videos = {
         jenis: "Video",
       };
@@ -72,7 +76,7 @@ function Index() {
         jenis: "Slide",
       };
       const tasks = {
-        jenis: "Task",
+        jenis: "Quiz",
       };
       const mapVideo = video.map((data) => ({ ...data, ...videos }));
       const mapQuiz = quiz.map((data) => ({ ...data, ...slides }));
@@ -102,6 +106,36 @@ function Index() {
       });
   };
 
+  const handleDelete = async (id, type) => {
+    console.log(id);
+    console.log(type);
+    const types = type.toLowerCase();
+    await axiosInstance
+      .delete(`api/admin/${types}`, {
+        params: { id: id },
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const update = async (type, newData, id) => {
+    const types = type.toLowerCase();
+    await axiosInstance
+      .put(`api/admin/${types}`, newData, {
+        params: { id: id },
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
       <NavbarAdmin />
@@ -113,12 +147,24 @@ function Index() {
           <Notification />
         </div>
       </div>
-      <div className="container mb-3 ">
-        <Row className=" my-5">
-          <Col xs={11}>
+      <div className="container mb-3">
+        <div className=" d-flex justify-content-between mt-4 mb-5">
+          <div className="margin-content">
             <p style={{ fontSize: "20px" }}> Introduction Class</p>
-          </Col>
-          <Col xs={1} className="text-center">
+          </div>
+          <div className=" notif-box d-flex justify-content-around invisible">
+            <AiFillCheckCircle className="mt-3 me-5" />
+            <div className="mx-5">
+              <p>File Successfully Added</p>
+              <p>The video successfully added</p>
+            </div>
+            <div className="ms-5">
+              <button>
+                <AiOutlineClose />
+              </button>
+            </div>
+          </div>
+          <div className="text-center margin-content">
             <DropdownButton
               id="dropdown-item-button"
               title="ADD"
@@ -152,10 +198,11 @@ function Index() {
                 </span>
               </Dropdown.Item>
             </DropdownButton>
-          </Col>
-        </Row>
+          </div>
+        </div>
+
         {data.map((data, i) => (
-          <Row key={data.id}>
+          <Row key={i}>
             <Col xs={2} className="me-4 mb-5">
               <div
                 className="thumbnail"
@@ -193,7 +240,7 @@ function Index() {
               <h5>Title </h5>
               <p> {data.title}</p>
               <h5>Description</h5>
-              {console.log(data.jenis)}
+
               <p className="pb-2">{data.description}</p>
               <span className={data.jenis}>{data.jenis}</span>
             </Col>
@@ -205,7 +252,10 @@ function Index() {
                 <AiFillEdit />
               </button>
               <br />
-              <button className="function-button mt-5">
+              <button
+                className="function-button mt-5"
+                onClick={() => handleDelete(data.id, data.jenis)}
+              >
                 <AiFillDelete />
               </button>
             </Col>
@@ -232,6 +282,7 @@ function Index() {
         tambah={tambah}
         data={data}
         create={create}
+        update={update}
       />
     </div>
   );

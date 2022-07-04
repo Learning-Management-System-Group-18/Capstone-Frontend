@@ -68,7 +68,7 @@
   font-weight: 500;
   border-radius: 4px;
 }
-.Task {
+.Quiz {
   color: #157f40;
   background-color: #d3e6df;
   padding: 8px 10px 8px 10px;
@@ -81,4 +81,13 @@
   padding: 8px 10px 8px 10px;
   font-weight: 500;
   border-radius: 4px;
+}
+
+.notif-box {
+  background-color: #d1e4dd;
+  border-radius: 8px;
+  padding: 25px 100px 1px 100px;
+}
+.margin-content {
+  padding-top: 60px;
 }
