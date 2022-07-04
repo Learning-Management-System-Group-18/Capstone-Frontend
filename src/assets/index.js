@@ -18,6 +18,9 @@ import igIcon from './img/igIcon.png';
 import twitterIcon from './img/twitterIcon.png';
 import linkedIcon from './img/linkedIcon.png';
 import arrowRightOrange from './img/arrow_right_orange.png';
+import employeeTotalIcon from './img/employee_total_icon.png';
+import starOrange from './img/star_orange.png';
+import starWhite from './img/star_white.png';
 
 
 export {
@@ -41,4 +44,7 @@ export {
   igIcon,
   twitterIcon,
   linkedIcon,
+  employeeTotalIcon,
+  starOrange,
+  starWhite
 };
