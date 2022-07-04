@@ -2,6 +2,8 @@ import React from "react";
 import { imageCourse } from "../../assets";
 import "./style.css";
 import { GoPrimitiveDot } from "react-icons/go";
+import { useState } from "react";
+import { PopupSubmitReview } from "..";
 
 const Index = ({
   status,
@@ -21,7 +23,6 @@ const Index = ({
   totalSection = 156;
   isCompleted = 70;
   level = "Intermediate";
-
   const Childdiv = {
     height: "100%",
     width: `${(isCompleted / totalSection) * 100}%`,
@@ -30,9 +31,24 @@ const Index = ({
     textAlign: "right",
   };
 
-  if (status === "ongoing") {
-    return (
-      <>
+  const [id, setId] = useState(null);
+  const [showReview, setShowReview] = useState(true);
+  const handleShowReview = () => {
+    // setId(id);
+    setShowReview(true);
+    console.log(showReview);
+  };
+
+  const handleCloseReview = () => setShowReview(false);
+
+  return (
+    <div>
+      <PopupSubmitReview
+        handleCloseReview={handleCloseReview}
+        showReview={showReview}
+      />
+
+      {status === "ongoing" ? (
         <div className="my-course">
           <div className="row">
             <div className="col-4 me-4">
@@ -55,11 +71,7 @@ const Index = ({
             </div>
           </div>
         </div>
-      </>
-    );
-  } else if (status === "completed") {
-    return (
-      <>
+      ) : status === "completed" ? (
         <div className="my-course">
           <div className="row">
             <div className="col-4 me-4">
@@ -81,16 +93,14 @@ const Index = ({
                 <button className="btn-certificate ">
                   Download Certificate
                 </button>
-                <button className="btn-review">Write Review</button>
+                <button className="btn-review" onClick={handleShowReview}>
+                  Write Review
+                </button>
               </div>
             </div>
           </div>
         </div>
-      </>
-    );
-  } else {
-    return (
-      <>
+      ) : (
         <div className="my-course">
           <div className="row">
             <div className="col-4 me-4">
@@ -99,7 +109,6 @@ const Index = ({
             <div className="col-7">
               <div className="heading_4_user my-2">{titleCourse}</div>
               <div className="level-category-course caption_1_user">
-                {" "}
                 {level}
               </div>
               <div className="d-flex align-items-center gap-2">
@@ -114,9 +123,9 @@ const Index = ({
             </div>
           </div>
         </div>
-      </>
-    );
-  }
+      )}
+    </div>
+  );
 };
 
 export default Index;
