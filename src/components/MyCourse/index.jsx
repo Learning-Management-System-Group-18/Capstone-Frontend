@@ -32,7 +32,7 @@ const Index = ({
   };
 
   const [id, setId] = useState(null);
-  const [showReview, setShowReview] = useState(true);
+  const [showReview, setShowReview] = useState(false);
   const handleShowReview = () => {
     // setId(id);
     setShowReview(true);
