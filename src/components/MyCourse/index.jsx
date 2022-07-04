@@ -5,13 +5,13 @@ import { GoPrimitiveDot } from "react-icons/go";
 
 const Index = ({
   status,
-  progress,
   imgCourse,
   titleCourse,
   categoryCourse,
   totalSection,
   isCompleted,
   description,
+  level,
 }) => {
   status = "completed";
   imgCourse = imageCourse;
@@ -20,11 +20,11 @@ const Index = ({
   description = "Description...";
   totalSection = 156;
   isCompleted = 70;
-  progress = (isCompleted / totalSection) * 100;
+  level = "Intermediate";
 
   const Childdiv = {
     height: "100%",
-    width: `${progress}%`,
+    width: `${(isCompleted / totalSection) * 100}%`,
     backgroundColor: "#4D82EA",
     borderRadius: "15px",
     textAlign: "right",
@@ -89,6 +89,33 @@ const Index = ({
       </>
     );
   } else {
+    return (
+      <>
+        <div className="my-course">
+          <div className="row">
+            <div className="col-4 me-4">
+              <img src={imgCourse} className="img-course" alt="" />
+            </div>
+            <div className="col-7">
+              <div className="heading_4_user my-2">{titleCourse}</div>
+              <div className="level-category-course caption_1_user">
+                {" "}
+                {level}
+              </div>
+              <div className="d-flex align-items-center gap-2">
+                <div className="parent-div">
+                  <div style={Childdiv}></div>
+                </div>
+                <div>{isCompleted + "/" + totalSection}</div>
+              </div>
+              <button className="continue-course bg_primary body_1">
+                Continue Course
+              </button>
+            </div>
+          </div>
+        </div>
+      </>
+    );
   }
 };
 
