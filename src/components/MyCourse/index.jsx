@@ -15,14 +15,15 @@ const Index = ({
   description,
   level,
 }) => {
-  status = "completed";
-  imgCourse = imageCourse;
-  titleCourse = "Social Media Marketing";
-  categoryCourse = "Business Development";
-  description = "Description...";
-  totalSection = 156;
-  isCompleted = 70;
-  level = "Intermediate";
+  // --- contoh data ---
+  // status = "completed";
+  // imgCourse = imageCourse;
+  // titleCourse = "Social Media Marketing";
+  // categoryCourse = "Business Development";
+  // description = "Description...";
+  // totalSection = 156;
+  // isCompleted = 70;
+  // level = "Intermediate";
   const Childdiv = {
     height: "100%",
     width: `${(isCompleted / totalSection) * 100}%`,
