@@ -1,14 +1,14 @@
-import { React, useState } from 'react';
-import './style.css';
-import { Dropdown, NavDropdown, Nav, Navbar, Container } from 'react-bootstrap';
-import { Link, useLocation } from 'react-router-dom';
-import { FiSearch } from 'react-icons/fi';
-import { navUserIcon, profileUserIcon } from '../../assets';
+import { React, useState } from "react";
+import "./style.css";
+import { Dropdown, NavDropdown, Nav, Navbar, Container } from "react-bootstrap";
+import { Link, useLocation } from "react-router-dom";
+import { FiSearch } from "react-icons/fi";
+import { navUserIcon, profileUserIcon } from "../../assets";
 
 const Index = () => {
   const location = useLocation();
   const locationLink = location.pathname;
-  const link = locationLink.split('/');
+  const link = locationLink.split("/");
 
   // const [showLogout, setShowLogout] = useState(false);
 
@@ -26,9 +26,9 @@ const Index = () => {
           <Nav className="mx-auto">
             <Nav>
               <Link
-                to="/home"
+                to="/"
                 className={`${
-                  link[1] == 'home'
+                  link[1] == "home"
                     ? `item-nav-user decorationuser`
                     : `item-nav-user`
                 }`}
@@ -40,7 +40,7 @@ const Index = () => {
               <Link
                 to="/mycourse"
                 className={`${
-                  link[1] == 'myclass'
+                  link[1] == "myclass"
                     ? `item-nav-user decorationuser`
                     : `item-nav-user`
                 }`}
@@ -53,11 +53,11 @@ const Index = () => {
                 title="Category"
                 id="basic-nav-dropdown"
                 className={`${
-                  link[1] == 'profile'
+                  link[1] == "profile"
                     ? `drop-nav-user decorationuser`
                     : `drop-nav-user`
                 }`}
-                style={{ color: 'black' }}
+                style={{ color: "black" }}
               >
                 <NavDropdown.Item className="drop-item-nav-user">
                   <Link to="/none">None</Link>

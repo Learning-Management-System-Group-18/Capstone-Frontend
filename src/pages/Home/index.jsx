@@ -1,6 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { MyCourse } from "../../components";
+import { useNavigate, Link } from "react-router-dom";
 
 function Index() {
   const navigate = useNavigate();
@@ -15,7 +14,9 @@ function Index() {
         Login
       </button>
 
-      {/* <MyCourse /> */}
+      <Link to="/detail-course" className="btn btn-warning">
+        Ini Page Detail Course Before Enrol
+      </Link>
     </div>
   );
 }
