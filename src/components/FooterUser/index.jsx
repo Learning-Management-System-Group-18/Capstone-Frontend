@@ -1,14 +1,14 @@
-import React from 'react';
-import './style.css';
-import { IoIosArrowUp } from 'react-icons/io';
-import { BiRadioCircle } from 'react-icons/bi';
+import React from "react";
+import "./style.css";
+import { IoIosArrowUp } from "react-icons/io";
+import { BiRadioCircle } from "react-icons/bi";
 
-import { fbIcon, igIcon, twitterIcon, linkedIcon } from '../../assets';
+import { fbIcon, igIcon, twitterIcon, linkedIcon } from "../../assets";
 
 const Index = () => {
   return (
     <>
-      <footer>
+      <footer className="">
         <div className="bg-footer container-fluid">
           <div className="row">
             <div className="col-md-6 titlefooteruser">
@@ -77,11 +77,11 @@ const Index = () => {
             </p>
           </div>
         </div>
-      </footer>
 
-      <a href="#nav-user" className="up-icon">
-        <IoIosArrowUp className="icon-userdropup" />
-      </a>
+        <a href="#nav-user" className="up-icon">
+          <IoIosArrowUp className="icon-userdropup" />
+        </a>
+      </footer>
     </>
   );
 };

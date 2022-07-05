@@ -65,6 +65,18 @@ html {
   font-weight: 400;
 }
 
+.sc_1 {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.sc {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
 .body_2_user {
   font-family: 'Urbanist', sans-serif;
   font-size: 14px;
