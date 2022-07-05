@@ -364,7 +364,7 @@ const Index = () => {
           <div className="col-md-4">
             <div className="mt-5">
               <div className="text-center px-1">
-                <video width="395" height="250" className="video" controls>
+                <video width="100%" height="250" className="video" controls>
                   <source src="https://youtu.be/Yce2ZvGeanY" type="video/mp4" />
                 </video>
                 {/* <iframe
