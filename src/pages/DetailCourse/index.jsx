@@ -22,7 +22,7 @@ import {
 import { useState, useContext } from "react";
 
 const Index = () => {
-  const [tabs, setTabs] = useState("");
+  const [tabs, setTabs] = useState("about");
 
   console.log(tabs);
 
