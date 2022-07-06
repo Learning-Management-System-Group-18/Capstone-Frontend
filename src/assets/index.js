@@ -27,6 +27,8 @@ import jadwal from "./img/jadwal.png";
 import level from "./img/level.png";
 import tool from "./img/tool.png";
 import lockKey from "./img/LockKey.png";
+import quoteIcon from "./img/ic_quotation_mark.png";
+import arrowLeft from "./img/ic_arrow_left.png";
 
 export {
   Rafiki,
@@ -58,4 +60,6 @@ export {
   level,
   tool,
   lockKey,
+  quoteIcon,
+  arrowLeft,
 };
