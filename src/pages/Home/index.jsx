@@ -17,7 +17,7 @@ function Index() {
       <Link to="/detail-course" className="btn btn-warning">
         Ini Page Detail Course Before Enrol
       </Link>
-      <Link to="/userprofile" className="ms-2 btn btn-primary">
+      <Link to="/user-profile" className="ms-2 btn btn-secondary">
         Ini Page ProfileUser
       </Link>
       <Link to="/class-category" className="ms-2 btn btn-danger">
