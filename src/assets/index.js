@@ -27,6 +27,7 @@ import jadwal from "./img/jadwal.png";
 import level from "./img/level.png";
 import tool from "./img/tool.png";
 import lockKey from "./img/LockKey.png";
+import LandingPagePhoto from "./img/LandingPagePhoto.png";
 
 export {
   Rafiki,
@@ -58,4 +59,5 @@ export {
   level,
   tool,
   lockKey,
+  LandingPagePhoto,
 };

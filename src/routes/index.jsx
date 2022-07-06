@@ -22,13 +22,13 @@ function Index() {
           <Route path="/dashboard/:categoryName" element={<Course />} />
           <Route path="/order" element={<Order />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/section" element={<Section />} />
         </Route>
         <Route path="/" element={<Home />} />
         <Route element={<PublicRoute />}>
           <Route path="/login" element={<Login />} />
         </Route>
         <Route path="/register" element={<Register />} />
-        <Route path="/section" element={<Section />} />
         <Route path="/detail-course" element={<DetailCourse />} />
       </Routes>
     </BrowserRouter>
