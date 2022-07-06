@@ -21,7 +21,7 @@ function Index() {
         Ini Page ProfileUser
       </Link>
       <Link to="/class-category" className="ms-2 btn btn-danger">
-        Ini Page ProfileUser
+        Ini Page ClassInCategory
       </Link>
     </div>
   );
