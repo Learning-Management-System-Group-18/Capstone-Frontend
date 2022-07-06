@@ -1,0 +1,334 @@
+/* <- Start Css Main -> */
+.bguserProfile {
+  width: 100%;
+  height: 146px;
+  position: relative;
+}
+.fotouserProfile {
+  width: 180px;
+  height: 180px;
+  border-radius: 100%;
+  position: absolute;
+  top: 26%;
+  left: 6%;
+  border: 8px solid #335ef7;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.edit-user-profile {
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  left: 16%;
+  bottom: 50%;
+  z-index: 1;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.titleprofileUser {
+  margin-top: 10px;
+  margin-left: 25%;
+}
+.titlenameUser {
+  font-family: 'Urbanist';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  color: #425466;
+}
+.contentnameUser {
+  font-family: 'Urbanist';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  color: #083a50;
+}
+.mainUserProfile {
+  margin-bottom: 8%;
+}
+/* <- End Css Main -> */
+
+/* <- Start Css Button -> */
+.button-profileUser {
+  display: flex;
+  flex-direction: column;
+  margin-top: 7%;
+  margin-left: 7%;
+}
+.btn-profileuser {
+  text-align: left;
+  width: 184px;
+  height: 40px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  color: rgba(66, 84, 102, 0.5);
+  background: rgba(221, 229, 233, 0.5);
+  border-radius: 10px;
+}
+.btn-profileuser:hover {
+  color: #425466;
+  background: rgba(51, 94, 247, 0.25);
+  border-radius: 10px;
+  box-shadow: none !important;
+}
+
+.btn-profileuser:focus {
+  color: #425466;
+  background: rgba(51, 94, 247, 0.25);
+  border-radius: 10px;
+  box-shadow: none !important;
+}
+.btn-editprofileuser {
+  text-align: left;
+  width: 184px;
+  height: 40px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  color: rgba(66, 84, 102, 0.5);
+  background: rgba(221, 229, 233, 0.5);
+  border-radius: 10px;
+}
+.btn-editprofileuser:hover {
+  color: #425466;
+  background: rgba(51, 94, 247, 0.25);
+  border-radius: 10px;
+  box-shadow: none !important;
+}
+.btn-editprofileuser:focus {
+  color: #425466;
+  background: rgba(51, 94, 247, 0.25);
+  border-radius: 10px;
+  box-shadow: none !important;
+}
+.btn-resetprofileuser {
+  text-align: left;
+  width: 184px;
+  height: 40px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  color: rgba(66, 84, 102, 0.5);
+  background: rgba(221, 229, 233, 0.5);
+  border-radius: 10px;
+}
+.btn-resetprofileuser:hover {
+  color: #425466;
+  background: rgba(51, 94, 247, 0.25);
+  border-radius: 10px;
+  box-shadow: none !important;
+}
+.btn-resetprofileuser:focus {
+  color: #425466;
+  background: rgba(51, 94, 247, 0.25);
+  border-radius: 10px;
+  box-shadow: none !important;
+}
+/* <- End Css Bottom -> */
+
+/* <- Start Css Form Profile -> */
+.main-formuserProfile {
+  justify-items: center;
+  margin-left: 10%;
+  margin-top: 6%;
+  width: 550px;
+  height: 60px;
+}
+.titleformuserProfile {
+  margin-bottom: 2%;
+}
+.bg-formuserProfile {
+  margin-top: 8%;
+  margin-bottom: 2%;
+  width: 700px;
+  height: 380px;
+  background: rgba(64, 124, 255, 0.144);
+  border-radius: 10px;
+}
+.form-profileuser {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  border: 1px solid #335ef7;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #425466;
+  border-radius: 5px;
+}
+
+.form-profileuser:focus {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  border: 1px solid #335ef7;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #425466;
+}
+.label-formprofile {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #b5b5bd;
+}
+/* <- End Css Form Profile -> */
+
+/* <- Start Css Form Password -> */
+.main-formuserResetPass {
+  justify-items: center;
+  margin-left: 10%;
+  margin-top: 6%;
+  width: 550px;
+  height: 60px;
+}
+.titleformuserResetPass {
+  margin-bottom: 2%;
+}
+.bg-formuserResetPass {
+  margin-top: 8%;
+  margin-bottom: 2%;
+  width: 700px;
+  height: 380px;
+  background: rgba(64, 124, 255, 0.144);
+  border-radius: 10px;
+}
+.form-resetpassUser {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  border: 1px solid #335ef7;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #425466;
+  border-radius: 5px;
+}
+.form-resetpassUser:hover {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  border: 1px solid #335ef7;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #425466;
+}
+.form-resetpassUser:focus {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  border: 1px solid #335ef7;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #425466;
+}
+.label-formresetpass {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #b5b5bd;
+}
+/* <- End Css Form Password -> */
+
+/* <- Start Css Form Edit Profile -> */
+.main-formuserEdit {
+  justify-items: center;
+  margin-left: 10%;
+  margin-top: 6%;
+  width: 550px;
+  height: 60px;
+}
+.titleformuserEdit {
+  margin-bottom: 2%;
+}
+.bg-formuserEdit {
+  margin-top: 8%;
+  margin-bottom: 2%;
+  width: 700px;
+  height: 380px;
+  background: rgba(64, 124, 255, 0.144);
+  border-radius: 10px;
+}
+.form-editUser {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  border: 1px solid #335ef7;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #425466;
+  border-radius: 5px;
+}
+.form-editUser:hover {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  border: 1px solid #335ef7;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #425466;
+}
+.form-editUser:focus {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  border: 1px solid #335ef7;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #425466;
+}
+.label-formedit {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #b5b5bd;
+}
+/* <- End Css Form Edit Profile -> */
+
+.btn-saveprofile {
+  margin-top: 17%;
+  margin-left: 85%;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #ffffff;
+  width: 140px;
+  height: 45px;
+  background: #335ef7;
+  border-radius: 100px;
+}
+.btn-saveprofile:hover {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #ffffff;
+  width: 140px;
+  height: 45px;
+  background: #232945;
+  box-shadow: none !important;
+}
+.btn-saveprofile:focus {
+  box-shadow: none;
+}
+.decoration-btnprofile {
+  color: #425466;
+  background: rgba(51, 94, 247, 0.25);
+}
