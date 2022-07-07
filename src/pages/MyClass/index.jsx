@@ -16,14 +16,22 @@ const Index = () => {
       <div className="row nav-userMyClass">
         <div className="col-4 d-flex gap-5 mt-4 ms-4 ">
           <div
-            className="myclass-Ongoing-btn"
+            className={
+              tabs === `ongoing`
+                ? `myclass-Ongoing-btn textdecor-MyClass`
+                : `myclass-Ongoing-btn`
+            }
             onClick={() => setTabs('ongoing')}
             style={{ cursor: 'pointer' }}
           >
             Ongoing
           </div>
           <div
-            className="myclass-Completed-btn"
+            className={
+              tabs === `completed`
+                ? `myclass-Completed-btn textdecor-MyClass`
+                : `myclass-Completed-btn`
+            }
             onClick={() => setTabs('completed')}
             style={{ cursor: 'pointer' }}
           >
@@ -49,15 +57,17 @@ const Index = () => {
 
       {/* Tabs Decoration Bottom */}
       <div className="row tabs-Myclass">
-        <div className="col-6">
+        <div className="col-6 mt-2">
           <div className="d-flex">
             <div
-              className={`${tabs === 'ongoing' ? `bottom-brdrMyClass` : ``}`}
+              className={`${
+                tabs === 'ongoing' ? `bottom-brdrMyClassOngoing` : ``
+              }`}
             ></div>
 
             <div
               className={`${
-                tabs === 'completed' ? `bottom-brdrMyClass-2` : ` `
+                tabs === 'completed' ? `bottom-brdrMyClassCompleted` : ` `
               }`}
             ></div>
           </div>
@@ -65,7 +75,7 @@ const Index = () => {
       </div>
       {/* Tabs Decoration Bottom */}
 
-      {/* <- Start Page My Class Ongoing -> */}
+      {/* <- Start Content Page My Class Ongoing -> */}
       <div className={`${tabs === 'ongoing' ? `` : `d-none`}`}>
         <div className="heading_2_user mt-5 ms-5">Ongoing Course</div>
         <div className="body_1_user mt-1 ms-5">
@@ -80,7 +90,6 @@ const Index = () => {
               }
               titleCourse={'Social Media Marketing'}
               categoryCourse={'Business Development'}
-              description={'Description...'}
               totalSection={156}
               isCompleted={70}
               level={'Intermediate'}
@@ -94,7 +103,6 @@ const Index = () => {
               }
               titleCourse={'Social Media Marketing'}
               categoryCourse={'Business Development'}
-              description={'Description...'}
               totalSection={156}
               isCompleted={70}
               level={'Intermediate'}
@@ -102,9 +110,9 @@ const Index = () => {
           </div>
         </div>
       </div>
-      {/* <- End Page My Class Ongoing -> */}
+      {/* <- Start Content Page My Class Ongoing -> */}
 
-      {/* <- Start Page My Class Completed -> */}
+      {/* <- Start Content Page My Class Completed -> */}
       <div className={`${tabs === 'completed' ? `` : `d-none`}`}>
         <div className="heading_2_user mt-5 ms-5">Completed Course</div>
         <div className="body_1_user mt-1 ms-5">
@@ -142,7 +150,7 @@ const Index = () => {
           </div>
         </div>
       </div>
-      {/* <- End Page My Class Completed -> */}
+      {/* <- End Content Page My Class Completed  -> */}
     </div>
   );
 };
