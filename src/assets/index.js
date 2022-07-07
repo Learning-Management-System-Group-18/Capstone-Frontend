@@ -31,6 +31,8 @@ import BgUserProfile from './img/BgUserProfile.png';
 import quoteIcon from "./img/ic_quotation_mark.png";
 import arrowLeft from "./img/ic_arrow_left.png";
 import bannerJoinOurCommunity from "./svg/banner_join_our_community.svg";
+import LandingPagePhoto from "./img/LandingPagePhoto.png";
+
 
 export {
   Rafiki,
@@ -65,5 +67,7 @@ export {
   BgUserProfile,
   quoteIcon,
   arrowLeft,
-  bannerJoinOurCommunity
+  bannerJoinOurCommunity,
+  LandingPagePhoto
+
 };
