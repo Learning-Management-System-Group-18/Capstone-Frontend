@@ -190,3 +190,21 @@
 .btn-popupdelete:hover {
   color: white;
 }
+
+.btn-savechange-profile {
+  color: white;
+  font-weight: 600;
+  background-color: #335ef7;
+  width: 460px;
+  height: 55px;
+  border-radius: 12px;
+
+}
+.btn-savechange-profile:hover {
+  color: white;
+  font-weight: 600;
+  background-color: #232945;
+  border-radius: 12px;
+  width: 460px;
+  height: 55px;
+}

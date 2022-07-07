@@ -1,8 +1,7 @@
 import React from "react";
-import { NavbarAdmin } from "../../components";
-import { Form, Button } from "react-bootstrap";
+import { NavbarAdmin, Button } from "../../components";
+import { Form } from "react-bootstrap";
 import { ProfileImg } from "../../assets";
-import { BsFillStarFill } from "react-icons/bs";
 import { FaPen } from "react-icons/fa";
 import "./style.css";
 
@@ -124,12 +123,9 @@ const Index = () => {
                       <input type="text" className="form-control radius-8" />
                     </div>
 
-                    <Button
-                      className="col-8 offset-2 bg_primary subtitle_2 mt-5 mb-4 py-3 px-4 radius-12"
-                      disabled={true}
-                    >
-                      Save Changes
-                    </Button>
+                    <div className="text-center mt-5 mb-4">
+                      <Button type={"btn-savechange-profile"} disabled={true} />
+                    </div>
                   </form>
                 </div>
               </div>

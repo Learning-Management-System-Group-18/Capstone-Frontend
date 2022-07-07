@@ -102,6 +102,7 @@ function Index() {
         .then((response) => {
           localStorage.setItem("role", response.data.data.role[0]);
           localStorage.setItem("token", response.data.data.token);
+          localStorage.setItem("full_name", response.data.data.full_name);
           console.log(response.data.data.token);
           if (response.data.data.role[0] === "ROLE_ADMIN") {
             console.log("Navigate to role admin");

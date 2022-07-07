@@ -26,10 +26,10 @@ function Index() {
           <Route path="/dashboard/:categoryName" element={<Course />} />
           <Route path="/order" element={<Order />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/section" element={<Section />} />
         </Route>
         <Route element={<ProtectedRoutesUser />}>
           <Route path="/home" element={<HomeUser />} />
-          <Route path="/section" element={<Section />} />
           <Route path="/detail-course" element={<DetailCourse />} />
           <Route path="/user-profile" element={<ProfileUser />} />
           <Route path="/class-category" element={<ClassInCategory />} />
