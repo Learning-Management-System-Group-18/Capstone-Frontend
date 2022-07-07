@@ -6,14 +6,17 @@ const useAuth = () => {
   const token = localStorage.getItem("token");
   if (token && role === "ROLE_ADMIN") {
     return true;
+  } else if (token && role === "ROLE_USER") {
+    return true;
   } else {
     return false;
   }
 };
 
 const PublicRoute = () => {
+  const role = localStorage.getItem("role");
   const auth = useAuth();
-  return auth ? <Navigate to="/dashboard" /> : <Outlet />;
+  return (auth && role === "ROLE_ADMIN" ? (<Navigate to="/dashboard" />) : auth && role === "ROLE_USER" ? (<Navigate to="/home" />) : (<Outlet />));
 };
 
 export default PublicRoute;
