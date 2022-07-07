@@ -7,6 +7,7 @@ import Course from '../pages/Course';
 import Order from '../pages/Order';
 import Profile from '../pages/Profile';
 import ProtectedRoutes from './PrivateRoute';
+import ProtectedRoutesUser from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import Section from '../pages/Section';
 import DetailCourse from '../pages/DetailCourse';
@@ -25,16 +26,18 @@ function Index() {
           <Route path="/order" element={<Order />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
+        <Route element={<ProtectedRoutesUser />}>
+          <Route path="/home" element={<HomeUser />} />
+          <Route path="/section" element={<Section />} />
+          <Route path="/detail-course" element={<DetailCourse />} />
+          <Route path="/user-profile" element={<ProfileUser />} />
+          <Route path="/class-category" element={<ClassInCategory />} />
+        </Route>
         <Route path="/" element={<Home />} />
         <Route element={<PublicRoute />}>
           <Route path="/login" element={<Login />} />
         </Route>
-        <Route path="/home" element={<HomeUser />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/section" element={<Section />} />
-        <Route path="/detail-course" element={<DetailCourse />} />
-        <Route path="/user-profile" element={<ProfileUser />} />
-        <Route path="/class-category" element={<ClassInCategory />} />
       </Routes>
     </BrowserRouter>
   );
