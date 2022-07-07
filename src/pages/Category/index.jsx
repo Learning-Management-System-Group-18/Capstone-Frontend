@@ -15,6 +15,7 @@ const Index = () => {
   const tableTitle = ["Category"];
   const tHead = ["Category Name", "Description", "Course", "Employee", ""];
   const [dataCategory, setDataCategory] = useState([]);
+  const full_name = localStorage.getItem("full_name");
 
   const getDataCategory = async () => {
     await axiosInstance
@@ -104,7 +105,7 @@ const Index = () => {
           <div className="container d-flex justify-content-between py-3">
             <div className="nav-name">
               <span className="title-nav">Welcome back</span>
-              <h5>Latifa Salsabila 👋</h5>
+              <h5>{full_name} 👋</h5>
             </div>
 
             <div className="d-flex align-items-center gap-3">
