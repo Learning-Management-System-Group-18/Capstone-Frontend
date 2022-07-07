@@ -49,25 +49,26 @@
   border: 1.5px solid white;
   border-radius: 100px;
 }
-
-.drop-nav-user {
-  margin-top: 6px;
-  color: black;
+.search-main {
+  background-color: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0px 0px 48px 5px rgb(223, 216, 216);
 }
-.drop-item-nav-user,
-.drop-item-nav-user a {
+.search-button {
+  background-color: #335ef7;
+  border-radius: 33px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 49.5px;
   text-decoration: none;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  color: black;
+  border: none;
 }
-
 .searchNavUser {
   background: #f1f5ff;
   border-radius: 100px;
-  width: 380px;
+  width: 240px;
   height: 36px;
   margin-right: 20px;
 }
@@ -89,14 +90,72 @@
   width: 20px;
   height: 20px;
 }
-.iconProfileUser {
-  margin-right: 2%;
-  margin-bottom: 5px;
+
+.tittle {
+  font-size: 48px;
+  color: #232945;
+  font-weight: bold;
 }
-.img-usernav {
-  border: 2px solid #b8b6ff;
-  border-radius: 100%;
-  margin-right: 10px;
-  width: 40px;
-  height: 42px;
+.subtittle {
+  font-size: 18px;
+  color: #7c8b99;
+}
+
+.answer {
+  font-weight: 500;
+  font-size: 18px;
+  text-align: justify;
+}
+
+.body-active-faq {
+  border-left: 1px solid #335ef7;
+  background: #f5f8fb;
+}
+.header-active-faq {
+  border-left: 1px solid #335ef7;
+  background: #f5f8fb;
+  border-bottom: none;
+}
+.card-faq {
+  border-radius: 20px 20px 20px 20px;
+}
+
+.started {
+  background-color: #335ef7;
+  margin: 150px 50px 100px 50px;
+  border-radius: 24px;
+}
+
+.tittle-started {
+  font-weight: 600;
+  font-size: 32px;
+  color: #ffffff;
+}
+.sub-tittle-started {
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+}
+.get-started-button {
+  background-color: #ffffff;
+  border-radius: 33px;
+  cursor: pointer;
+  color: #335ef7;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px 62px;
+  text-decoration: none;
+  border: none;
+}
+
+.contact-us-button {
+  background-color: #335ef7;
+  border-radius: 33px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px 62px;
+  border: 2px solid white;
+  margin-left: 36px;
 }

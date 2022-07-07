@@ -1,21 +1,14 @@
-import { React, useState } from "react";
+import React from "react";
 import "./style.css";
-import { Dropdown, NavDropdown, Nav, Navbar, Container } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import { FiSearch } from "react-icons/fi";
-import { navUserIcon, profileUserIcon } from "../../assets";
+import { navUserIcon } from "../../assets";
 
 const NavBarLandingPage = () => {
   const location = useLocation();
   const locationLink = location.pathname;
   const link = locationLink.split("/");
 
-  // const [showLogout, setShowLogout] = useState(false);
-
-  // const handleCloseLogout = () => setShowLogout(false);
-  // const logoutShow = () => {
-  //   setShowLogout(true);
-  // };
   return (
     <nav className="navbar navbar-expand-lg navbar-dark" id="nav-user">
       <div className="container ms-4">
