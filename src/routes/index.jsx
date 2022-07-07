@@ -14,6 +14,7 @@ import DetailCourse from '../pages/DetailCourse';
 import ProfileUser from '../pages/ProfileUser';
 import ClassInCategory from '../pages/ClassInCategory';
 import HomeUser from '../pages/HomeUser';
+import MyClass from '../pages/MyClass';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function Index() {
@@ -32,6 +33,7 @@ function Index() {
           <Route path="/detail-course" element={<DetailCourse />} />
           <Route path="/user-profile" element={<ProfileUser />} />
           <Route path="/class-category" element={<ClassInCategory />} />
+          <Route path="/my-class" element={<MyClass />} />
         </Route>
         <Route path="/" element={<Home />} />
         <Route element={<PublicRoute />}>
