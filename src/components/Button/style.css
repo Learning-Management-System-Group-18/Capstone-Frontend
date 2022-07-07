@@ -72,6 +72,24 @@
   height: 45px;
 }
 
+.btn-jointelegram {
+  color: white;
+  font-weight: 600;
+  border-radius: 100px;
+  background-color: #335ef7;
+  width: 200px;
+  height: 45px;
+}
+
+.btn-jointelegram:hover {
+  color: white;
+  font-weight: 600;
+  border-radius: 100px;
+  background-color: #232945;
+  width: 200px;
+  height: 45px;
+}
+
 .btn-seedetail {
   color: white;
   font-weight: 600;
