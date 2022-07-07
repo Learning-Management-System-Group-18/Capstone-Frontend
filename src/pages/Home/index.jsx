@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
@@ -7,11 +8,12 @@ import SearchLanding from "./searchLanding";
 import FAQ from "./FrequentlyAskQuestion";
 import "./style.css";
 import { LandingPagePhoto } from "../../assets";
-import { Ellipse, Ellipse2 } from "../../assets";
+
 
 function Index() {
   const navigate = useNavigate();
   return (
+
     <div>
       <NavBarLandingPage />
       <div className="container">
@@ -64,6 +66,7 @@ function Index() {
         </div>
       </div>
       <FooterUser />
+
     </div>
   );
 }

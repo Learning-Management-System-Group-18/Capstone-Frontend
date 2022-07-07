@@ -54,6 +54,20 @@ const Index = ({ type, onClick }) => {
       ) : (
         ''
       )}
+      {type == 'btn-login' ? (
+        <button type="submit" className="btn btn-login" onClick={onClick}>
+          Login
+        </button>
+      ) : (
+        ''
+      )}
+      {type == 'btn-jointelegram' ? (
+        <button type="submit" onClick={onclick} className="btn btn-jointelegram">
+          Join Telegram
+        </button>
+      ) : (
+        ''
+      )}
       {type == 'btn-seedetail' ? (
         <button type="submit" onClick={onClick} className="btn btn-seedetail">
           See Detail

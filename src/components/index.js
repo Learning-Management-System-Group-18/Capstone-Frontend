@@ -17,6 +17,8 @@ import NavbarUser from './NavbarUser';
 import FooterUser from './FooterUser';
 import PopularClassCard from './PopularClassCard';
 import StarRating from './StarRating';
+import CardReview from './CardReview';
+import ClassCategory from './ClassCategory';
 
 
 export {
@@ -38,5 +40,7 @@ export {
   NavbarUser,
   FooterUser,
   PopularClassCard,
-  StarRating
+  StarRating,
+  CardReview,
+  ClassCategory
 };

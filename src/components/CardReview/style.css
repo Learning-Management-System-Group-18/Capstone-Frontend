@@ -1,0 +1,38 @@
+.card_reviews {
+    margin: 0 auto;
+}
+
+.review_card {
+    border-radius: 20px;
+    max-width: 400px;
+    margin: 0.25rem;
+    padding-top: 2rem;
+}
+
+.quotation {
+    height: 40px;
+    width: auto;
+}
+
+.reviewer_card {
+    background-color: #F1F5FF;
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    padding-bottom: 1.75rem;
+    padding-left: 2.5rem;
+}
+
+.reviewer_img {
+    height: 50px;
+    width: 50px;
+}
+
+.card_reviews .row>* {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.icon_arrow {
+    width: 36px;
+    height: 36px;
+}
