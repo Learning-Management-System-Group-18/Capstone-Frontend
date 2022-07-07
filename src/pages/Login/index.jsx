@@ -5,6 +5,7 @@ import "./style.css";
 import axiosInstance from "../../networks/apis";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../../components";
 
 function Index() {
   const baseLogin = {
@@ -105,6 +106,9 @@ function Index() {
           if (response.data.data.role[0] === "ROLE_ADMIN") {
             console.log("Navigate to role admin");
             navigate("/dashboard");
+          } else if (response.data.data.role[0] === "ROLE_USER") {
+            console.log("Navigate to role user");
+            navigate("/home");
           } else {
             navigate("/");
           }
@@ -236,7 +240,7 @@ function Index() {
                 </div>
 
                 <Col lg={12}>
-                  <button className="btn btn-primary col-lg-12">Login</button>
+                  <Button type={"btn-login"} />
                 </Col>
               </Form>
             </div>
