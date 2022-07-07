@@ -11,7 +11,7 @@ const useAuth = () => {
     }
 };
 
-const ProtectedRoutes = () => {
+const ProtectedRoutesUser = () => {
     const auth = useAuth();
     return auth ? <Outlet /> : <Navigate to="/login" />;
 };

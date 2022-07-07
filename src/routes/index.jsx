@@ -7,7 +7,7 @@ import Course from '../pages/Course';
 import Order from '../pages/Order';
 import Profile from '../pages/Profile';
 import ProtectedRoutes from './PrivateRoute';
-import ProtectedRoutesUser from './PrivateRoute';
+import ProtectedRoutesUser from './PrivateRouteUser';
 import PublicRoute from './PublicRoute';
 import Section from '../pages/Section';
 import DetailCourse from '../pages/DetailCourse';
