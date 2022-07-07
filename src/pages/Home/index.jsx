@@ -23,6 +23,9 @@ function Index() {
       <Link to="/class-category" className="ms-2 btn btn-danger">
         Ini Page ClassInCategory
       </Link>
+      <Link to="/home" className="ms-2 btn btn-success">
+        Ini Page Home User
+      </Link>
     </div>
   );
 }
