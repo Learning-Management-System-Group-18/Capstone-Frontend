@@ -25,6 +25,7 @@ function Index() {
           <Route path="/dashboard/:categoryName" element={<Course />} />
           <Route path="/order" element={<Order />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/section" element={<Section />} />
         </Route>
         <Route element={<ProtectedRoutesUser />}>
           <Route path="/home" element={<HomeUser />} />
@@ -38,6 +39,8 @@ function Index() {
           <Route path="/login" element={<Login />} />
         </Route>
         <Route path="/register" element={<Register />} />
+
+
       </Routes>
     </BrowserRouter>
   );
