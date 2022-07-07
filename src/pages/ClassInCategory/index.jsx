@@ -132,7 +132,7 @@ const Index = () => {
       <NavbarUser />
 
       <div className="container d-flex justify-content-between py-5 px-4">
-        <input className="titleClassCategory" value="Marketing" />
+        <div className="titleClassCategory"> Marketing </div>
         <DropdownButton
           id="dropdown-basic-button"
           title="Filter by level"

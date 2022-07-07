@@ -19,7 +19,7 @@ input:focus {
 }
 /* This CSS For Button Dropdown  */
 .btn-primary {
-  width: 150px;
+  width: 160px;
   height: 40px;
   color: #232945;
   background: #ffffff;
@@ -30,6 +30,7 @@ input:focus {
   font-size: 14px;
   border-radius: 8px;
   box-shadow: transparent !important;
+  text-align: left;
 }
 
 .btn-check:focus + .btn-primary,
@@ -55,4 +56,8 @@ input:focus {
 .contentClassInCategory {
   margin-right: 15px;
   margin-bottom: 12%;
+}
+.dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 10px;
 }
