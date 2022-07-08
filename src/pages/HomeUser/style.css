@@ -6,6 +6,10 @@
     padding: 4rem 2rem;
 }
 
+.see_all {
+    cursor: pointer;
+}
+
 .card_mentor_container::-webkit-scrollbar {
     display: none;
 }
