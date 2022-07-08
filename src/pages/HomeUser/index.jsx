@@ -1,9 +1,12 @@
 import React from 'react';
 import './style.css';
+import { useNavigate } from 'react-router-dom';
 import { Button, CardReview, ClassCategory, FooterUser, MyCourse, NavbarUser, PopularClassCard } from '../../components';
 import { bannerJoinOurCommunity } from '../../assets';
 
 const Index = () => {
+
+    const navigate = useNavigate();
 
     const myClassData = [
         {
@@ -246,13 +249,17 @@ const Index = () => {
         },
     ]
 
+    const handleSeeAllClass = () => {
+        navigate("/my-class");
+    }
+
     return (
         <>
             <NavbarUser />
             <div className='card_mycourse'>
                 <div className='d-flex justify-content-between mb-3'>
                     <h3 className='heading_2'>Let’s Continue to Improve Your Skills</h3>
-                    <p className='subtitle_1 secondary_1'>See all</p>
+                    <p onClick={handleSeeAllClass} className='subtitle_1 secondary_1'>See all</p>
                 </div>
                 <div className='d-flex justify-content-between'>
                     {
