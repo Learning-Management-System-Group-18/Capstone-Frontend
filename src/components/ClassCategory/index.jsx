@@ -1,8 +1,16 @@
 import React from 'react';
 import './style.css';
 import { arrowRightOrange } from '../../assets';
+import { useNavigate } from 'react-router-dom';
 
 const Index = ({ title, cardData }) => {
+
+    const navigate = useNavigate();
+
+    const handleClikToCategory = () => {
+        navigate("/class-category");
+    }
+
     return (
         <div>
             <div>
@@ -15,7 +23,7 @@ const Index = ({ title, cardData }) => {
                             <img className='icon_category' src={item.icon} alt='icon' />
                             <div className='title_card px-2'>
                                 <h5 className='subtitle_3'>{item.title}</h5>
-                                <img className='arrow_icon' src={arrowRightOrange} alt='arrow' />
+                                <img onClick={handleClikToCategory} className='arrow_icon' src={arrowRightOrange} alt='arrow' />
                             </div>
                         </div>
                     ))
