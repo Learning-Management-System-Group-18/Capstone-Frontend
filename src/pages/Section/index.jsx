@@ -8,6 +8,7 @@ import {
   Preview,
 } from "../../components";
 import { Row, Col } from "react-bootstrap";
+import { arrowRightIcon } from "../../assets";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import {
@@ -142,7 +143,8 @@ function Index() {
       <div className="nav-info">
         <div className="container d-flex justify-content-between py-3">
           <span className="align-middle caption_2">
-            Dashboard {categoryName}
+            Dashboard <img src={arrowRightIcon} alt="arrow-right" /> Create
+            Course <img src={arrowRightIcon} alt="arrow-right" /> Create Section
           </span>
           <Notification />
         </div>
@@ -167,7 +169,7 @@ function Index() {
           <div className="text-center margin-content">
             <DropdownButton
               id="dropdown-item-button"
-              title="ADD"
+              title="+ ADD"
               bsPrefix=" dropdown-toggle-1"
             >
               <Dropdown.Item

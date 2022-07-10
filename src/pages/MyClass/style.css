@@ -31,7 +31,7 @@
   margin-right: 0;
 }
 .bottom-brdrMyClassOngoing {
-  margin-left: 35px;
+  margin-left: 30px;
   margin-right: 27px;
   margin-bottom: 3px;
   width: 13%;
@@ -40,9 +40,9 @@
   border-radius: 15px;
 }
 .bottom-brdrMyClassCompleted {
-  margin-left: 23%;
+  margin-left: 22%;
   margin-bottom: 3px;
-  width: 13%;
+  width: 15%;
   height: 6px;
   background: #335ef7;
   border-radius: 15px;

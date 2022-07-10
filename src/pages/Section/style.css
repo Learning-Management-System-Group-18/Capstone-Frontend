@@ -1,12 +1,86 @@
+.img-course{
+  width: 740px;
+  height: 225px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.mentor, .tools{
+  width: 754px;
+height: 200px;
+background: #FFFFFF;
+border-radius: 16px;
+}
+
+.img-profile-mentor{
+  width: 67px;
+  height: 67px;
+  object-fit: cover;
+  border-radius:8px;
+}
+
+.a-mentor{
+  padding: 16px 12px;
+  width: 135px;
+  height: 124px;
+  background: #F5F8FB;
+  border-radius: 8px;
+}
+
+.headSection{
+background: #232945;
+border-radius: 16px 16px 0 0;
+}
+
+.all-section{
+  height: 125vh;
+  background: white;
+}
+
+.box-img-course{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 2px dashed #bdc0c7;
+  text-align: center;
+  width: 100%;
+  height: 10rem;
+  border-radius: 8px;
+  margin-bottom: 2%;
+  cursor: pointer;
+}
+
+.img-course:hover{
+  background-color: #bdc0c7;
+  opacity: 0.86;
+  cursor: pointer;
+  position: relative;
+}
+
 .test {
   color: yellowgreen;
 }
+
+
 .dropdown-toggle-1 {
   white-space: nowrap !important;
+  border: none;
+  background: #335ef7;
+  color: white;
+  padding: 3px 5px;
+  border-radius: 3px;
+  font-family: 'Inter', sans-serif;
 }
+
+.dropdown-item{
+  color: #232945 !important;
+}
+
 .dropdown-toggle-1::after {
   border: none;
 }
+
 
 .thumbnail {
   background-size: contain;

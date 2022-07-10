@@ -5,9 +5,9 @@ import "./style.css";
 import { deletepopupIcon } from "../../assets";
 import { GrClose } from "react-icons/gr";
 
-const Index = ({ handleClose, show, idDelete, deleteDataCategory }) => {
+const Index = ({ handleClose, show, idDelete, deleteData }) => {
   const handleDelete = () => {
-    deleteDataCategory(idDelete);
+    deleteData(idDelete);
     handleClose();
   };
   return (
