@@ -58,6 +58,12 @@ border-radius: 16px 16px 0 0;
   position: relative;
 }
 
+.a-mentor:hover, .tool:hover{
+  background-color: #bdc0c7;
+  opacity: 0.86;
+  cursor: pointer;
+}
+
 .test {
   color: yellowgreen;
 }

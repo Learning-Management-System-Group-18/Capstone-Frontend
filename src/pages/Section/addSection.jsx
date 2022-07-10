@@ -1,7 +1,7 @@
 import React from "react";
 import { NavbarAdmin, Notification, FormImage } from "../../components";
 import { ProfileImg, arrowRightIcon, tool, uploadIcon } from "../../assets";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import axiosInstance from "../../networks/apis";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -38,23 +38,28 @@ const AddSection = () => {
     navigate(`/dashboard/section/${courseSlug}/${idCourse}`);
   };
 
-  useEffect(() => {
-    if (idCourse !== null) {
-      getDataIdCourse();
-    }
-  }, [idCourse]);
-
   const [show, setShow] = useState(false);
   const [modalType, setModalType] = useState("");
-  const [img, setImg] = useState(null);
+  const [img, setImg] = useState(" ");
+  const [id, setId] = useState(" ");
+  const [name, setName] = useState(" ");
+  const [link, setLink] = useState(" ");
 
   const handleClose = () => setShow(false);
-  const handleShow = (type, img) => {
-    setImg(img);
+  const handleShow = (type, img, id, name, link) => {
+    if (img || id || name || link) {
+      setImg(img);
+      setId(id);
+      setName(name);
+      setLink(link);
+      //   console.log("ini gambar", img);
+      //   console.log("ini id", id);
+      //   console.log("ini name", name);
+    }
+
     setShow(true);
     setModalType(type);
-    console.log(type);
-    console.log(img);
+    // console.log(type);
   };
 
   const addImgCourse = async (data) => {
@@ -83,19 +88,91 @@ const AddSection = () => {
       .catch((error) => console.log(error));
   };
 
-  console.log("data", data);
+  const [tool, setTool] = useState([]);
+
+  const getAllToolByCourseId = async () => {
+    await axiosInstance
+      .get(`api/tools?courseId=${idCourse}`)
+      .then((response) => {
+        // console.log("from API", response.data.data);
+        setTool(response.data.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const [success, setSucces] = useState(false);
+
+  const addMentor = async (data) => {
+    await axiosInstance
+      .post(`api/admin/mentor?courseId=${idCourse}`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        // console.log("from API Mentor", response.data.data);
+        setSucces(!success);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const addTool = async (data) => {
+    await axiosInstance
+      .post(`api/admin/tool?courseId=${idCourse}`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        // console.log("from API Mentor", response.data.data);
+        setSucces(!success);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const editMentor = async (data, id) => {
+    await axiosInstance
+      .put(`api/admin/mentor?id=${id}`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        // console.log("from API Mentor", response.data.data);
+        setSucces(!success);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const editTool = async (data, id) => {
+    await axiosInstance
+      .put(`api/admin/tool?id=${id}`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        // console.log("from API Mentor", response.data.data);
+        setSucces(!success);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  //   console.log("data", data);
+  console.log("tool", tool);
+
+  useEffect(() => {
+    if (idCourse !== null) {
+      getDataIdCourse();
+      getAllMentorByCourseId();
+      getAllToolByCourseId();
+    }
+  }, [idCourse, success]);
 
   return (
     <>
       <NavbarAdmin />
-      <FormImage
-        handleShow={handleShow}
-        show={show}
-        addImgCourse={addImgCourse}
-        modalType={modalType}
-        handleClose={handleClose}
-        img={img || 0}
-      />
       <div className="background">
         <div className="nav-info">
           <div className="container d-flex justify-content-between py-4">
@@ -162,36 +239,68 @@ const AddSection = () => {
                 </div>
 
                 <div className="d-flex gap-3">
-                  <div className="d-flex flex-column align-items-center a-mentor">
-                    <img
-                      src={ProfileImg}
-                      alt="profile-img"
-                      className="img-profile-mentor"
-                    />
-                    <div className="secondary_2 body_2">Sandy Anugrah</div>
-                  </div>
-                  <div className="d-flex flex-column align-items-center a-mentor">
-                    <img
-                      src={ProfileImg}
-                      alt="profile-img"
-                      className="img-profile-mentor"
-                    />
-                    <div className="secondary_2 body_2">Sandy Anugrah</div>
-                  </div>
+                  {mentor?.length > 0
+                    ? mentor.map((m, index) => (
+                        <div
+                          key={index}
+                          className="d-flex flex-column align-items-center a-mentor"
+                          onClick={() =>
+                            handleShow("editMentor", m.url_image, m.id, m.name)
+                          }
+                        >
+                          <img
+                            src={m.url_image || " "}
+                            alt="profile-img"
+                            className="img-profile-mentor"
+                          />
+                          <div className="secondary_2 body_2">
+                            {m.name || " "}
+                          </div>
+                        </div>
+                      ))
+                    : "Data Masih Kosong "}
                 </div>
               </div>
               <div className="tools mt-4 p-3">
                 <div className="d-flex justify-content-between">
                   <div className="secondary_2 subtitle_2">Tool</div>
-                  <button className="btn bg_primary text-white">+ Add</button>
+                  <button
+                    className="btn bg_primary text-white"
+                    onClick={() => handleShow("addTool")}
+                  >
+                    + Add
+                  </button>
                 </div>
 
-                <div className="d-flex tool gap-2 align-items-center">
-                  <img src={tool} alt="" />
-                  <div className="d-flex flex-column">
-                    <div className="caption_1">Google Analytic</div>
-                    <div className="caption_2 underline">Link Download</div>
-                  </div>
+                <div className="d-flex gap-3">
+                  {tool.length > 0
+                    ? tool.map((t, index) => (
+                        <div
+                          className="d-flex tool gap-2 align-items-center"
+                          key={index}
+                          onClick={() =>
+                            handleShow(
+                              "editTool",
+                              t.url_image,
+                              t.id,
+                              t.name,
+                              t.link
+                            )
+                          }
+                        >
+                          <img src={t.url_image} alt="" />
+                          <div className="d-flex flex-column">
+                            <div className="caption_1">{t.name}</div>
+                            <div
+                              className="caption_2 underline"
+                              target={"_blank"}
+                            >
+                              Link Download {t.link}
+                            </div>
+                          </div>
+                        </div>
+                      ))
+                    : "Data Kosong"}
                 </div>
               </div>
             </div>
@@ -227,6 +336,22 @@ const AddSection = () => {
           </div>
         </div>
       </div>
+
+      <FormImage
+        handleShow={handleShow}
+        show={show}
+        addImgCourse={addImgCourse}
+        modalType={modalType}
+        handleClose={handleClose}
+        img={img}
+        id={id || ""}
+        name={name || ""}
+        link={link || ""}
+        addMentor={addMentor}
+        editMentor={editMentor}
+        addTool={addTool}
+        editTool={editTool}
+      />
     </>
   );
 };
