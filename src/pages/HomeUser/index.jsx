@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axiosInstance from "../../networks/apis";
 import './style.css';
 import { useNavigate } from 'react-router-dom';
 import { Button, CardReview, ClassCategory, FooterUser, MyCourse, NavbarUser, PopularClassCard } from '../../components';
@@ -249,9 +250,51 @@ const Index = () => {
         },
     ]
 
+    const dataCategory = [];
+    const [itemCategory, setItemCategory] = useState([]);
+    const [popularCourse, setPopularCourse] = useState([]);
+
     const handleSeeAllClass = () => {
         navigate("/my-class");
     }
+
+    useEffect(() => {
+        // if (user.length !== 0) {
+        axiosInstance
+            .get("/api/categories?page=0&size=7")
+            .then((response) => {
+                console.log(response.data.data);
+                setItemCategory(...itemCategory, response.data.data);
+            })
+            .catch((error) => {
+                console.log(error);
+                console.log("error");
+                //   setErrorMassage({
+                //     ...errorMassage,
+                //     email: "Email Salah",
+                //     password: "Password Salah",
+                //     warna: "red",
+                //   });
+                //   setUser(userLogin);
+            });
+        // }
+    }, []);
+
+    useEffect(() => {
+        axiosInstance
+            .get("/api/course/popular")
+            .then((response) => {
+                console.log(response.data.data);
+                setPopularCourse(...popularCourse, response.data.data);
+                // console.log(popularCourse);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }, []);
+
+    console.log(popularCourse);
+    console.log(itemCategory);
 
     return (
         <>
@@ -270,12 +313,26 @@ const Index = () => {
                 </div>
             </div>
             <div className='card_class_category bg_neutral_1'>
-                <ClassCategory title={"Class Category"} cardData={classCategoryData} />
+                {
+                    itemCategory === undefined ? (
+                        // <ClassCategory title={"Class Category"} cardData={classCategoryData} />
+                        ""
+                    ) : (
+                        <ClassCategory title={"Class Category"} cardData={itemCategory} />
+                    )
+                }
             </div>
             <div className='py-5'>
                 <h3 className='text-center heading_2'>Popular Class</h3>
                 <p className='text-center body_1'>This is 6 popular class in this week</p>
-                <PopularClassCard data={popularClassData} />
+                {
+                    popularCourse === undefined ? (
+                        // <PopularClassCard data={popularClassData} />
+                        ""
+                    ) : (
+                        <PopularClassCard data={popularCourse} />
+                    )
+                }
             </div>
             <div>
                 <h3 className='heading_2 text-center'>Join Our Community</h3>
