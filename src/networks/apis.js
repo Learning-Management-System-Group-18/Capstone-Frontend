@@ -17,7 +17,9 @@ const isLocalDev = (isDev) => {
 
 const axiosInstance = isLocalDev(isDev);
 axiosInstance.defaults.headers["Content-Type"] = "application/json";
-
+axiosInstance.defaults.headers.common[
+  "Authorization"
+] = `Bearer ${localStorage.getItem("token")}`;
 export default axiosInstance;
 
 // const config = {

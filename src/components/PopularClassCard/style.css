@@ -1,0 +1,60 @@
+.card_popular_class {
+    width: 25%;
+    height: 520px;
+    border-radius: 16px;
+    padding: 1rem;
+}
+
+.card_popular_class_2 {
+    width: 23%;
+    height: 480px;
+    border-radius: 16px;
+    padding: 1rem;
+}
+
+.card_banner {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 310px;
+    width: auto;
+    max-height: 257px;
+    height: auto;
+    border-radius: 16px;
+}
+
+.category_name_card {
+    border-radius: 20px;
+    background-color: rgba(255, 136, 25, 0.178);
+    width: fit-content;
+    padding: 0.25rem 0.5rem;
+}
+
+.category_name_card p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.class_level_card {
+    display: inline-block;
+    border-radius: 20px;
+    background-color: rgba(51, 93, 247, 0.158);
+    width: fit-content;
+    padding: 0.25rem 0.5rem;
+}
+
+.class_level_card p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.box_inline h5 {
+    display: inline;
+}
+
+
+.employee_icon {
+    height: auto;
+    max-height: 16px;
+    width: auto;
+}

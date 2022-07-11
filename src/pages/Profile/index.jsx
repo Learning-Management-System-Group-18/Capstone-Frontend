@@ -1,8 +1,7 @@
 import React from "react";
-import { NavbarAdmin } from "../../components";
-import { Form, Button } from "react-bootstrap";
+import { NavbarAdmin, Button } from "../../components";
+import { Form } from "react-bootstrap";
 import { ProfileImg } from "../../assets";
-import { BsFillStarFill } from "react-icons/bs";
 import { FaPen } from "react-icons/fa";
 import "./style.css";
 
@@ -26,19 +25,17 @@ const Index = () => {
                       alt
                       className="img-fluid img-profile"
                     />
-                    <div className="edit-user bg_primary">
-                      <FaPen />
+                    <div className="edit-user bg_primary ">
+                      <FaPen className="icons-edit" />
+                      <input
+                        type="file"
+                        accept="image/png, image/jpg, image/gif, image/jpeg"
+                        className="input-profile-img"
+                      />
                     </div>
                   </div>
 
                   <div className="heading_5">Latifa Salsabila - 346532</div>
-                  <div className="ratings">
-                    <BsFillStarFill className="start secondary_1" />
-                    <BsFillStarFill className="start secondary_1" />
-                    <BsFillStarFill className="start secondary_1" />
-                    <BsFillStarFill className="start secondary_1" />
-                    <BsFillStarFill className="start neutral_5" />
-                  </div>
                 </div>
               </div>
             </div>
@@ -49,15 +46,9 @@ const Index = () => {
                     <div className="heading_5 neutral_3 mb-4 mt-3 ">
                       Personal Data
                     </div>
-                    <div className="form-group col-6">
+                    <div className="form-group col-12">
                       <label className="label-input-user neutral_5">
-                        First Name
-                      </label>
-                      <input type="text" className="form-control radius-8" />
-                    </div>
-                    <div className="form-group col-6">
-                      <label className="label-input-user neutral_5">
-                        Last Name
+                        Fullname
                       </label>
                       <input type="text" className="form-control radius-8" />
                     </div>
@@ -132,12 +123,9 @@ const Index = () => {
                       <input type="text" className="form-control radius-8" />
                     </div>
 
-                    <Button
-                      className="col-8 offset-2 bg_primary subtitle_2 mt-5 mb-4 py-3 px-4 radius-12"
-                      disabled={true}
-                    >
-                      Save Changes
-                    </Button>
+                    <div className="text-center mt-5 mb-4">
+                      <Button type={"btn-savechange-profile"} disabled={true} />
+                    </div>
                   </form>
                 </div>
               </div>

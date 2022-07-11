@@ -1,0 +1,29 @@
+.card_category {
+    display: inline-block;
+    border-radius: 20px;
+    vertical-align: middle;
+    width: 250px;
+    height: 250px;
+}
+
+.icon_category {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2.5rem;
+    margin-bottom: 3.5rem;
+    width: 42px;
+    height: 42px;
+}
+
+.title_card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.arrow_icon {
+    cursor: pointer;
+    width: 42px;
+    height: 42px;
+}

@@ -6,6 +6,7 @@
   width: 200px;
   height: 45px;
 }
+
 .btn-back {
   color: #425466;
   background-color: transparent;
@@ -13,6 +14,7 @@
   width: 174px;
   height: 45px;
 }
+
 .icon-back {
   color: #425466;
 }
@@ -25,6 +27,7 @@
   width: 200px;
   height: 45px;
 }
+
 .btn-add {
   color: white;
   border-radius: 8px;
@@ -33,6 +36,16 @@
   width: 173px;
   height: 43px;
 }
+
+.btn-add:hover {
+  color: white;
+  border-radius: 8px;
+  font-weight: 500;
+  background-color: #232945;
+  width: 173px;
+  height: 43px;
+}
+
 .icon-add {
   margin-bottom: 5px;
   align-items: center;
@@ -40,6 +53,7 @@
   height: 15px;
   color: white 1px solid;
 }
+
 .btn-popupsave {
   color: white;
   font-weight: 600;
@@ -48,6 +62,70 @@
   width: 200px;
   height: 45px;
 }
+
+.btn-popupsave:hover {
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  background-color: #232945;
+  width: 200px;
+  height: 45px;
+}
+
+.btn-login {
+  color: white;
+  font-weight: 600;
+  border-radius: 100px;
+  background-color: #335ef7;
+  width: 460px;
+  height: 45px;
+}
+
+.btn-login:hover {
+  color: white;
+  font-weight: 600;
+  border-radius: 100px;
+  background-color: #232945;
+  width: 460px;
+  height: 45px;
+}
+
+.btn-jointelegram {
+  color: white;
+  font-weight: 600;
+  border-radius: 100px;
+  background-color: #335ef7;
+  width: 200px;
+  height: 45px;
+}
+
+.btn-jointelegram:hover {
+  color: white;
+  font-weight: 600;
+  border-radius: 100px;
+  background-color: #232945;
+  width: 200px;
+  height: 45px;
+}
+
+.btn-seedetail {
+  color: white;
+  font-weight: 600;
+  border-radius: 100px;
+  background-color: #335ef7;
+  width: 310px;
+  height: 45px;
+}
+
+.btn-seedetail:hover {
+  color: white;
+  font-weight: 600;
+  border-radius: 100px;
+  background-color: #232945;
+  width: 310px;
+  height: 45px;
+}
+
 .btn-popupcancel {
   color: rgba(66, 84, 102, 1);
   font-weight: 600;
@@ -57,6 +135,11 @@
   width: 200px;
   height: 45px;
 }
+
+.btn-popupcancel:hover {
+  color: rgba(66, 84, 102, 1);
+}
+
 .btn-edit {
   color: rgba(255, 136, 25, 1);
   background: rgba(255, 136, 25, 0.15);
@@ -64,12 +147,18 @@
   width: 82px;
   height: 36px;
 }
+
+.btn-edit:hover {
+  color: rgba(255, 136, 25, 1);
+}
+
 .icon-edit {
   color: rgba(255, 136, 25, 1);
   margin-bottom: 7px;
   width: 18px;
   height: 18px;
 }
+
 .btn-delete {
   color: #ce3426;
   background: rgba(206, 52, 38, 0.15);
@@ -77,12 +166,18 @@
   width: 99px;
   height: 36px;
 }
+
+.btn-delete:hover {
+  color: #ce3426;
+}
+
 .icon-delete {
   color: #ce3426;
   margin-bottom: 5px;
   width: 14px;
   height: 14px;
 }
+
 .btn-popupdelete {
   color: white;
   font-weight: 600;
@@ -90,4 +185,26 @@
   background-color: rgba(206, 52, 38, 1);
   width: 200px;
   height: 45px;
+}
+
+.btn-popupdelete:hover {
+  color: white;
+}
+
+.btn-savechange-profile {
+  color: white;
+  font-weight: 600;
+  background-color: #335ef7;
+  width: 460px;
+  height: 55px;
+  border-radius: 12px;
+
+}
+.btn-savechange-profile:hover {
+  color: white;
+  font-weight: 600;
+  background-color: #232945;
+  border-radius: 12px;
+  width: 460px;
+  height: 55px;
 }

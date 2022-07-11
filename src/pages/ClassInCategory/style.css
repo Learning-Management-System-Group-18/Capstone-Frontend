@@ -1,0 +1,63 @@
+.cotainerClassCategory {
+  display: flex;
+}
+
+/* This CSS For Title Input */
+.titleClassCategory {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  color: #151d48;
+  border: none;
+  cursor: none;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+/* This CSS For Button Dropdown  */
+.btn-primary {
+  width: 160px;
+  height: 40px;
+  color: #232945;
+  background: #ffffff;
+  border: 1px solid #dde0e3;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 8px;
+  box-shadow: transparent !important;
+  text-align: left;
+}
+
+.btn-check:focus + .btn-primary,
+.btn-primary:focus {
+  color: #232945;
+  background-color: #ffffff;
+  border-color: #dde0e3 !important;
+  box-shadow: none !important;
+}
+.btn-primary:active,
+.show > .btn-primary.dropdown-toggle {
+  color: #232945;
+  background-color: #ffffff;
+  border-color: #dde0e3 !important;
+  box-shadow: none !important;
+}
+.btn-primary:hover {
+  color: #232945;
+  background-color: #ffffff;
+  border-color: #dde0e3 !important;
+  box-shadow: none !important;
+}
+.contentClassInCategory {
+  margin-right: 15px;
+  margin-bottom: 12%;
+}
+.dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 10px;
+}

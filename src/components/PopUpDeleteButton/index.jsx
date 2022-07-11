@@ -1,11 +1,15 @@
-import React from 'react';
-import { Modal } from 'react-bootstrap';
-import { Button } from '..';
-import './style.css';
-import { deletepopupIcon } from '../../assets';
-import { GrClose } from 'react-icons/gr';
+import React from "react";
+import { Modal } from "react-bootstrap";
+import { Button } from "..";
+import "./style.css";
+import { deletepopupIcon } from "../../assets";
+import { GrClose } from "react-icons/gr";
 
-const index = ({ handleClose, show }) => {
+const Index = ({ handleClose, show, idDelete, deleteData }) => {
+  const handleDelete = () => {
+    deleteData(idDelete);
+    handleClose();
+  };
   return (
     <div>
       <Modal show={show} onHide={handleClose}>
@@ -31,8 +35,8 @@ const index = ({ handleClose, show }) => {
           </div>
 
           <div className="warpbtn-popupdelete">
-            <Button type={'btn-popupcancel'} onClick={handleClose} />
-            <Button type={'btn-popupdelete'} />
+            <Button type={"btn-popupcancel"} onClick={handleClose} />
+            <Button type={"btn-popupdelete"} onClick={handleDelete} />
           </div>
         </Modal.Body>
       </Modal>
@@ -40,4 +44,4 @@ const index = ({ handleClose, show }) => {
   );
 };
 
-export default index;
+export default Index;
