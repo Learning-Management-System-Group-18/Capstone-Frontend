@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 import {
   NavbarAdmin,
   SearchBar,
   Notification,
   PopupDetailOrder,
-} from '../../components';
-import { Dropdown, DropdownButton, Form } from 'react-bootstrap';
-import { GoDash } from 'react-icons/go';
-import { useState } from 'react';
-import './style.css';
+} from "../../components";
+import { Dropdown, DropdownButton, Form } from "react-bootstrap";
+import { GoDash } from "react-icons/go";
+import { useState } from "react";
+import "./style.css";
 
 const Index = () => {
   const [showDetail, setShowDetail] = useState(false);
@@ -17,8 +17,14 @@ const Index = () => {
   const detailShow = () => {
     setShowDetail(true);
   };
+
+  const bg = {
+    height: "100vh",
+    backgroundColor: "#F5F8FB",
+  };
+
   return (
-    <>
+    <div style={bg}>
       <NavbarAdmin />
       <div className="background">
         <div className="nav-info">
@@ -129,63 +135,11 @@ const Index = () => {
                   />
                 </td>
               </tr>
-              <tr className="caption_1 neutral_3 data-order">
-                <td scope="row" className="py-3 ps-3">
-                  #1
-                </td>
-                <td className="py-3">28-08-2000</td>
-                <td className="py-3">Latifa@gmail.com</td>
-                <td className="py-3">223433</td>
-                <td className="py-3">Android Development</td>
-                <td className="py-3">Programming</td>
-                <td className="py-3">
-                  <button className="btn detail bg_primary">See Detail</button>
-                </td>
-              </tr>
-              <tr className="caption_1 neutral_3 data-order">
-                <td scope="row" className="py-3 ps-3">
-                  #1
-                </td>
-                <td className="py-3">28-08-2000</td>
-                <td className="py-3">Latifa@gmail.com</td>
-                <td className="py-3">223433</td>
-                <td className="py-3">Android Development</td>
-                <td className="py-3">Programming</td>
-                <td className="py-3">
-                  <button className="btn detail bg_primary">See Detail</button>
-                </td>
-              </tr>
-              <tr className="caption_1 neutral_3 data-order">
-                <td scope="row" className="py-3 ps-3">
-                  #1
-                </td>
-                <td className="py-3">28-08-2000</td>
-                <td className="py-3">Latifa@gmail.com</td>
-                <td className="py-3">223433</td>
-                <td className="py-3">Android Development</td>
-                <td className="py-3">Programming</td>
-                <td className="py-3">
-                  <button className="btn detail bg_primary">See Detail</button>
-                </td>
-              </tr>
-              <tr className="caption_1 neutral_3 data-order">
-                <td scope="row" className="py-3 ps-3">
-                  #1
-                </td>
-                <td className="py-3">28-08-2000</td>
-                <td className="py-3">Latifa@gmail.com</td>
-                <td className="py-3">223433</td>
-                <td className="py-3">Android Development</td>
-                <td className="py-3">Programming</td>
-                <td className="py-3">
-                  <button className="btn detail bg_primary">See Detail</button>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

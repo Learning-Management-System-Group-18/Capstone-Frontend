@@ -32,7 +32,10 @@ function Index({
     });
   };
 
-  const handleSubmit = (event) => {
+  console.log(modalType);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     const newData = {
       title: data.title,
       description: data.description,
@@ -40,13 +43,15 @@ function Index({
     };
 
     if (edit) {
-      update(modalType, newData, data.id);
+      // console.log(modalType, newData, data.id);
+      await update(modalType, newData, data.id);
     } else {
-      tambah(newData);
-      create(modalType, newData);
+      // tambah(newData);
+      // console.log(newData);
+      await create(modalType, newData);
     }
     resetForm();
-    event.preventDefault();
+
     handleClose();
   };
 
@@ -67,15 +72,14 @@ function Index({
 
   return (
     <div>
-      <Modal show={show} onHide={handleClose} size="lg" backdrop="static">
-        <Modal.Body className="m-5">
-          <div className="d-flex justify-content-start mb-4">
-            <button type="submit" onClick={handleClose} className="arrow-back ">
-              <AiOutlineArrowLeft />
-            </button>
-            <h1>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Body className="p-4">
+          <div className="d-flex align-items-center mb-3 ">
+            <AiOutlineArrowLeft onClick={handleClose} className="arrow-back " />
+
+            <div className="heading_3">
               {edit ? "Edit" : "Upload"} {modalType}
-            </h1>
+            </div>
           </div>
           <form onSubmit={handleSubmit}>
             <Form.Label className="title">Input Title</Form.Label>
@@ -106,7 +110,7 @@ function Index({
 
             <Form.Label className="title">Input Link {modalType}</Form.Label>
             <div className="mb-3 text-start">
-              <input
+              <textarea
                 type="text"
                 placeholder={`Enter link ${modalType}`}
                 className="form-control mr-3 mb-4"
@@ -115,10 +119,13 @@ function Index({
                 required
                 onChange={handleInput}
                 value={data.link}
-              ></input>
+              ></textarea>
             </div>
             <div className=" d-flex justify-content-center">
-              <button type="submit" className="upload-button mt-5">
+              <button
+                type="submit"
+                className="btn bg_primary col-12 text-white py-2 "
+              >
                 {edit ? "Save Changes" : `Upload${modalType}`}
               </button>
             </div>

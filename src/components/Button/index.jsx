@@ -9,7 +9,7 @@ const Index = ({ type, onClick, disabled }) => {
   return (
     <div>
       {type == "btn-save" ? (
-        <button type="button" className="btn btn-save">
+        <button type="button" className="btn btn-save" onClick={onClick}>
           Save
         </button>
       ) : (
@@ -23,7 +23,7 @@ const Index = ({ type, onClick, disabled }) => {
         ""
       )}
       {type == "btn-back" ? (
-        <button type="button" className="btn btn-back">
+        <button type="button" className="btn btn-back" onClick={onClick}>
           <AiOutlineArrowLeft className="icon-back" /> Back
         </button>
       ) : (
