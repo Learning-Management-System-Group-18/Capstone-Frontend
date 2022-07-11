@@ -36,6 +36,8 @@ import uploadIcon from "./img/upload-icon.svg";
 import quizIcon from "./img/quiz.png";
 import slideIcon from "./img/slide.png";
 import videoIcon from "./img/video.png";
+import noData from "./img/nodata.png";
+import noSection from "./img/nodatasection.png";
 
 export {
   Rafiki,
@@ -76,4 +78,6 @@ export {
   quizIcon,
   slideIcon,
   videoIcon,
+  noData,
+  noSection,
 };

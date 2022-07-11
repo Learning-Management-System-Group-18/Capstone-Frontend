@@ -19,10 +19,11 @@ import {
   AiFillCheckCircle,
   AiOutlineClose,
 } from "react-icons/ai";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axiosInstance from "../../networks/apis";
 
 function Index() {
+  const navigate = useNavigate();
   const { title, idSection } = useParams();
   const [video, setVideo] = useState([]);
   const [quiz, setQuiz] = useState([]);
@@ -94,36 +95,6 @@ function Index() {
   };
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   const allVideo = await axiosInstance.get("api/videos", {
-    //     params: { sectionId: 1, page: 1, size: 7 },
-    //   });
-    //   const allSlide = await axiosInstance.get("api/slides", {
-    //     params: { sectionId: 1, page: 1, size: 7 },
-    //   });
-    //   const allQuiz = await axiosInstance.get("api/quizzes", {
-    //     params: { sectionId: 1, page: 1, size: 7 },
-    //   });
-
-    //   const video = allVideo.data.data;
-    //   const quiz = allSlide.data.data;
-    //   const slide = allQuiz.data.data;
-    //   const videos = {
-    //     jenis: "Video",
-    //   };
-    //   const slides = {
-    //     jenis: "Slide",
-    //   };
-    //   const tasks = {
-    //     jenis: "Quiz",
-    //   };
-    //   const mapVideo = video.map((data) => ({ ...data, ...videos }));
-    //   const mapQuiz = quiz.map((data) => ({ ...data, ...slides }));
-    //   const mapSlide = slide.map((data) => ({ ...data, ...tasks }));
-
-    //   setData(data.concat(mapVideo, mapQuiz, mapSlide));
-    // };
-    // fetchData();
     getAllContentById();
   }, [idSection, success]);
 
@@ -183,6 +154,10 @@ function Index() {
   const bg = {
     height: video.length == 0 ? "100vh" : "100%",
     backgroundColor: "#F5F8FB",
+  };
+
+  const buttonBack = () => {
+    navigate(-1);
   };
 
   return (
@@ -446,8 +421,8 @@ function Index() {
           ))}
         </div>
         <div className="py-5 d-flex justify-content-end">
-          <Button type={"btn-back"} />
-          <Button type={"btn-save"} />
+          <Button type={"btn-back"} onClick={buttonBack} />
+          <Button type={"btn-save"} onClick={buttonBack} />
         </div>
       </div>
     </div>

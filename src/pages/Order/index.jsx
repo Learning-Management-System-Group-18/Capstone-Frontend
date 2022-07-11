@@ -17,8 +17,14 @@ const Index = () => {
   const detailShow = () => {
     setShowDetail(true);
   };
+
+  const bg = {
+    height: "100vh",
+    backgroundColor: "#F5F8FB",
+  };
+
   return (
-    <>
+    <div style={bg}>
       <NavbarAdmin />
       <div className="background">
         <div className="nav-info">
@@ -133,7 +139,7 @@ const Index = () => {
           </table>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

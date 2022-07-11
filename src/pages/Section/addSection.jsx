@@ -1,6 +1,6 @@
 import React from "react";
 import { NavbarAdmin, Notification, FormImage } from "../../components";
-import { ProfileImg, arrowRightIcon, tool, uploadIcon } from "../../assets";
+import { arrowRightIcon, uploadIcon, noData, noSection } from "../../assets";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import axiosInstance from "../../networks/apis";
 import { useState } from "react";
@@ -183,7 +183,12 @@ const AddSection = () => {
   };
 
   //   console.log("data", data);
-  console.log("tool", tool);
+  // console.log("tool", tool);
+
+  const handleDownloadLink = (link) => {
+    // console.log(link);
+    window.location.replace(link);
+  };
 
   useEffect(() => {
     if (idCourse !== null) {
@@ -246,8 +251,7 @@ const AddSection = () => {
                   {data.description}
                 </div>
                 <div className="mt-2 secondary_2 subtitle_2">
-                  Level :{" "}
-                  <div className="mt-1 neutral_3">{data.level || " "}</div>
+                  <div className="Video">{data.level || " "}</div>
                 </div>
               </div>
 
@@ -263,26 +267,31 @@ const AddSection = () => {
                 </div>
 
                 <div className="d-flex gap-3">
-                  {mentor?.length > 0
-                    ? mentor.map((m, index) => (
-                        <div
-                          key={index}
-                          className="d-flex flex-column align-items-center a-mentor"
-                          onClick={() =>
-                            handleShow("editMentor", m.url_image, m.id, m.name)
-                          }
-                        >
-                          <img
-                            src={m.url_image || " "}
-                            alt="profile-img"
-                            className="img-profile-mentor"
-                          />
-                          <div className="secondary_2 body_2">
-                            {m.name || " "}
-                          </div>
+                  {mentor?.length > 0 ? (
+                    mentor.map((m, index) => (
+                      <div
+                        key={index}
+                        className="d-flex flex-column align-items-center a-mentor"
+                        onClick={() =>
+                          handleShow("editMentor", m.url_image, m.id, m.name)
+                        }
+                      >
+                        <img
+                          src={m.url_image || " "}
+                          alt="profile-img"
+                          className="img-profile-mentor"
+                        />
+                        <div className="secondary_2 body_2">
+                          {m.name || " "}
                         </div>
-                      ))
-                    : "Data Masih Kosong "}
+                      </div>
+                    ))
+                  ) : (
+                    <div className="noData">
+                      <img src={noData} alt="empty" />
+                      <div className="neutral_5 caption_2">No Mentor Here</div>
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="tools mt-4 p-3">
@@ -297,11 +306,16 @@ const AddSection = () => {
                 </div>
 
                 <div className="d-flex gap-3">
-                  {tool.length > 0
-                    ? tool.map((t, index) => (
-                        <div
-                          className="d-flex tool gap-2 align-items-center"
-                          key={index}
+                  {tool.length > 0 ? (
+                    tool.map((t, index) => (
+                      <div
+                        className="d-flex tool gap-2 align-items-center"
+                        key={index}
+                      >
+                        <img
+                          src={t.url_image}
+                          alt=""
+                          className="tool-img"
                           onClick={() =>
                             handleShow(
                               "editTool",
@@ -311,20 +325,24 @@ const AddSection = () => {
                               t.link
                             )
                           }
-                        >
-                          <img src={t.url_image} alt="" className="tool-img" />
-                          <div className="d-flex flex-column">
-                            <div className="caption_1">{t.name}</div>
-                            <div
-                              className="caption_2 underline"
-                              target={"_blank"}
-                            >
-                              {t.link}
-                            </div>
+                        />
+                        <div className="d-flex flex-column">
+                          <div className="caption_1">{t.name}</div>
+                          <div
+                            className="caption_2 underline"
+                            onClick={() => handleDownloadLink(t.link)}
+                          >
+                            Link Download
                           </div>
                         </div>
-                      ))
-                    : "Data Kosong"}
+                      </div>
+                    ))
+                  ) : (
+                    <div className="noData">
+                      <img src={noData} alt="empty" />
+                      <div className="neutral_5 caption_2">No Tool Here</div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -351,26 +369,34 @@ const AddSection = () => {
                   </div>
                 </div>
                 <div className="all-section px-3 py-1">
-                  {section.length > 0
-                    ? section.map((s, index) => (
-                        <div
-                          className="d-flex align-items-center justify-content-between my-2 the-section"
-                          key={index}
-                        >
-                          <div className="d-flex gap-3 align-items-center">
-                            <div className="number-section body_1_user">
-                              {index + 1}
-                            </div>
-                            <div className="body_1_user">{s.title}</div>
+                  {section.length > 0 ? (
+                    section.map((s, index) => (
+                      <div
+                        className="d-flex align-items-center justify-content-between my-2 the-section"
+                        key={index}
+                      >
+                        <div className="d-flex gap-3 align-items-center">
+                          <div className="number-section body_1_user">
+                            {index + 1}
                           </div>
-
-                          <AiOutlineInfoCircle
-                            style={{ height: "25px", width: "25px" }}
-                            onClick={() => handleContentButton(s.title, s.id)}
-                          />
+                          <div className="body_1_user">{s.title}</div>
                         </div>
-                      ))
-                    : "Data Kosong"}
+
+                        <AiOutlineInfoCircle
+                          style={{ height: "25px", width: "25px" }}
+                          onClick={() => handleContentButton(s.title, s.id)}
+                        />
+                      </div>
+                    ))
+                  ) : (
+                    <div className="noData">
+                      <img
+                        src={noSection}
+                        alt="empty"
+                        style={{ width: "200px", height: "200px" }}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
