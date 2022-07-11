@@ -9,14 +9,14 @@ const Index = ({ data }) => {
         <div className='row justify-content-center'>
             {
                 data.map((item, itemIdx) => (
-                    <div className={item.class_category !== undefined ? "col-3 mb-3 bg_neutral_4 card_popular_class mx-2 shadow-sm container" : "col-4 bg_neutral_4 card_popular_class_2 mx-2 shadow-sm container"} key={itemIdx}>
+                    <div className={item.category.title !== undefined ? "col-3 mb-3 bg_neutral_4 card_popular_class mx-2 shadow-sm container" : "col-4 bg_neutral_4 card_popular_class_2 mx-2 shadow-sm container"} key={itemIdx}>
                         <div>
-                            <img className='card_banner' src={item.img} alt="" />
+                            <img className='card_banner' src={item.url_image} alt="" />
                         </div>
                         {
-                            item.class_category !== undefined ? (
+                            item.category.title !== undefined ? (
                                 <div className='mt-3 category_name_card'>
-                                    <p className='body_2 secondary_1'>{item.class_category}</p>
+                                    <p className='body_2 secondary_1'>{item.category.title}</p>
                                 </div>
                             ) : ("")
                         }
@@ -24,17 +24,17 @@ const Index = ({ data }) => {
                         <div className='box_inline'>
                             <h5 className='subtitle_3 me-3'>{item.price === 0 ? "Free Course" : item.price}</h5>
                             <div className='class_level_card'>
-                                <p className='body_2 primary'>{item.class_level}</p>
+                                <p className='body_2 primary'>{item.level}</p>
                             </div>
                         </div>
                         <div className='mt-3 total_employee'>
                             <img className='employee_icon d-inline me-2' src={employeeTotalIcon} alt="icon" />
-                            <h4 className='caption_1 d-inline'>{item.total_employee} employees</h4>
+                            <h4 className='caption_1 d-inline'>{item.count_user} employees</h4>
                         </div>
                         <div>
                             {/* <img className='d-inline me-2' src="" alt="icon" /> */}
-                            <StarRating rating={item.star} />
-                            <h4 className='d-inline neutral_2 body_2'>{item.star + " (" + item.total_review + ") Reviews"}</h4>
+                            <StarRating rating={item.rating} />
+                            <h4 className='d-inline neutral_2 body_2'>{item.rating + " (" + item.total_review + ") Reviews"}</h4>
                         </div>
                         <div className='mt-4 text-center'>
                             <Button type="btn-seedetail" />
