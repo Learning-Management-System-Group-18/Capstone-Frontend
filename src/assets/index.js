@@ -33,6 +33,9 @@ import arrowLeft from "./img/ic_arrow_left.png";
 import bannerJoinOurCommunity from "./svg/banner_join_our_community.svg";
 import LandingPagePhoto from "./img/LandingPagePhoto.png";
 import uploadIcon from "./img/upload-icon.svg";
+import quizIcon from "./img/quiz.png";
+import slideIcon from "./img/slide.png";
+import videoIcon from "./img/video.png";
 
 export {
   Rafiki,
@@ -70,4 +73,7 @@ export {
   bannerJoinOurCommunity,
   LandingPagePhoto,
   uploadIcon,
+  quizIcon,
+  slideIcon,
+  videoIcon,
 };

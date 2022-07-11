@@ -33,7 +33,7 @@ function Index() {
             element={<AddSection />}
           />
           <Route
-            path="/dashboard/section/:courseName/:idCourse"
+            path="/dashboard/content/:title/:idSection"
             element={<Section />}
           />
           <Route path="/order" element={<Order />} />

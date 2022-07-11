@@ -22,11 +22,13 @@ const Index = ({
   editMentor,
   addTool,
   editTool,
+  addSection,
 }) => {
   const [file, setFile] = useState(null);
   const [mentor, setMentor] = useState("");
   const [tool, setTool] = useState("");
   const [linkDownload, setLinkDownload] = useState("");
+  const [section, setSection] = useState("");
 
   const handleFileUpload = async (e) => {
     if (e.target.files[0]) setFile(e.target.files[0]);
@@ -100,6 +102,13 @@ const Index = ({
       }
 
       await editTool(data, id);
+    } else if (modalType === "addSection") {
+      const data = {
+        title: section,
+      };
+
+      await addSection(data);
+      console.log(data);
     }
 
     handleCancel();
@@ -511,8 +520,48 @@ const Index = ({
         </Modal>
       </div>
     );
+  } else if (modalType === "addSection") {
+    return (
+      <div>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Body className="px-4">
+            <div className="heading_5 mb-3">
+              <AiOutlineArrowLeft
+                className="icon-title"
+                onClick={handleClose}
+              />
+              Add Section
+            </div>
+            <form onSubmit={handleSubmit}>
+              <Form.Label className="title-form-category">
+                Input Section Name
+              </Form.Label>
+              <div className="mb-3 text-start">
+                <input
+                  type="text"
+                  placeholder="Enter tool"
+                  className="form-control mr-3 mb-4 radiusborder"
+                  onChange={(e) => setSection(e.target.value)}
+                  value={section}
+                  name="tool"
+                  required
+                ></input>
+              </div>
+
+              <div className="warpbtn-popup">
+                <Button
+                  type={"btn-popupcancel"}
+                  onClick={() => handleCancel("add")}
+                />
+                <Button type={"btn-popupsave"} />
+              </div>
+            </form>
+          </Modal.Body>
+        </Modal>
+      </div>
+    );
   } else {
-    return "";
+    return " ";
   }
 };
 

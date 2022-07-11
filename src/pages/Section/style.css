@@ -1,4 +1,10 @@
-.img-course{
+.bg-section-content{
+  height: calc(100vh + 100%);
+  background-color: #F5F8FB;
+}
+
+
+.img-course-section{
   width: 740px;
   height: 225px;
   border-radius: 16px;
@@ -51,7 +57,7 @@ border-radius: 16px 16px 0 0;
   cursor: pointer;
 }
 
-.img-course:hover{
+.img-course-section{
   background-color: #bdc0c7;
   opacity: 0.86;
   cursor: pointer;
@@ -67,6 +73,12 @@ border-radius: 16px 16px 0 0;
 .test {
   color: yellowgreen;
 }
+
+.tool-img{
+  width: 60px;
+}
+
+
 
 
 .dropdown-toggle-1 {
@@ -89,13 +101,14 @@ border-radius: 16px 16px 0 0;
 
 
 .thumbnail {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
   cursor: pointer;
   border-radius: 10px;
-  height: 200px;
-  width: 200px;
+  height: 170px;
+  width: 170px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
 }
 .thumbnail:hover {
   opacity: 0.3;
@@ -144,21 +157,24 @@ border-radius: 16px 16px 0 0;
 .Video {
   color: #ff8819;
   background-color: #f6e7d9;
-  padding: 8px 10px 8px 10px;
+  width: max-content;
+  padding: 5px 7px;
   font-weight: 500;
   border-radius: 4px;
 }
 .Quiz {
   color: #157f40;
   background-color: #d3e6df;
-  padding: 8px 10px 8px 10px;
+  width: max-content;
+  padding: 5px 7px;
   font-weight: 500;
   border-radius: 4px;
 }
 .Slide {
   color: #335ef7;
   background-color: #d8e1fa;
-  padding: 8px 10px 8px 10px;
+  width: max-content;
+  padding: 5px 7px;
   font-weight: 500;
   border-radius: 4px;
 }

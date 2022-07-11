@@ -5,6 +5,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import axiosInstance from "../../networks/apis";
 import { useState } from "react";
 import { useEffect } from "react";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 
 const AddSection = () => {
   const { courseName, idCourse } = useParams();
@@ -26,16 +27,16 @@ const AddSection = () => {
       .catch((error) => console.log(error));
   };
 
-  const handleSectionButton = (courseName, idCourse) => {
-    let courseSlug = courseName
+  const handleContentButton = (title, idSection) => {
+    let titleSlug = title
       .replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, " ")
       .toLowerCase();
-    courseSlug = courseSlug.replace(/^\s+|\s+$/gm, "");
-    courseSlug = courseSlug.replace(/\s+/g, "-");
+    titleSlug = titleSlug.replace(/^\s+|\s+$/gm, "");
+    titleSlug = titleSlug.replace(/\s+/g, "-");
 
-    console.log(courseSlug);
+    console.log(titleSlug);
 
-    navigate(`/dashboard/section/${courseSlug}/${idCourse}`);
+    navigate(`/dashboard/content/${titleSlug}/${idSection}`);
   };
 
   const [show, setShow] = useState(false);
@@ -100,6 +101,18 @@ const AddSection = () => {
       .catch((error) => console.log(error));
   };
 
+  const [section, setSection] = useState([]);
+
+  const getAllSectionByCourseId = async () => {
+    await axiosInstance
+      .get(`api/sections?courseId=${idCourse}`)
+      .then((response) => {
+        // console.log("from API", response.data.data);
+        setSection(response.data.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
   const [success, setSucces] = useState(false);
 
   const addMentor = async (data) => {
@@ -124,6 +137,16 @@ const AddSection = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
+      .then((response) => {
+        // console.log("from API Mentor", response.data.data);
+        setSucces(!success);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const addSection = async (data) => {
+    await axiosInstance
+      .post(`api/admin/section?courseId=${idCourse}`, data)
       .then((response) => {
         // console.log("from API Mentor", response.data.data);
         setSucces(!success);
@@ -167,6 +190,7 @@ const AddSection = () => {
       getDataIdCourse();
       getAllMentorByCourseId();
       getAllToolByCourseId();
+      getAllSectionByCourseId();
     }
   }, [idCourse, success]);
 
@@ -209,7 +233,7 @@ const AddSection = () => {
                   <img
                     src={data.url_image || " "}
                     alt={data.title || " "}
-                    className="img-course"
+                    className="img-course-section"
                     onClick={() =>
                       handleShow("editImgCourse", data.url_image || " ")
                     }
@@ -288,14 +312,14 @@ const AddSection = () => {
                             )
                           }
                         >
-                          <img src={t.url_image} alt="" />
+                          <img src={t.url_image} alt="" className="tool-img" />
                           <div className="d-flex flex-column">
                             <div className="caption_1">{t.name}</div>
                             <div
                               className="caption_2 underline"
                               target={"_blank"}
                             >
-                              Link Download {t.link}
+                              {t.link}
                             </div>
                           </div>
                         </div>
@@ -320,16 +344,33 @@ const AddSection = () => {
 
                     <button
                       className="btn bg_primary text-white caption_1"
-                      onClick={() => handleSectionButton(courseName, idCourse)}
+                      onClick={() => handleShow("addSection")}
                     >
                       + create section
                     </button>
                   </div>
                 </div>
                 <div className="all-section px-3 py-1">
-                  <div className="abc">adnsaj</div>
-                  <div className="abc">adnsaj</div>
-                  <div className="abc">adnsaj</div>
+                  {section.length > 0
+                    ? section.map((s, index) => (
+                        <div
+                          className="d-flex align-items-center justify-content-between my-2 the-section"
+                          key={index}
+                        >
+                          <div className="d-flex gap-3 align-items-center">
+                            <div className="number-section body_1_user">
+                              {index + 1}
+                            </div>
+                            <div className="body_1_user">{s.title}</div>
+                          </div>
+
+                          <AiOutlineInfoCircle
+                            style={{ height: "25px", width: "25px" }}
+                            onClick={() => handleContentButton(s.title, s.id)}
+                          />
+                        </div>
+                      ))
+                    : "Data Kosong"}
                 </div>
               </div>
             </div>
@@ -351,6 +392,7 @@ const AddSection = () => {
         editMentor={editMentor}
         addTool={addTool}
         editTool={editTool}
+        addSection={addSection}
       />
     </>
   );
