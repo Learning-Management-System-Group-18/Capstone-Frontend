@@ -22,38 +22,27 @@ import axiosInstance from "./../../networks/apis";
 
 const Index = () => {
   const { categoryName, idCategory } = useParams();
-
   const nameCategory = categoryName.replaceAll("-", " ");
+  const tableTitle = ["Course"];
+  const tHead = ["Course Title", "Description", "Level", "Rating", ""];
+
   const [success, setSuccess] = useState(false);
-
-  console.log(nameCategory, idCategory);
-
   const [dataCourse, setDataCourse] = useState([]);
 
+  console.log(nameCategory, idCategory);
   console.log("dataCourse", dataCourse);
 
-  const getDataCourseById = async () => {
+  // API HANDLE
+
+  const getDataCourseById = async (id) => {
     await axiosInstance
-      .get(`api/courses?categoryId=${idCategory}`)
+      .get(`api/courses?categoryId=${id}`)
       .then((response) => {
         setDataCourse(response.data.data);
         // console.log(response.data.data);
       })
       .catch((error) => {
         console.log(error);
-      });
-  };
-
-  const deleteDataCourse = async (idDelete) => {
-    await axiosInstance
-      .delete("api/admin/course", {
-        params: { id: idDelete },
-      })
-      .then((x) => {
-        setSuccess(!success);
-      })
-      .catch((r) => {
-        console.log(r);
       });
   };
 
@@ -71,9 +60,8 @@ const Index = () => {
   };
 
   const editDataCourse = async (data, id) => {
-    const params = `?id=` + id;
     await axiosInstance
-      .put(`api/admin/course${params}`, data, {
+      .put(`api/admin/course?id=${id}`, data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -84,21 +72,36 @@ const Index = () => {
       .catch((error) => console.log(error));
   };
 
+  const deleteDataCourse = async (idDelete) => {
+    await axiosInstance
+      .delete("api/admin/course", {
+        params: { id: idDelete },
+      })
+      .then((x) => {
+        setSuccess(!success);
+      })
+      .catch((r) => {
+        console.log(r);
+      });
+  };
+
   useEffect(() => {
-    getDataCourseById();
+    if (idCategory !== null) {
+      getDataCourseById(idCategory);
+    }
+  }, []);
+
+  useEffect(() => {
+    getDataCourseById(idCategory);
   }, [idCategory]);
 
   useEffect(() => {
-    getDataCourseById();
+    getDataCourseById(idCategory);
   }, [success]);
-
-  const tableTitle = ["Course"];
-  const tHead = ["Course Title", "Description", "Level", "Rating", ""];
 
   return (
     <>
       <NavbarAdmin />
-
       <div className="background">
         <div className="nav-info">
           <div className="container d-flex justify-content-between py-4">

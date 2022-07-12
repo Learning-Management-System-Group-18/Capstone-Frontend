@@ -277,7 +277,7 @@ const Index = ({
                       file ? URL.createObjectURL(file) : newDataEdit.url_image
                     }
                     alt=""
-                    className="image-before"
+                    className="image-before-section"
                   />
 
                   <input

@@ -20,11 +20,109 @@ import {
   lockKey,
 } from "../../assets";
 import { useState, useContext } from "react";
+import ReactPlayer from "react-player";
+import { useEffect } from "react";
+import axiosInstance from "../../networks/apis";
+import Category from "./Category";
 
 const Index = () => {
   const [tabs, setTabs] = useState("about");
 
-  console.log(tabs);
+  const [data, setData] = useState([]);
+  const [mentor, setMentor] = useState([]);
+  const [tool, setTool] = useState([]);
+  const [section, setSection] = useState([]);
+  const [video, setVideo] = useState([]);
+  const [slide, setSlide] = useState([]);
+  const [quiz, setQuiz] = useState([]);
+  const [review, setReview] = useState([]);
+
+  const getDetailCourse = async (idCourse) => {
+    await axiosInstance
+      .get("api/course", {
+        params: {
+          id: idCourse,
+        },
+      })
+      .then((response) => {
+        // console.log("from API", response.data.data);
+        setData(response.data.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const getAllMentorByCourseId = async (idCourse) => {
+    await axiosInstance
+      .get(`api/mentors?courseId=${idCourse}`)
+      .then((response) => {
+        // console.log("from API", response.data.data);
+        setMentor(response.data.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const getAllToolByCourseId = async (idCourse) => {
+    await axiosInstance
+      .get(`api/tools?courseId=${idCourse}`)
+      .then((response) => {
+        // console.log("from API", response.data.data);
+        setTool(response.data.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const getAllSectionByCourseId = async (idCourse) => {
+    await axiosInstance
+      .get(`api/sections?courseId=${idCourse}`)
+      .then((response) => {
+        // console.log("from API", response.data.data);
+        setSection(response.data.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const getAllReviewByCourseId = async (idCourse) => {
+    await axiosInstance
+      .get(`api/review?courseId=${idCourse}&page=${0}&size=${1}`)
+      .then((response) => {
+        // console.log("from API", response.data.data);
+        setReview(response.data.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const getAllContentByIdTitle = async (idSection) => {
+    await axiosInstance
+      .get(`api/content?sectionId=${idSection}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        // console.log(response.data.data);
+        let res = response.data.data;
+        setVideo(res.video);
+        setQuiz(res.quiz);
+        setSlide(res.slide);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const createOrder = async () => {};
+
+  useEffect(() => {
+    getDetailCourse(12);
+    getAllMentorByCourseId(12);
+    getAllToolByCourseId(12);
+    getAllSectionByCourseId(12);
+    getAllReviewByCourseId(12);
+  }, []);
+
+  console.log("data ", data);
+  console.log("mentor ", mentor);
+  console.log("tool ", tool);
+  console.log("section ", section);
+  console.log("review ", review);
 
   return (
     <>
@@ -34,29 +132,11 @@ const Index = () => {
         <div className="row">
           <div className="col-md-8">
             {/* Category */}
-            <div className="my-5">
-              <div className="d-flex flex-colummn">
-                <div className="d-flex gap-3">
-                  <div className="heading_4">Social Media Marketing </div>
-                  <div className="body_2_user d-flex align-items-center gap-1 category-course secondary_1">
-                    <GoPrimitiveDot /> Marketing
-                  </div>
-                </div>
-              </div>
-              <div className="d-flex align-items-center gap-3">
-                <div className="d-flex gap-2 ">
-                  <AiFillStar className="rating-detail secondary_1" />
-                  <AiFillStar className="rating-detail secondary_1" />
-                  <AiFillStar className="rating-detail secondary_1" />
-                  <AiFillStar className="rating-detail color_default" />
-                  <AiFillStar className="rating-detail color_default" />
-                </div>
 
-                <div className="caption_2_user" style={{ color: " #7C8B99" }}>
-                  4,5 (234 Terdaftar)
-                </div>
-              </div>
+            <div className="my-5">
+              <Category data={data} />
             </div>
+
             {/* /Category */}
 
             {/* Tabs */}
@@ -364,19 +444,22 @@ const Index = () => {
           <div className="col-md-4">
             <div className="mt-5">
               <div className="text-center px-1">
-                <video width="100%" height="250" className="video" controls>
-                  <source src="https://youtu.be/Yce2ZvGeanY" type="video/mp4" />
-                </video>
-                {/* <iframe
-                  width="395"
-                  height="250"
-                  src="https://www.youtube.com/embed/Yce2ZvGeanY"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
+                <ReactPlayer
+                  url={" "}
+                  width={"100%"}
+                  height={"250px"}
                   className="video"
-                ></iframe> */}
+                  config={{
+                    youtube: {
+                      playerVars: {
+                        disablekb: 1,
+                        modestbranding: 1,
+                        controls: 0,
+                        showinfo: 0,
+                      },
+                    },
+                  }}
+                />
               </div>
               <div className="list-detail-course mb-5">
                 <div className="heading_4_user my-2">Free Course</div>

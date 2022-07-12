@@ -12,20 +12,20 @@ const AddSection = () => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
 
-  // for Edit Data
-  const getDataIdCourse = async () => {
-    await axiosInstance
-      .get("api/course", {
-        params: {
-          id: idCourse,
-        },
-      })
-      .then((response) => {
-        console.log("from API", response.data.data);
-        setData(response.data.data);
-      })
-      .catch((error) => console.log(error));
-  };
+  // state
+
+  const [show, setShow] = useState(false);
+  const [modalType, setModalType] = useState("");
+  const [img, setImg] = useState(" ");
+  const [id, setId] = useState(" ");
+  const [name, setName] = useState(" ");
+  const [link, setLink] = useState(" ");
+  const [mentor, setMentor] = useState([]);
+  const [tool, setTool] = useState([]);
+  const [section, setSection] = useState([]);
+  const [success, setSucces] = useState(false);
+
+  // handle Button
 
   const handleContentButton = (title, idSection) => {
     let titleSlug = title
@@ -39,14 +39,8 @@ const AddSection = () => {
     navigate(`/dashboard/content/${titleSlug}/${idSection}`);
   };
 
-  const [show, setShow] = useState(false);
-  const [modalType, setModalType] = useState("");
-  const [img, setImg] = useState(" ");
-  const [id, setId] = useState(" ");
-  const [name, setName] = useState(" ");
-  const [link, setLink] = useState(" ");
-
   const handleClose = () => setShow(false);
+
   const handleShow = (type, img, id, name, link) => {
     if (img || id || name || link) {
       setImg(img);
@@ -63,6 +57,57 @@ const AddSection = () => {
     // console.log(type);
   };
 
+  const handleDownloadLink = (link) => {
+    // console.log(link);
+    window.location.replace(link);
+  };
+
+  // API HANDLE
+
+  const getDataIdCourse = async () => {
+    await axiosInstance
+      .get("api/course", {
+        params: {
+          id: idCourse,
+        },
+      })
+      .then((response) => {
+        console.log("from API", response.data.data);
+        setData(response.data.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const getAllMentorByCourseId = async () => {
+    await axiosInstance
+      .get(`api/mentors?courseId=${idCourse}`)
+      .then((response) => {
+        // console.log("from API", response.data.data);
+        setMentor(response.data.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const getAllToolByCourseId = async () => {
+    await axiosInstance
+      .get(`api/tools?courseId=${idCourse}`)
+      .then((response) => {
+        // console.log("from API", response.data.data);
+        setTool(response.data.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const getAllSectionByCourseId = async () => {
+    await axiosInstance
+      .get(`api/sections?courseId=${idCourse}`)
+      .then((response) => {
+        // console.log("from API", response.data.data);
+        setSection(response.data.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
   const addImgCourse = async (data) => {
     await axiosInstance
       .put(`api/admin/course/image?id=${idCourse}`, data, {
@@ -76,44 +121,6 @@ const AddSection = () => {
       })
       .catch((error) => console.log(error));
   };
-
-  const [mentor, setMentor] = useState([]);
-
-  const getAllMentorByCourseId = async () => {
-    await axiosInstance
-      .get(`api/mentors?courseId=${idCourse}`)
-      .then((response) => {
-        // console.log("from API", response.data.data);
-        setMentor(response.data.data);
-      })
-      .catch((error) => console.log(error));
-  };
-
-  const [tool, setTool] = useState([]);
-
-  const getAllToolByCourseId = async () => {
-    await axiosInstance
-      .get(`api/tools?courseId=${idCourse}`)
-      .then((response) => {
-        // console.log("from API", response.data.data);
-        setTool(response.data.data);
-      })
-      .catch((error) => console.log(error));
-  };
-
-  const [section, setSection] = useState([]);
-
-  const getAllSectionByCourseId = async () => {
-    await axiosInstance
-      .get(`api/sections?courseId=${idCourse}`)
-      .then((response) => {
-        // console.log("from API", response.data.data);
-        setSection(response.data.data);
-      })
-      .catch((error) => console.log(error));
-  };
-
-  const [success, setSucces] = useState(false);
 
   const addMentor = async (data) => {
     await axiosInstance
@@ -182,22 +189,19 @@ const AddSection = () => {
       .catch((error) => console.log(error));
   };
 
-  //   console.log("data", data);
-  // console.log("tool", tool);
-
-  const handleDownloadLink = (link) => {
-    // console.log(link);
-    window.location.replace(link);
-  };
+  useEffect(() => {
+    getDataIdCourse();
+    getAllMentorByCourseId();
+    getAllToolByCourseId();
+    getAllSectionByCourseId();
+  }, [idCourse]);
 
   useEffect(() => {
-    if (idCourse !== null) {
-      getDataIdCourse();
-      getAllMentorByCourseId();
-      getAllToolByCourseId();
-      getAllSectionByCourseId();
-    }
-  }, [idCourse, success]);
+    getDataIdCourse();
+    getAllMentorByCourseId();
+    getAllToolByCourseId();
+    getAllSectionByCourseId();
+  }, [success]);
 
   return (
     <>
@@ -224,7 +228,7 @@ const AddSection = () => {
           <div className="row">
             <div className="col-8">
               <div className="mt-4">
-                {data.url_image === null ? (
+                {data?.url_image === null ? (
                   <div
                     className="box-img-course"
                     onClick={() => handleShow("addImgCourse", idCourse)}
@@ -306,7 +310,7 @@ const AddSection = () => {
                 </div>
 
                 <div className="d-flex gap-3">
-                  {tool.length > 0 ? (
+                  {tool?.length > 0 ? (
                     tool.map((t, index) => (
                       <div
                         className="d-flex tool gap-2 align-items-center"
@@ -369,7 +373,7 @@ const AddSection = () => {
                   </div>
                 </div>
                 <div className="all-section px-3 py-1">
-                  {section.length > 0 ? (
+                  {section?.length > 0 ? (
                     section.map((s, index) => (
                       <div
                         className="d-flex align-items-center justify-content-between my-2 the-section"

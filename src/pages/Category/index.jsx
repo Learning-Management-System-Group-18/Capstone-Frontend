@@ -16,6 +16,9 @@ const Index = () => {
   const tHead = ["Category Name", "Description", "Course", "Employee", ""];
   const [dataCategory, setDataCategory] = useState([]);
   const full_name = localStorage.getItem("full_name");
+  const [success, setSuccess] = useState(false);
+
+  // API HANDLE
 
   const getDataCategory = async () => {
     await axiosInstance
@@ -28,8 +31,6 @@ const Index = () => {
         console.log(error);
       });
   };
-
-  const [success, setSuccess] = useState(false);
 
   const insertDataCategory = async (data) => {
     await axiosInstance
@@ -70,6 +71,7 @@ const Index = () => {
         console.log(r);
       });
   };
+
   useEffect(() => {
     getDataCategory();
   }, []);

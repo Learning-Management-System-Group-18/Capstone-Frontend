@@ -2,6 +2,8 @@ import React from "react";
 import { NavbarUser, FooterUser, PopularClassCard } from "../../components";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
+import { useEffect, useState } from "react";
+import axiosInstance from "../../networks/apis";
 import "./style.css";
 
 const Index = () => {
@@ -35,98 +37,113 @@ const Index = () => {
     },
   ];
 
-  const popularClassData = [
-    {
-      class_category: "Business Development",
-      img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Social Media Marketing",
-      price: 0,
-      level: "Intermediate",
-      total_employee: 120,
-      star: 3,
-      total_review: 110,
-    },
-    {
-      class_category: "Android Development",
-      img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Android Dev",
-      price: 0,
-      level: "Beginner",
-      total_employee: 150,
-      star: 4,
-      total_review: 120,
-    },
-    {
-      class_category: "Business Development",
-      img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Social Media Marketing",
-      price: 0,
-      level: "Advanced",
-      total_employee: 120,
-      star: 3,
-      total_review: 110,
-    },
-    {
-      class_category: "Android Development",
-      img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Android Dev",
-      price: 0,
-      level: "Beginner",
-      total_employee: 150,
-      star: 4,
-      total_review: 120,
-    },
-    {
-      class_category: "Business Development",
-      img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Social Media Marketing",
-      price: 0,
-      level: "Intermediate",
-      total_employee: 120,
-      star: 3,
-      total_review: 110,
-    },
-    {
-      class_category: "Android Development",
-      img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Android Dev",
-      price: 0,
-      level: "Beginner",
-      total_employee: 150,
-      star: 4,
-      total_review: 120,
-    },
-    {
-      class_category: "Business Development",
-      img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Social Media Marketing",
-      price: 0,
-      level: "Intermediate",
-      total_employee: 120,
-      star: 3,
-      total_review: 110,
-    },
-    {
-      class_category: "Android Development",
-      img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Android Dev",
-      price: 0,
-      level: "Beginner",
-      total_employee: 150,
-      star: 4,
-      total_review: 120,
-    },
-    {
-      class_category: "Android Development",
-      img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Android Dev",
-      price: 0,
-      level: "Beginner",
-      total_employee: 150,
-      star: 4,
-      total_review: 120,
-    },
-  ];
+  // const popularClassData = [
+  //   {
+  //     class_category: "Business Development",
+  //     img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+  //     title: "Social Media Marketing",
+  //     price: 0,
+  //     level: "Intermediate",
+  //     total_employee: 120,
+  //     star: 3,
+  //     total_review: 110,
+  //   },
+  //   {
+  //     class_category: "Android Development",
+  //     img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+  //     title: "Android Dev",
+  //     price: 0,
+  //     level: "Beginner",
+  //     total_employee: 150,
+  //     star: 4,
+  //     total_review: 120,
+  //   },
+  //   {
+  //     class_category: "Business Development",
+  //     img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+  //     title: "Social Media Marketing",
+  //     price: 0,
+  //     level: "Advanced",
+  //     total_employee: 120,
+  //     star: 3,
+  //     total_review: 110,
+  //   },
+  //   {
+  //     class_category: "Android Development",
+  //     img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+  //     title: "Android Dev",
+  //     price: 0,
+  //     level: "Beginner",
+  //     total_employee: 150,
+  //     star: 4,
+  //     total_review: 120,
+  //   },
+  //   {
+  //     class_category: "Business Development",
+  //     img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+  //     title: "Social Media Marketing",
+  //     price: 0,
+  //     level: "Intermediate",
+  //     total_employee: 120,
+  //     star: 3,
+  //     total_review: 110,
+  //   },
+  //   {
+  //     class_category: "Android Development",
+  //     img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+  //     title: "Android Dev",
+  //     price: 0,
+  //     level: "Beginner",
+  //     total_employee: 150,
+  //     star: 4,
+  //     total_review: 120,
+  //   },
+  //   {
+  //     class_category: "Business Development",
+  //     img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+  //     title: "Social Media Marketing",
+  //     price: 0,
+  //     level: "Intermediate",
+  //     total_employee: 120,
+  //     star: 3,
+  //     total_review: 110,
+  //   },
+  //   {
+  //     class_category: "Android Development",
+  //     img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+  //     title: "Android Dev",
+  //     price: 0,
+  //     level: "Beginner",
+  //     total_employee: 150,
+  //     star: 4,
+  //     total_review: 120,
+  //   },
+  //   {
+  //     class_category: "Android Development",
+  //     img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+  //     title: "Android Dev",
+  //     price: 0,
+  //     level: "Beginner",
+  //     total_employee: 150,
+  //     star: 4,
+  //     total_review: 120,
+  //   },
+  // ];
+
+  const [popularCourse, setPopularCourse] = useState([]);
+  useEffect(() => {
+    axiosInstance
+      .get("/api/course/popular")
+      .then((response) => {
+        console.log(response.data.data);
+        setPopularCourse(...popularCourse, response.data.data);
+        // console.log(popularCourse);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <>
       <NavbarUser />
@@ -144,7 +161,7 @@ const Index = () => {
         </DropdownButton>
       </div>
 
-      <PopularClassCard data={popularClassData} />
+      <PopularClassCard data={popularCourse} />
 
       <footer>
         <FooterUser />
