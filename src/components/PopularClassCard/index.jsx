@@ -1,17 +1,24 @@
 import React from 'react';
 import './style.css';
+import { useNavigate } from "react-router-dom";
 import { employeeTotalIcon, starOrange, starWhite } from '../../assets';
 import { Button, StarRating } from '../index';
 
 const Index = ({ data }) => {
 
+    const navigate = useNavigate();
+
+    const handleSeeDetail = () => {
+        navigate(`/detail-course`);
+    }
+
     return (
-        <div className='row justify-content-center'>
+        <div className='d-flex flex-wrap justify-content-center'>
             {
                 data.map((item, itemIdx) => (
                     <div className={item.category.title !== undefined ? "col-3 mb-3 bg_neutral_4 card_popular_class mx-2 shadow-sm container" : "col-4 bg_neutral_4 card_popular_class_2 mx-2 shadow-sm container"} key={itemIdx}>
-                        <div>
-                            <img className='card_banner' src={item.url_image} alt="" />
+                        <div className="card_banner">
+                            <img className="img_banner" src={item.url_image} alt="" />
                         </div>
                         {
                             item.category.title !== undefined ? (
@@ -34,10 +41,10 @@ const Index = ({ data }) => {
                         <div>
                             {/* <img className='d-inline me-2' src="" alt="icon" /> */}
                             <StarRating rating={item.rating} />
-                            <h4 className='d-inline neutral_2 body_2'>{item.rating + " (" + item.total_review + ") Reviews"}</h4>
+                            <h4 className='d-inline neutral_2 body_2'>{Math.round(item.rating) + " (" + item.count_review + ") Reviews"}</h4>
                         </div>
                         <div className='mt-4 text-center'>
-                            <Button type="btn-seedetail" />
+                            <Button type="btn-seedetail" onClick={handleSeeDetail} />
                         </div>
                     </div>
                 ))
