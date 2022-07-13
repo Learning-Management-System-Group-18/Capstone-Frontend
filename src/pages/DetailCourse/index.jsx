@@ -24,6 +24,9 @@ import ReactPlayer from "react-player";
 import { useEffect } from "react";
 import axiosInstance from "../../networks/apis";
 import Category from "./Category";
+import About from "./About";
+import Lesson from "./Lesson";
+import Review from "./Review";
 
 const Index = () => {
   const [tabs, setTabs] = useState("about");
@@ -114,15 +117,15 @@ const Index = () => {
     getDetailCourse(12);
     getAllMentorByCourseId(12);
     getAllToolByCourseId(12);
-    getAllSectionByCourseId(12);
+    getAllSectionByCourseId(22);
     getAllReviewByCourseId(12);
   }, []);
 
-  console.log("data ", data);
-  console.log("mentor ", mentor);
-  console.log("tool ", tool);
-  console.log("section ", section);
-  console.log("review ", review);
+  // console.log("data ", data);
+  // console.log("mentor ", mentor);
+  // console.log("tool ", tool);
+  // console.log("section ", section);
+  // console.log("review ", review);
 
   return (
     <>
@@ -192,56 +195,7 @@ const Index = () => {
             <div className="row">
               {/* TAB About */}
               <div className={`${tabs === "about" ? `col-12` : `d-none`}`}>
-                {/* MENTOR */}
-                <div className="mt-5">
-                  <div className="heading_5_user mb-3">Mentor</div>
-                  <div className="d-flex gap-3 align-items-center">
-                    <img src={ProfileImg} alt="mentor" className="img-mentor" />
-                    <div className="d-flex flex-column">
-                      <div className="subtitle_2_user">Jonathan Williams</div>
-                      <div
-                        className="subtitle_2_user "
-                        style={{ color: "rgba(0, 0, 0, 0.5)" }}
-                      >
-                        Senior UI/UX
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* MENTOR */}
-
-                {/* DESC */}
-                <div className="mt-5">
-                  <div className="heading_5_user mb-3">Deskripsi</div>
-                  <div
-                    className="caption_1_user"
-                    style={{ color: "rgba(86, 95, 103, 1)" }}
-                  >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Dolores iste fuga earum corporis perspiciatis delectus.
-                    Beatae, id dolore? Quibusdam, corporis repellendus id autem
-                    consequatur, laborum cum deleniti dicta perspiciatis, totam
-                    dolorum iusto amet iste officia! Sapiente dolores quos
-                    nulla, in accusamus distinctio sed cumque magnam. Natus
-                    animi deserunt sapiente odio.
-                  </div>
-                </div>
-
-                {/* DESC */}
-
-                {/* Tool */}
-                <div className="mt-5">
-                  <div className="heading_5_user mb-3">Tool</div>
-                  <div className="d-flex tool gap-2 align-items-center">
-                    <img src={tool} alt="" />
-                    <div className="d-flex flex-column">
-                      <div className="caption_1">Google Analytic</div>
-                      <div className="caption_2 underline">Link Download</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Tool */}
+                <About mentors={mentor} tools={tool} data={data} />
               </div>
               {/* TAB About */}
 
@@ -251,189 +205,18 @@ const Index = () => {
                 className={`${tabs === "lesson" ? `col-12 my-5` : `d-none`}`}
               >
                 <div className="heading_5_user mb-3">Course Section</div>
-
-                <Accordion defaultActiveKey="0">
-                  <Card className="card-section">
-                    {/* Section */}
-                    <CustomToggle eventKey="0" section={"Introduction React"} />
-
-                    <Accordion.Collapse eventKey="0">
-                      <Card.Body className="body-active-course">
-                        <div className="the-section">
-                          <div className="d-flex gap-3  align-items-center">
-                            <div className="number-section body_1_user">01</div>
-                            <div className="body_1_user">
-                              Video - Advertising in facebook and instagram
-                            </div>
-                          </div>
-                          <img src={lockKey} alt="lockey" />
-                        </div>
-                        <div className="the-section">
-                          <div className="d-flex gap-3  align-items-center">
-                            <div className="number-section body_1_user">02</div>
-                            <div className="body_1_user">
-                              Video - Advertising in facebook and instagram
-                            </div>
-                          </div>
-                          <img src={lockKey} alt="lockey" />
-                        </div>
-                      </Card.Body>
-                    </Accordion.Collapse>
-                    {/* Section */}
-
-                    <CustomToggle
-                      eventKey="1"
-                      section={"Introduction React JS"}
-                    />
-
-                    <Accordion.Collapse eventKey="1">
-                      <Card.Body className="body-active-course">
-                        <div className="the-section">
-                          <div className="d-flex gap-3  align-items-center">
-                            <div className="number-section body_1_user">02</div>
-                            <div className="body_1_user">
-                              Video - Advertising in facebook and instagram
-                            </div>
-                          </div>
-                          <img src={lockKey} alt="lockey" />
-                        </div>
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Card>
-                </Accordion>
+                <Lesson sections={section} />
               </div>
 
               {/* TAB Lesson */}
 
               {/* TAB REVIEW */}
               <div className={`${tabs === "review" ? `col-12` : `d-none`}`}>
-                {/* SINGLE RATING */}
-                <div className="d-flex justify-content-between mt-4">
-                  <div className="d-flex align-items-center gap-2">
-                    <AiFillStar
-                      className="secondary_1"
-                      style={{ width: "24px", height: "24px" }}
-                    />
-                    <div className="heading_5_user">4.8 (230 reviews)</div>
-                  </div>
-                  <div className="heading_5_user">See All</div>
-                </div>
-                {/* SINGLE RATING */}
-
-                {/* ALL RATING */}
-                <div className="d-flex gap-5 mt-3 mb-4">
-                  <div className="d-flex align-items-center gap-2 bg_primary single-rating">
-                    <AiFillStar
-                      style={{ width: "24px", height: "24px", color: "white" }}
-                    />
-                    <div className="subtitle_2_user text-white">All</div>
-                  </div>
-                  <div className="d-flex align-items-center gap-2 single-rating the-rating">
-                    <AiFillStar
-                      style={{
-                        width: "24px",
-                        height: "24px",
-                        color: "#335EF7",
-                      }}
-                    />
-                    <div className="subtitle_2_user text primary_1">1</div>
-                  </div>
-                  <div className="d-flex align-items-center gap-2 single-rating the-rating">
-                    <AiFillStar
-                      style={{
-                        width: "24px",
-                        height: "24px",
-                        color: "#335EF7",
-                      }}
-                    />
-                    <div className="subtitle_2_user text primary_1">2</div>
-                  </div>
-                  <div className="d-flex align-items-center gap-2 single-rating the-rating">
-                    <AiFillStar
-                      style={{
-                        width: "24px",
-                        height: "24px",
-                        color: "#335EF7",
-                      }}
-                    />
-                    <div className="subtitle_2_user text primary_1">3</div>
-                  </div>
-                  <div className="d-flex align-items-center gap-2 single-rating the-rating">
-                    <AiFillStar
-                      style={{
-                        width: "24px",
-                        height: "24px",
-                        color: "#335EF7",
-                      }}
-                    />
-                    <div className="subtitle_2_user text primary_1">4</div>
-                  </div>
-                  <div className="d-flex align-items-center gap-2 single-rating the-rating">
-                    <AiFillStar
-                      style={{
-                        width: "24px",
-                        height: "24px",
-                        color: "#335EF7",
-                      }}
-                    />
-                    <div className="subtitle_2_user text primary_1">5</div>
-                  </div>
-                </div>
-
-                {/* ALL RATING */}
-
-                {/* THE REVIEW */}
-
-                <div className="box-review mb-4">
-                  {/* person */}
-                  <div className="d-flex align-items-center gap-3">
-                    <img src={ProfileImg} alt="mentor" className="img-mentor" />
-                    <div className="subtitle_2_user">Jonathan Williams</div>
-                    <div className="d-flex align-items-center gap-2 single-rating the-rating">
-                      <AiFillStar
-                        style={{
-                          width: "24px",
-                          height: "24px",
-                          color: "#335EF7",
-                        }}
-                      />
-                      <div className="subtitle_2_user text primary_1">5</div>
-                    </div>
-                  </div>
-                  {/* person */}
-
-                  {/* review */}
-                  <div className="caption_1_user mt-3">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Nam porro numquam quae cupiditate deleniti, ex, nulla,
-                    accusantium labore pariatur recusandae ea. Hic, corrupti
-                    enim! Rerum, odit mollitia, dolores nam facere perspiciatis
-                    amet voluptate veniam, nesciunt hic natus nobis vitae illum
-                    sequi! Doloribus quaerat sint tenetur, necessitatibus iusto
-                    laudantium aliquid iste!
-                  </div>
-                  {/* review */}
-
-                  {/* Like and Time */}
-                  <div className="d-flex align-items-center mt-2">
-                    <AiFillHeart
-                      style={{ color: "red", width: "16px", height: "16px" }}
-                    />
-                    <span className="neutral_2 caption_1_user ms-2 me-3">
-                      50
-                    </span>
-                    <span className="neutral_2 caption_1_user">
-                      2 Weeks Ago
-                    </span>
-                  </div>
-                  {/* Like and Time */}
-                </div>
-                {/* THE REVIEW */}
-
-                <div className="text-center neutral_3 body_2_user">
+                <Review />
+                {/* <div className="text-center neutral_3 body_2_user">
                   See More
                   <IoIosArrowDown className="ms-2 isection" />
-                </div>
+                </div> */}
               </div>
               {/* TAB REVIEW */}
             </div>
@@ -517,56 +300,3 @@ const Index = () => {
 };
 
 export default Index;
-
-function CustomToggle({ section, eventKey, callback }) {
-  const { activeEventKey } = useContext(AccordionContext);
-
-  const decoratedOnClick = useAccordionButton(
-    eventKey,
-    () => callback && callback(eventKey)
-  );
-
-  const isCurrentEventKey = activeEventKey === eventKey;
-
-  return (
-    <>
-      <Card.Header
-        className={`${
-          !isCurrentEventKey ? `bg-transparent` : `active-course-section`
-        }`}
-      >
-        <div className="d-flex gap-3 align-items-center">
-          <div
-            className={`${
-              !isCurrentEventKey ? `icon-circle` : `icon-circle active-section`
-            }`}
-            onClick={decoratedOnClick}
-          >
-            {!isCurrentEventKey ? (
-              <IoIosArrowDown className="isection" />
-            ) : (
-              <IoIosArrowUp className="isection active-section" />
-            )}
-          </div>
-          <div>
-            <span className="sc"> Section {Number(eventKey) + 1} -</span>
-            <span className="sc_1">{section}</span>
-          </div>
-        </div>
-      </Card.Header>
-
-      {/* <div
-        className={`${
-          !isCurrentEventKey ? `icon-circle` : `icon-circle active-section`
-        }`}
-        onClick={decoratedOnClick}
-      >
-        {!isCurrentEventKey ? (
-          <IoIosArrowDown className="isection" />
-        ) : (
-          <IoIosArrowUp className="isection active-section" />
-        )}
-      </div> */}
-    </>
-  );
-}
