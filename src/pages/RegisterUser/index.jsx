@@ -91,6 +91,7 @@ const Index = () => {
         password: data.password,
       };
       setUser(user.concat(newUser));
+      navigate("/login");
     }
   };
 

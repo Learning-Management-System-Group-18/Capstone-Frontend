@@ -48,7 +48,7 @@ const Index = ({ data }) => {
         if (data.length < maxCount) {
             for (i; i < data.length; i++) {
                 dataShow.push(
-                    <div key={i} className='col-4 bg_neutral_4 shadow-sm review_card'>
+                    <div key={i} className='col bg_neutral_4 shadow-sm review_card'>
                         <img className='quotation m-3' src={quoteIcon} alt="quote-icon" />
                         <p className='caption_2 m-3'>{data[i].quotes_desc}</p>
                         <div className='reviewer_card d-flex'>
@@ -143,7 +143,7 @@ const Index = ({ data }) => {
 
     return (
         <div className='card_reviews'>
-            <div className='d-flex justify-content-center row'>
+            <div className='d-flex justify-content-center'>
                 {/* {data.map((item, itemIdx) => (
                     <div key={itemIdx} className='col-4 bg_neutral_4 shadow-sm review_card'>
                         <img className='quotation m-3' src={quoteIcon} alt="quote-icon" />
