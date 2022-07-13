@@ -27,17 +27,17 @@ import Category from "./Category";
 import About from "./About";
 import Lesson from "./Lesson";
 import Review from "./Review";
+import { useParams } from "react-router-dom";
 
 const Index = () => {
+  const { idCourse } = useParams();
+
   const [tabs, setTabs] = useState("about");
 
   const [data, setData] = useState([]);
   const [mentor, setMentor] = useState([]);
   const [tool, setTool] = useState([]);
   const [section, setSection] = useState([]);
-  const [video, setVideo] = useState([]);
-  const [slide, setSlide] = useState([]);
-  const [quiz, setQuiz] = useState([]);
   const [review, setReview] = useState([]);
 
   const getDetailCourse = async (idCourse) => {
@@ -123,11 +123,11 @@ const Index = () => {
   };
 
   useEffect(() => {
-    getDetailCourse(12);
-    getAllMentorByCourseId(12);
-    getAllToolByCourseId(12);
-    getAllReviewByCourseId(12);
-    getAllContentByCourseId(12);
+    getDetailCourse(idCourse);
+    getAllMentorByCourseId(idCourse);
+    getAllToolByCourseId(idCourse);
+    getAllReviewByCourseId(idCourse);
+    getAllContentByCourseId(idCourse);
   }, []);
 
   console.log("data ", data);

@@ -41,7 +41,7 @@ function Index() {
         </Route>
         <Route element={<ProtectedRoutesUser />}>
           <Route path="/home" element={<HomeUser />} />
-          <Route path="/detail-course" element={<DetailCourse />} />
+          <Route path="/detail-course/:idCourse" element={<DetailCourse />} />
           <Route path="/user-profile" element={<ProfileUser />} />
           <Route path="/class-category" element={<ClassInCategory />} />
           <Route path="/my-class" element={<MyClass />} />
