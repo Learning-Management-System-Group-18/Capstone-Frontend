@@ -38,6 +38,7 @@ import slideIcon from "./img/slide.png";
 import videoIcon from "./img/video.png";
 import noData from "./img/nodata.png";
 import noSection from "./img/nodatasection.png";
+import avatarProfil from "./img/avatarprofile.png";
 
 export {
   Rafiki,
@@ -80,4 +81,5 @@ export {
   videoIcon,
   noData,
   noSection,
+  avatarProfil,
 };

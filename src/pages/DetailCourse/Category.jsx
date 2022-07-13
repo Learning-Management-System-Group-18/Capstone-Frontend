@@ -35,7 +35,7 @@ const Category = ({ data }) => {
         </div>
 
         <div className="caption_2_user" style={{ color: " #7C8B99" }}>
-          {`${valRating} ( ${data?.count_user} terdaftar)`}
+          {`${valRating} ( ${data?.count_review} review)`}
         </div>
       </div>
     </>

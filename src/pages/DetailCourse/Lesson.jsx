@@ -7,71 +7,23 @@ import {
   AccordionContext,
 } from "react-bootstrap";
 import { lockKey } from "../../assets";
-import { useContext, useState } from "react";
-import axiosInstance from "../../networks/apis";
-import { useEffect } from "react";
+import { useContext } from "react";
 
 const Lesson = ({ sections }) => {
-  const [video, setVideo] = useState([]);
-  const [slide, setSlide] = useState([]);
-  const [quiz, setQuiz] = useState([]);
-
-  let y = [];
-  const [kj, setkj] = useState([]);
-  const simpan = (...d) => {
-    y.push(...d);
-
-    console.log("y", y);
-    // setkj(y);
-  };
-
-  // console.log("kj", kj);
-
-  useEffect(() => {
-    const getAllContentByIdTitle = async (idSection, tls) => {
-      await axiosInstance
-        .get(`api/content?sectionId=${idSection}`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        })
-        .then((response) => {
-          // console.log(response.data.data);
-          let res = response.data.data;
-          console.log("res", res);
-          simpan({
-            video: res.video,
-            quiz: res.quiz,
-            slide: res.slide,
-            idx: idSection,
-            tls: tls,
-          });
-        })
-        .catch((error) => console.log(error));
-    };
-
-    // allIdSection.map((idSection) => {
-    //   getAllContentByIdTitle(idSection);
-    //   console.log("idx", idSection);
-    // });
-
-    // getAllContentByIdTitle(12, "Java");
-    // getAllContentByIdTitle(10, "Go");
-
-    sections.forEach((element) => {
-      getAllContentByIdTitle(element.id, element.title);
-      console.log(element.id);
-    });
-  }, []);
+  console.log("section ", sections);
 
   return (
     <Accordion defaultActiveKey="0">
       <Card className="card-section">
         {/* Section */}
 
-        {kj?.map((section, i) => (
+        {sections?.map((section, i) => (
           <>
-            <CustomToggle eventKey={`${i}`} section={section.tls} key={i} />
+            <CustomToggle
+              eventKey={`${i}`}
+              section={section.title || ""}
+              key={i}
+            />
 
             <Accordion.Collapse eventKey={`${i}`}>
               <Card.Body className="body-active-course">
@@ -79,7 +31,9 @@ const Lesson = ({ sections }) => {
                   <div className="d-flex gap-3  align-items-center">
                     <div className="number-section body_1_user">01</div>
                     <div className="body_1_user">
-                      {section.video.map((v) => `Video - ${v.title}`)}
+                      {section.content.video.map(
+                        (v) => `Video - ${v.title || ""}`
+                      )}
                     </div>
                   </div>
                   <img src={lockKey} alt="lockey" />
@@ -88,7 +42,7 @@ const Lesson = ({ sections }) => {
                   <div className="d-flex gap-3  align-items-center">
                     <div className="number-section body_1_user">02</div>
                     <div className="body_1_user">
-                      {section.map((s) => `Slide - ${s.title}`)}
+                      {section.content.slide.map((s) => `Slide - ${s.title}`)}
                     </div>
                   </div>
                   <img src={lockKey} alt="lockey" />
@@ -97,7 +51,7 @@ const Lesson = ({ sections }) => {
                   <div className="d-flex gap-3  align-items-center">
                     <div className="number-section body_1_user">03</div>
                     <div className="body_1_user">
-                      {section.quiz.map((q) => `Slide - ${q.title}`)}
+                      {section.content.quiz.map((q) => `Quiz - ${q.title}`)}
                     </div>
                   </div>
                   <img src={lockKey} alt="lockey" />
