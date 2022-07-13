@@ -1,4 +1,4 @@
-import { NavbarUser } from '../../components';
+import { NavbarUser, PopupLogout } from '../../components';
 import { BgUserProfile } from '../../assets';
 import { BsFillCameraFill } from 'react-icons/bs';
 import Form from 'react-bootstrap/Form';
@@ -9,6 +9,12 @@ const Index = () => {
   const [Tab, setTab] = useState('Profile');
   console.log(Tab);
 
+  const [showLogout, setShowLogout] = useState(false);
+
+  const handleCloseLogout = () => setShowLogout(false);
+  const logoutShow = () => {
+    setShowLogout(true);
+  };
   return (
     <div>
       <NavbarUser />
@@ -69,6 +75,10 @@ const Index = () => {
           >
             Reset Password
           </button>
+          <button type="button" className="btn-logoutUser" onClick={logoutShow}>
+            Logout
+          </button>
+          <PopupLogout show={showLogout} handleClose={handleCloseLogout} />
         </div>
         {/* <- Start -> This For From Profile */}
         <div
