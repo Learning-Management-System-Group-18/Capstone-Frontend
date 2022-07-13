@@ -47,9 +47,13 @@ const Index = () => {
             title="Filter by category"
             className="filterClassCategory"
           >
-            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+            <Dropdown.Item>Web & Mobile Developer</Dropdown.Item>
+            <Dropdown.Item>UI/UX Designer</Dropdown.Item>
+            <Dropdown.Item>Business Development</Dropdown.Item>
+            <Dropdown.Item>Finance & Accounting</Dropdown.Item>
+            <Dropdown.Item>Data Analyst</Dropdown.Item>
+            <Dropdown.Item>Marketing</Dropdown.Item>
+            <Dropdown.Item>Career Preparation</Dropdown.Item>
           </DropdownButton>
         </div>
       </div>
