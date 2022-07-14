@@ -1,9 +1,10 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import './style.css';
 import { Dropdown, NavDropdown, Nav, Navbar, Container } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 import { FiSearch } from 'react-icons/fi';
 import { navUserIcon, profileUserIcon } from '../../assets';
+import axiosInstance from '../../networks/apis';
 
 const Index = () => {
   const location = useLocation();
@@ -16,6 +17,23 @@ const Index = () => {
   // const logoutShow = () => {
   //   setShowLogout(true);
   // };
+
+  const [ProfileUser, setProfileUser] = useState();
+
+  useEffect(async () => {
+    await axiosInstance
+      .get(`api/auth/profile`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then((response) => {
+        // console.log("getAllContentByCourseId ", response.data.data);
+        let res = response.data.data;
+        setProfileUser(res);
+      })
+      .catch((error) => console.log(error));
+  }, []);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark" id="nav-user">
       <div className="container ms-4">
@@ -95,7 +113,11 @@ const Index = () => {
       </div>
       <div className="iconProfileUser">
         <Link to="/user-profile">
-          <img src={profileUserIcon} className="img-usernav" alt="icon" />
+          <img
+            src={ProfileUser?.url_image || profileUserIcon}
+            className="img-usernav"
+            alt="icon"
+          />
         </Link>
       </div>
     </nav>
