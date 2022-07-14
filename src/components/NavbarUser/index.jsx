@@ -15,18 +15,6 @@ const Index = () => {
 
   const [categories, setCategories] = useState([]);
 
-  useEffect(async () => {
-    await axiosInstance
-      .get("api/categories")
-      .then((response) => {
-        // console.log(response.data.data);
-        setCategories(response.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
   const handleCategoryClass = (id, name) => {
     let titleSlug = name
       .replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, " ")
@@ -40,6 +28,34 @@ const Index = () => {
 
   console.log(categories);
 
+  const [ProfileUser, setProfileUser] = useState();
+
+  useEffect(async () => {
+    await axiosInstance
+      .get(`api/auth/profile`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        // console.log("getAllContentByCourseId ", response.data.data);
+        let res = response.data.data;
+        setProfileUser(res);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  useEffect(async () => {
+    await axiosInstance
+      .get("api/categories")
+      .then((response) => {
+        // console.log(response.data.data);
+        setCategories(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark" id="nav-user">
       <div className="container ms-4">
@@ -109,7 +125,11 @@ const Index = () => {
       </div>
       <div className="iconProfileUser">
         <Link to="/user-profile">
-          <img src={profileUserIcon} className="img-usernav" alt="icon" />
+          <img
+            src={ProfileUser?.url_image || profileUserIcon}
+            className="img-usernav"
+            alt="icon"
+          />
         </Link>
       </div>
     </nav>
