@@ -75,7 +75,7 @@ const Index = ({
   const handleSubmitCourse = async (event) => {
     event.preventDefault();
     if (modalType === "createCourse") {
-      const newCourse = {
+      const newCourse = await {
         title: data.title,
         description: data.description,
         level: data.level.toUpperCase(),
@@ -90,10 +90,10 @@ const Index = ({
 
       const id = newDataEdit.id;
 
-      const dataUpdate = {
+      const dataUpdate = await {
         title: newDataEdit.title,
         description: newDataEdit.description,
-        level: newDataEdit.level,
+        level: newDataEdit.level.toUpperCase(),
       };
 
       await editDataCourse(dataUpdate, id);

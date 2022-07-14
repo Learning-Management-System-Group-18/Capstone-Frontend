@@ -65,7 +65,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
   color: rgba(66, 84, 102, 0.5);
   background: rgba(221, 229, 233, 0.5);
   border-radius: 10px;
@@ -90,7 +90,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
   color: rgba(66, 84, 102, 0.5);
   background: rgba(221, 229, 233, 0.5);
   border-radius: 10px;
@@ -114,7 +114,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
   color: rgba(66, 84, 102, 0.5);
   background: rgba(221, 229, 233, 0.5);
   border-radius: 10px;
@@ -128,6 +128,31 @@
 .btn-resetprofileuser:focus {
   color: #425466;
   background: rgba(51, 94, 247, 0.25);
+  border-radius: 10px;
+  box-shadow: none !important;
+}
+.btn-logoutUser {
+  text-align: center;
+  width: 184px;
+  height: 40px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  color: rgba(206, 52, 38, 1);
+  background: transparent;
+  border-radius: 10px;
+  border: transparent;
+}
+.btn-logoutUser:hover {
+  color: rgba(206, 52, 38, 1);
+  background: transparent;
+  border-radius: 10px;
+  box-shadow: none !important;
+}
+.btn-logoutUser:focus {
+  color: rgba(206, 52, 38, 1);
+  background: transparent;
   border-radius: 10px;
   box-shadow: none !important;
 }
@@ -162,6 +187,7 @@
   background-color: transparent;
   color: #425466;
   border-radius: 5px;
+  cursor: none;
 }
 
 .form-profileuser:focus {
@@ -328,6 +354,7 @@
 .btn-saveprofile:focus {
   box-shadow: none;
 }
+
 .decoration-btnprofile {
   color: #425466;
   background: rgba(51, 94, 247, 0.25);

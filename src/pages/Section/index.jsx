@@ -29,7 +29,55 @@ function Index() {
   const [quiz, setQuiz] = useState([]);
   const [slide, setSlide] = useState([]);
 
-  console.log(idSection);
+  const section = [];
+
+  const [show, setShow] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
+  const [modalType, setModalType] = useState("");
+  const [edit, setEdit] = useState();
+  const [idEdit, setIdEdit] = useState();
+  const [success, setSuccess] = useState(false);
+  const [data, setData] = useState(section);
+  const [preview, setPreview] = useState("");
+  const [typePreview, setTypePreview] = useState("");
+
+  const handlePreview = (type, data) => {
+    setPreview(data[0]);
+    setTypePreview(type);
+    setShowPreview(true);
+  };
+
+  const handleClose = () => {
+    setShow(false);
+    setEdit("");
+    setPreview("");
+    setTypePreview("");
+    setShowPreview(false);
+  };
+
+  const handleShow = (type) => {
+    setShow(true);
+    setModalType(type);
+  };
+
+  const handleEdit = (type, data, id) => {
+    setEdit(data[0]);
+    setIdEdit(id);
+    console.log("data", edit);
+    setShow(true);
+    setModalType(type);
+  };
+
+  const buttonBack = () => {
+    navigate(-1);
+  };
+
+  const tambah = (newData) => {
+    setData(data.concat(newData));
+  };
+
+  // API HANDLE
+
   const getAllContentById = async () => {
     await axiosInstance
       .get(`api/content?sectionId=${idSection}`, {
@@ -46,57 +94,6 @@ function Index() {
       })
       .catch((error) => console.log(error));
   };
-
-  // console.log("vide", video);
-  // console.log("s", slide);
-  // console.log("quiz", quiz);
-
-  const section = [];
-
-  const [show, setShow] = useState(false);
-  const [showPreview, setShowPreview] = useState(false);
-  const [modalType, setModalType] = useState("");
-  const [edit, setEdit] = useState();
-  const [idEdit, setIdEdit] = useState();
-  const [success, setSuccess] = useState(false);
-
-  const [data, setData] = useState(section);
-  const handleShow = (type) => {
-    setShow(true);
-    setModalType(type);
-  };
-
-  const handleEdit = (type, data, id) => {
-    setEdit(data[0]);
-    setIdEdit(id);
-    console.log("data", edit);
-    setShow(true);
-    setModalType(type);
-  };
-
-  const [preview, setPreview] = useState("");
-  const [typePreview, setTypePreview] = useState("");
-  const handlePreview = (type, data) => {
-    setPreview(data[0]);
-    setTypePreview(type);
-    setShowPreview(true);
-  };
-
-  const handleClose = () => {
-    setShow(false);
-    setEdit("");
-    setPreview("");
-    setTypePreview("");
-    setShowPreview(false);
-  };
-
-  const tambah = (newData) => {
-    setData(data.concat(newData));
-  };
-
-  useEffect(() => {
-    getAllContentById();
-  }, [idSection, success]);
 
   const create = async (type, newData) => {
     const types = type.toLowerCase();
@@ -151,13 +148,13 @@ function Index() {
       });
   };
 
+  useEffect(() => {
+    getAllContentById();
+  }, [idSection, success]);
+
   const bg = {
     height: video.length == 0 ? "100vh" : "100%",
     backgroundColor: "#F5F8FB",
-  };
-
-  const buttonBack = () => {
-    navigate(-1);
   };
 
   return (
@@ -305,7 +302,7 @@ function Index() {
       </div>
       <div className="container">
         <div className="row">
-          {video.map((x, i, array) => (
+          {video?.map((x, i, array) => (
             <>
               <div className="col-2" key={i}>
                 <div className="thumbnail">
@@ -343,7 +340,7 @@ function Index() {
               </div>
             </>
           ))}
-          {slide.map((x, i, array) => (
+          {slide?.map((x, i, array) => (
             <>
               <div className="col-2 my-5" key={i}>
                 <div className="thumbnail">
@@ -381,7 +378,7 @@ function Index() {
               </div>
             </>
           ))}
-          {quiz.map((x, i, array) => (
+          {quiz?.map((x, i, array) => (
             <>
               <div className="col-2" key={i}>
                 <div className="thumbnail">

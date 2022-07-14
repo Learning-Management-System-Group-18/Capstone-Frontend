@@ -349,7 +349,9 @@ function Index() {
       </div>
 
       <FAQ />
-      <CardReview data={reviewData} />
+      <div>
+        <CardReview data={reviewData} />
+      </div>
       <div className="started">
         <div style={{ padding: "58px 87.5px 58px 87.5px" }} className="d-flex ">
           <div>

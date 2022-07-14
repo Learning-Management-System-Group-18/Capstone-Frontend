@@ -2,10 +2,15 @@ import React from "react";
 import "./style.css";
 import { IoIosArrowUp } from "react-icons/io";
 import { BiRadioCircle } from "react-icons/bi";
-
+import { useEffect } from "react";
 import { fbIcon, igIcon, twitterIcon, linkedIcon } from "../../assets";
 
 const Index = () => {
+  useEffect(() => {
+    // 👇️ scroll to top on page load
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <>
       <footer className="">
@@ -78,9 +83,14 @@ const Index = () => {
           </div>
         </div>
 
-        <a href="#nav-user" className="up-icon">
+        <div
+          className="up-icon"
+          onClick={() => {
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+          }}
+        >
           <IoIosArrowUp className="icon-userdropup" />
-        </a>
+        </div>
       </footer>
     </>
   );

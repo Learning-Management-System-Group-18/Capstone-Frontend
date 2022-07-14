@@ -42,14 +42,14 @@ input:focus {
 }
 .btn-primary:active,
 .show > .btn-primary.dropdown-toggle {
-  color: #232945;
-  background-color: #ffffff;
+  color: #ffffff;
+  background-color: #335ef7;
   border-color: #dde0e3 !important;
   box-shadow: none !important;
 }
 .btn-primary:hover {
   color: #232945;
-  background-color: #ffffff;
+  background-color: #f5f8fb;
   border-color: #dde0e3 !important;
   box-shadow: none !important;
 }

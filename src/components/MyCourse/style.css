@@ -46,7 +46,7 @@
     width: 100%;
 }
 
-.continue-course, .continue-course:hover{
+.continue-course{
     background: #4D82EA;
     border: none;
     margin-top: 36px;
@@ -55,6 +55,11 @@
     padding: 10px 24px;
     border-radius: 100px;
     width: 100%;
+    color: white;
+}
+
+.continue-course:hover, .btn-certificate:hover{
+    background-color: #232945;
     color: white;
 }
 

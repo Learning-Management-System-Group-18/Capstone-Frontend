@@ -7,10 +7,10 @@ const Index = ({ rating }) => {
     const orangeStar = [];
     const whiteStar = [];
 
-    for (let i = 0; i < rating; i++) {
+    for (let i = 0; i < Math.round(rating); i++) {
         orangeStar.push(<img className='d-inline star' src={starOrange} alt="icon" />)
     };
-    for (let i = 0; i < 5 - rating; i++) {
+    for (let i = 0; i < 5 - Math.round(rating); i++) {
         whiteStar.push(<img className='d-inline star' src={starWhite} alt="icon" />)
     };
 

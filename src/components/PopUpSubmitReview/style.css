@@ -8,6 +8,10 @@
     border: none;
 }
 
+.btn-submit-review:hover{
+    background-color: #232945;
+}
+
 .rating{
     width: 35px;
     height: 35px;

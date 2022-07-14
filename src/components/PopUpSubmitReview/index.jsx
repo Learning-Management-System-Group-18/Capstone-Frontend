@@ -1,11 +1,11 @@
 import React from "react";
-import { Button } from "..";
 import { GrClose } from "react-icons/gr";
 import { Modal } from "react-bootstrap";
 import "./style.css";
 import { Form } from "react-bootstrap";
 import { AiFillStar } from "react-icons/ai";
 import { useState } from "react";
+import axiosInstance from "../../networks/apis";
 
 const Index = ({ handleCloseReview, showReview }) => {
   const rating = [
@@ -49,13 +49,33 @@ const Index = ({ handleCloseReview, showReview }) => {
     setRatings(newRating);
   };
 
-  const handleSubmitReview = (e) => {
+  const [success, setSuccess] = useState(false);
+
+  const createReview = async (idCourse, data) => {
+    await axiosInstance
+      .post(`api/auth/review?courseId=${idCourse}`, data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        setSuccess(!success);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const handleSubmitReview = async (e) => {
     e.preventDefault();
 
     console.log("rating", val);
     console.log("review", review);
+    const data = {
+      review: review,
+      rating: val,
+    };
+    await createReview(12, data);
     console.log("newRatings", ratings);
-
     setVal(null);
     setReview("");
     setRatings(rating);
