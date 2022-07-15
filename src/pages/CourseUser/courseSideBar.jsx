@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./style.css";
-import { Outlet, Link } from "react-router-dom";
 import {
   Navbar,
   Container,
@@ -16,9 +15,44 @@ import {
   AccordionContext,
 } from "react-bootstrap";
 import { VideoCourse, SlideCourse, QuizCourse } from "../../assets";
-
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
-function CourseSideBar() {
+import axiosInstance from "../../networks/apis";
+
+function CourseSideBar({ title, section, watchContent }) {
+  const [contentList, setContentList] = useState([]);
+  const [content, setContent] = useState([]);
+
+  const contentAdd = () => {
+    setContentList(contentList.concat(content));
+  };
+  const getAllContentById = async (id, title) => {
+    await axiosInstance
+      .get(`api/content?sectionId=${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        let res = response.data.data;
+        setContent(
+          content.concat({
+            id: id,
+            title: title,
+            video: res.video,
+            slide: res.slide,
+            quiz: res.quiz,
+          })
+        );
+      })
+      .catch((error) => console.log(error));
+  };
+  useEffect(() => {
+    section.map((item, itemIdx) => getAllContentById(item.id, item.title));
+  }, [section]);
+
+  useEffect(() => {
+    contentAdd();
+  }, [content]);
   return (
     <div>
       <Navbar key={false} bg="light" expand={false} className="mb-3">
@@ -27,7 +61,7 @@ function CourseSideBar() {
             aria-controls={`offcanvasNavbar-expand-${false}`}
             style={{ border: "none", marginLeft: "48px" }}
           />
-          <h1 style={{ paddingRight: "500px" }}>Social Media Marketing</h1>
+          <h1 style={{ paddingRight: "500px" }}>{title}</h1>
 
           <Navbar.Offcanvas
             id={`offcanvasNavbar-expand-${false}`}
@@ -37,69 +71,68 @@ function CourseSideBar() {
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${false}`}>
                 <span>Course Section</span> <br />
-                <span>20 lesson</span>
+                <span>{contentList.length} lesson</span>
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Accordion defaultActiveKey="0">
                 <Card className="card-faq">
                   {/* FAQ */}
-                  <CustomToggle
-                    eventKey="0"
-                    section={"Section 1 - "}
-                    tittleSection={"Intorduction"}
-                  />
-
-                  <Accordion.Collapse eventKey="0">
-                    <Card.Body className="body-section">
-                      <div className="the-section">
-                        <div className="d-flex gap-3  align-items-center">
-                          <img src={VideoCourse} alt="" />
-                          <div className="body_1_user">
-                            Video - Advertising in facebook and instagram
-                          </div>
-                        </div>
-                      </div>
-                    </Card.Body>
-                  </Accordion.Collapse>
-                  {/* FAQ */}
-                  <CustomToggle
-                    eventKey="1"
-                    section={"Section 1 - "}
-                    tittleSection={"Intorduction"}
-                  />
-
-                  <Accordion.Collapse eventKey="1">
-                    <Card.Body className="body-section">
-                      <div className="the-section">
-                        <div className="d-flex gap-3  align-items-center">
-                          <img src={VideoCourse} alt="" />
-                          <div className="body_1_user">
-                            Video - Advertising in facebook and instagram
-                          </div>
-                        </div>
-                      </div>
-                    </Card.Body>
-                  </Accordion.Collapse>
-                  {/* FAQ */}
-                  <CustomToggle
-                    eventKey="2"
-                    section={"Section 2 - "}
-                    tittleSection={"Intorduction"}
-                  />
-
-                  <Accordion.Collapse eventKey="2">
-                    <Card.Body className="body-section">
-                      <div className="the-section">
-                        <div className="d-flex gap-3  align-items-center">
-                          <img src={VideoCourse} alt="" />
-                          <div className="body_1_user">
-                            Video - Advertising in facebook and instagram
-                          </div>
-                        </div>
-                      </div>
-                    </Card.Body>
-                  </Accordion.Collapse>
+                  {contentList.map((item, itemIdx) => (
+                    <div key={itemIdx}>
+                      <CustomToggle
+                        eventKey={itemIdx}
+                        section={`Section - ${itemIdx + 1}`}
+                        tittleSection={item.title}
+                      />
+                      <Accordion.Collapse eventKey={itemIdx}>
+                        <Card.Body className="body-section">
+                          {item.video.map((item, itemIdx) => (
+                            <button
+                              className="the-section"
+                              key={itemIdx}
+                              onClick={() => {
+                                watchContent(item, "Video");
+                              }}
+                            >
+                              <div className="d-flex gap-3  align-items-center">
+                                <img src={VideoCourse} alt="" />
+                                <div className="body_1_user">{item.title}</div>
+                              </div>
+                            </button>
+                          ))}
+                          {item.slide.map((item, itemIdx) => (
+                            <button
+                              className="the-section"
+                              key={itemIdx}
+                              onClick={() => {
+                                watchContent(item, "Slide");
+                              }}
+                            >
+                              <div className="d-flex gap-3  align-items-center">
+                                <img src={SlideCourse} alt="" />
+                                <div className="body_1_user">{item.title}</div>
+                              </div>
+                            </button>
+                          ))}
+                          {item.quiz.map((item, itemIdx) => (
+                            <button
+                              className="the-section"
+                              key={itemIdx}
+                              onClick={() => {
+                                watchContent(item, "Quiz");
+                              }}
+                            >
+                              <div className="d-flex gap-3  align-items-center">
+                                <img src={QuizCourse} alt="" />
+                                <div className="body_1_user">{item.title}</div>
+                              </div>
+                            </button>
+                          ))}
+                        </Card.Body>
+                      </Accordion.Collapse>
+                    </div>
+                  ))}
                 </Card>
               </Accordion>
             </Offcanvas.Body>
