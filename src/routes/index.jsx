@@ -16,6 +16,9 @@ import ProfileUser from "../pages/ProfileUser";
 import ClassInCategory from "../pages/ClassInCategory";
 import HomeUser from "../pages/HomeUser";
 import MyClass from "../pages/MyClass";
+
+import UserCourse from "../pages/CourseUser";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function Index() {
@@ -50,6 +53,7 @@ function Index() {
           <Route path="/my-class" element={<MyClass />} />
         </Route>
         <Route path="/" element={<Home />} />
+        <Route path="/user-course" element={<UserCourse />} />
         <Route element={<PublicRoute />}>
           <Route path="/login" element={<Login />} />
         </Route>
