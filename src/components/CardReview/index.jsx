@@ -74,16 +74,18 @@ const Index = ({ data }) => {
         dataShow.push(
           <div key={i} className="col-4 bg_neutral_4 shadow-sm review_card">
             <img className="quotation m-3" src={quoteIcon} alt="quote-icon" />
-            <p className="caption_2 m-3">{data[i].review}</p>
-            <div className="reviewer_card d-flex">
-              <img
-                className="reviewer_img rounded-circle"
-                src={data[i].url_image || avatarProfil}
-                alt=""
-              />
-              <div className="ms-2">
-                <h5 className="body_3">{data[i].user.full_name}</h5>
-                <p className="caption_2 neutral_2">Peserta Course Level Up</p>
+            <div className="d-flex flex-column justify-content-between">
+              <p className="caption_2 m-3">{data[i].review}</p>
+              <div className="reviewer_card d-flex">
+                <img
+                  className="reviewer_img rounded-circle"
+                  src={data[i].url_image || avatarProfil}
+                  alt=""
+                />
+                <div className="ms-2">
+                  <h5 className="body_3">{data[i].user.full_name}</h5>
+                  <p className="caption_2 neutral_2">Peserta Course Level Up</p>
+                </div>
               </div>
             </div>
           </div>
