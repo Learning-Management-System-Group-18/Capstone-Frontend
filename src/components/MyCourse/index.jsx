@@ -14,6 +14,7 @@ const Index = ({
   isCompleted,
   description,
   level,
+  id
 }) => {
   // --- contoh data ---
   // status = "completed";
@@ -31,8 +32,7 @@ const Index = ({
     borderRadius: "15px",
     textAlign: "right",
   };
-
-  const [id, setId] = useState(null);
+  // const [id, setId] = useState(null);
   const [showReview, setShowReview] = useState(false);
   const handleShowReview = () => {
     // setId(id);
@@ -47,6 +47,7 @@ const Index = ({
       <PopupSubmitReview
         handleCloseReview={handleCloseReview}
         showReview={showReview}
+        idCourse={id}
       />
 
       {status === "ongoing" ? (
