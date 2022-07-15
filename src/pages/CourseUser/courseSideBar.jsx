@@ -61,7 +61,9 @@ function CourseSideBar({ title, section, watchContent }) {
             aria-controls={`offcanvasNavbar-expand-${false}`}
             style={{ border: "none", marginLeft: "48px" }}
           />
-          <h1 style={{ paddingRight: "500px" }}>{title}</h1>
+          <div className="heading_4" style={{ paddingRight: "40%" }}>
+            {title}
+          </div>
 
           <Navbar.Offcanvas
             id={`offcanvasNavbar-expand-${false}`}

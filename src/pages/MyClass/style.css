@@ -1,6 +1,7 @@
 .bg-mainMyClass {
   background-color: #f5f8fb;
-  height: 1024px;
+  height: auto;
+  padding-bottom: 60px;
 }
 .nav-userMyClass {
   background-color: #ffffff;

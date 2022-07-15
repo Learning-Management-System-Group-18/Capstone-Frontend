@@ -4,6 +4,7 @@ import "./style.css";
 import { GoPrimitiveDot } from "react-icons/go";
 import { useState } from "react";
 import { PopupSubmitReview } from "..";
+import { useNavigate } from "react-router-dom";
 
 const Index = ({
   status,
@@ -14,8 +15,9 @@ const Index = ({
   isCompleted,
   description,
   level,
-  id
+  id,
 }) => {
+  const navigate = useNavigate();
   // --- contoh data ---
   // status = "completed";
   // imgCourse = imageCourse;
@@ -67,7 +69,10 @@ const Index = ({
                 </div>
                 <div>{isCompleted + "/" + totalSection}</div>
               </div>
-              <button className="continue-course bg_primary body_1">
+              <button
+                className="continue-course bg_primary body_1"
+                onClick={() => navigate(`/user-course/${id}`)}
+              >
                 Continue Course
               </button>
             </div>

@@ -4,6 +4,7 @@ import ReactPlayer from "react-player/lazy";
 import axiosInstance from "../../networks/apis";
 
 function ContentShow({ currentContent }) {
+  console.log("cc", currentContent);
   const completed = async (id, type) => {
     const tipe = type.toLowerCase();
     const idString = id.toString();
@@ -21,13 +22,13 @@ function ContentShow({ currentContent }) {
   };
   return (
     <div className="">
-      <p className="heading_3_user tittle-section">
+      <div className="heading_5 tittle-section">
         {currentContent[1]} - {currentContent[0]?.title}
-      </p>
+      </div>
       {currentContent[1] === "Video" ? (
         <ReactPlayer
           url={currentContent[0]?.link}
-          width={"984px"}
+          width={"900px"}
           height={"567px"}
           className="content-section"
           light={true}
@@ -36,7 +37,7 @@ function ContentShow({ currentContent }) {
         />
       ) : (
         <iframe
-          width="984"
+          width="900"
           height="567"
           src={currentContent[0]?.link}
           title="player"
@@ -47,7 +48,7 @@ function ContentShow({ currentContent }) {
 
       <div
         style={{ backgroundColor: "#C8D9FC" }}
-        className="d-flex justify-content-around"
+        className="d-flex justify-content-around mt-5"
       >
         <div>
           <button style={{ border: "none", background: "none" }}>

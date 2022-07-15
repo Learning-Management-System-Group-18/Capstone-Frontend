@@ -3,20 +3,22 @@ import SideBar from "./courseSideBar";
 import ContentShow from "./contentShow";
 import { NavbarUser } from "../../components";
 import axiosInstance from "../../networks/apis";
+import { useParams } from "react-router-dom";
 
 function Index() {
+  const { idCourse } = useParams();
   const [title, setTitle] = useState();
   const [section, setSection] = useState([]);
   const [currentContent, setCurrentContent] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       const courseTitle = await axiosInstance.get("api/course", {
-        params: { id: "28" },
+        params: { id: idCourse },
       });
       setTitle(courseTitle.data.data.title);
 
       const section = await axiosInstance.get("api/sections", {
-        params: { courseId: "28" },
+        params: { courseId: idCourse },
       });
       setSection(section.data.data);
     };
