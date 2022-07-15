@@ -7,7 +7,7 @@ import { AiFillStar } from "react-icons/ai";
 import { useState } from "react";
 import axiosInstance from "../../networks/apis";
 
-const Index = ({ handleCloseReview, showReview }) => {
+const Index = ({ handleCloseReview, showReview, idCourse }) => {
   const rating = [
     {
       val: 1,
@@ -74,8 +74,8 @@ const Index = ({ handleCloseReview, showReview }) => {
       review: review,
       rating: val,
     };
-    await createReview(12, data);
-    console.log("newRatings", ratings);
+    await createReview(idCourse, data);
+    // console.log("newRatings", ratings);
     setVal(null);
     setReview("");
     setRatings(rating);

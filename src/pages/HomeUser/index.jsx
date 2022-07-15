@@ -433,7 +433,9 @@ const Index = () => {
         <div className="card_mentor_container d-flex flex-nowrap">
           {mentorData?.map((item, index) => (
             <div className="card_mentor shadow-sm" key={index}>
-              <img className="img_mentor" src={item.url_image} alt="mentor" />
+              <div className="card_img">
+                <img className="img_mentor" src={item.url_image} alt="mentor" />
+              </div>
               <div className="data_mentor">
                 <h5 className="body_3">{item.name}</h5>
                 <p className="capion_2 neutral_2"></p>
