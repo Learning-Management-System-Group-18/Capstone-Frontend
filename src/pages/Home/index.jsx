@@ -265,11 +265,11 @@ function Index() {
 
   const handleSeeAllClass = () => {
     navigate("/my-class");
-  }
+  };
 
   useEffect(() => {
     axiosInstance
-      .get("api/reviews")
+      .get("/api/reviews")
       .then((response) => {
         // console.log("review ", response.data.data);
         setReviewData(...reviewData, response.data.data);
@@ -311,7 +311,7 @@ function Index() {
       })
       .catch((error) => {
         console.log(error);
-      })
+      });
   }, []);
 
   return (
@@ -338,27 +338,25 @@ function Index() {
           </Col>
         </Row>
       </div>
-      <div className='card_class_category bg_neutral_1'>
-        {
-          itemCategory === undefined ? (
-            // <ClassCategory title={"Class Category"} cardData={classCategoryData} />
-            ""
-          ) : (
-            <ClassCategory title={"Class Category"} cardData={itemCategory} />
-          )
-        }
+      <div className="card_class_category bg_neutral_1">
+        {itemCategory === undefined ? (
+          // <ClassCategory title={"Class Category"} cardData={classCategoryData} />
+          ""
+        ) : (
+          <ClassCategory title={"Class Category"} cardData={itemCategory} />
+        )}
       </div>
-      <div className='py-5'>
-        <h3 className='text-center heading_2'>Popular Class</h3>
-        <p className='text-center body_1'>This is 6 popular class in this week</p>
-        {
-          popularCourse === undefined ? (
-            // <PopularClassCard data={popularClassData} />
-            ""
-          ) : (
-            <PopularClassCard data={popularCourse} />
-          )
-        }
+      <div className="py-5">
+        <h3 className="text-center heading_2">Popular Class</h3>
+        <p className="text-center body_1">
+          This is 6 popular class in this week
+        </p>
+        {popularCourse === undefined ? (
+          // <PopularClassCard data={popularClassData} />
+          ""
+        ) : (
+          <PopularClassCard data={popularCourse} />
+        )}
       </div>
 
       <FAQ />

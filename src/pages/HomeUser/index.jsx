@@ -17,31 +17,32 @@ const Index = () => {
   const navigate = useNavigate();
   const [mentorData, setMentorData] = useState([]);
   const [reviewData, setReviewData] = useState([]);
+  const [ongoingClass, setOngoingClass] = useState([]);
 
-  const myClassData = [
-    {
-      status: "ongoing",
-      imgCourse:
-        "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      titleCourse: "Social Media Marketing",
-      categoryCourse: "Business Development",
-      description: "Description...",
-      totalSection: 156,
-      isCompleted: 70,
-      level: "Intermediate",
-    },
-    {
-      status: "ongoing",
-      imgCourse:
-        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      titleCourse: "Social Media Marketing",
-      categoryCourse: "Business Development",
-      description: "Description...",
-      totalSection: 156,
-      isCompleted: 70,
-      level: "Intermediate",
-    },
-  ];
+  // const myClassData = [
+  //   {
+  //     status: "ongoing",
+  //     imgCourse:
+  //       "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+  //     titleCourse: "Social Media Marketing",
+  //     categoryCourse: "Business Development",
+  //     description: "Description...",
+  //     totalSection: 156,
+  //     isCompleted: 70,
+  //     level: "Intermediate",
+  //   },
+  //   {
+  //     status: "ongoing",
+  //     imgCourse:
+  //       "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+  //     titleCourse: "Social Media Marketing",
+  //     categoryCourse: "Business Development",
+  //     description: "Description...",
+  //     totalSection: 156,
+  //     isCompleted: 70,
+  //     level: "Intermediate",
+  //   },
+  // ];
 
   //   const classCategoryData = [
   //     {
@@ -273,7 +274,7 @@ const Index = () => {
 
   useEffect(() => {
     axiosInstance
-      .get("api/mentor/top")
+      .get("/api/mentor/top")
       .then((response) => {
         console.log("top ", response.data.data);
         setMentorData(...mentorData, response.data.data);
@@ -284,7 +285,7 @@ const Index = () => {
   }, []);
   useEffect(() => {
     axiosInstance
-      .get("api/reviews")
+      .get("/api/reviews")
       .then((response) => {
         console.log("review ", response.data.data);
         setReviewData(...reviewData, response.data.data);
@@ -329,6 +330,22 @@ const Index = () => {
       });
   }, []);
 
+  useEffect(() => {
+    axiosInstance
+      .get("/api/auth/order/ongoing", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        console.log("ongoing ", response.data);
+        setOngoingClass(...ongoingClass, response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   console.log(popularCourse);
   console.log(itemCategory);
 
@@ -336,7 +353,7 @@ const Index = () => {
     <>
       <NavbarUser />
       <div className="card_mycourse">
-        <div className="d-flex justify-content-between mb-3">
+        <div className="d-flex justify-content-between mb-3 topOngo">
           <h3 className="heading_2">Let’s Continue to Improve Your Skills</h3>
           <p
             onClick={handleSeeAllClass}
@@ -345,20 +362,28 @@ const Index = () => {
             See all
           </p>
         </div>
-        <div className="d-flex justify-content-between">
-          {myClassData.map((item, index) => (
-            <MyCourse
-              status={item.status}
-              imgCourse={item.imgCourse}
-              titleCourse={item.titleCourse}
-              categoryCourse={item.categoryCourse}
-              description={item.description}
-              totalSection={item.totalSection}
-              isCompleted={item.isCompleted}
-              level={item.level}
-              key={index}
-            />
-          ))}
+        <div className="d-flex justify-content-between pt-4 pb-3 ongo">
+          {ongoingClass?.length > 0 || ongoingClass.length <= 2
+            ? ongoingClass.map((item, index) => (
+                <div className="col-6">
+                  <MyCourse
+                    key={index}
+                    status={
+                      item.count_all - item.count_completed === 0
+                        ? "completed"
+                        : "ongoing"
+                    }
+                    id={item.course.id}
+                    titleCourse={item.course.title}
+                    categoryCourse={item.course.category.title}
+                    imgCourse={item.course.url_image}
+                    totalSection={item.count_all}
+                    isCompleted={item.count_completed}
+                    level={item.level}
+                  />
+                </div>
+              ))
+            : ""}
         </div>
       </div>
       <div className="card_class_category bg_neutral_1">

@@ -6,16 +6,29 @@
     padding: 4rem 2rem;
 }
 
+.ongo{
+    overflow-x: auto;
+    overflow-y: hidden;
+    /* white-space: nowrap; */
+    cursor: pointer;
+    padding: 0 2rem;
+}
+
+.topOngo{
+    margin: 0 3rem;
+}
+
 .see_all {
     cursor: pointer;
 }
 
-.card_mentor_container::-webkit-scrollbar {
+.card_mentor_container::-webkit-scrollbar, .ongo::-webkit-scrollbar {
     display: none;
 }
 
 .card_mycourse {
-    margin: 4rem 3rem;
+    /* margin: 4rem 3rem; */
+    margin-top: 4rem;
 }
 
 .card_class_category {

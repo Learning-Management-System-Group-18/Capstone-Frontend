@@ -237,7 +237,7 @@ const Index = ({
               <div className="mb-3 text-start">
                 <input
                   type="text"
-                  placeholder="Enter category title"
+                  placeholder="Enter mentor name"
                   className="form-control mr-3 mb-4 radiusborder"
                   onChange={(e) => setMentor(e.target.value)}
                   value={mentor}
@@ -296,7 +296,7 @@ const Index = ({
               <div className="mb-3 text-start">
                 <input
                   type="text"
-                  placeholder="Enter category title"
+                  placeholder="Enter mentor name"
                   className="form-control mr-3 mb-4 radiusborder"
                   onChange={(e) => setMentor(e.target.value)}
                   value={
@@ -374,7 +374,7 @@ const Index = ({
               <div className="mb-3 text-start">
                 <input
                   type="text"
-                  placeholder="Enter tool"
+                  placeholder="Enter tool name"
                   className="form-control mr-3 mb-4 radiusborder"
                   onChange={(e) => setTool(e.target.value)}
                   value={tool}
@@ -445,7 +445,7 @@ const Index = ({
               <div className="mb-3 text-start">
                 <input
                   type="text"
-                  placeholder="Enter tool"
+                  placeholder="Enter tool name"
                   className="form-control mr-3 mb-4 radiusborder"
                   onChange={(e) => setTool(e.target.value)}
                   value={tool === "" && name !== "" ? setTool(name) : tool}
@@ -539,7 +539,7 @@ const Index = ({
               <div className="mb-3 text-start">
                 <input
                   type="text"
-                  placeholder="Enter tool"
+                  placeholder="Enter section name"
                   className="form-control mr-3 mb-4 radiusborder"
                   onChange={(e) => setSection(e.target.value)}
                   value={section}

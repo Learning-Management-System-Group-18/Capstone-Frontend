@@ -50,7 +50,7 @@ const Index = ({
       />
 
       {status === "ongoing" ? (
-        <div className="my-course">
+        <div className="my-course mb-5">
           <div className="row">
             <div className="col-4 me-4">
               <img src={imgCourse} className="img-course" alt="" />
@@ -73,7 +73,7 @@ const Index = ({
           </div>
         </div>
       ) : status === "completed" ? (
-        <div className="my-course">
+        <div className="my-course mb-5">
           <div className="row">
             <div className="col-4 me-4">
               <img src={imgCourse} className="img-course" alt="" />
@@ -102,7 +102,7 @@ const Index = ({
           </div>
         </div>
       ) : (
-        <div className="my-course">
+        <div className="my-course mb-5">
           <div className="row">
             <div className="col-4 me-4">
               <img src={imgCourse} className="img-course" alt="" />

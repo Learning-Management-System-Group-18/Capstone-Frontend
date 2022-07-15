@@ -61,7 +61,7 @@ const Index = ({
   // for Edit Data
   const getDataIdCategory = async () => {
     await axiosInstance
-      .get("api/category", {
+      .get("/api/category", {
         params: {
           id: idEdit,
         },

@@ -36,7 +36,7 @@ const Index = () => {
 
   const getDataCourseById = async (id) => {
     await axiosInstance
-      .get(`api/courses?categoryId=${id}`)
+      .get(`/api/courses?categoryId=${id}`)
       .then((response) => {
         setDataCourse(response.data.data);
         // console.log(response.data.data);
@@ -48,7 +48,7 @@ const Index = () => {
 
   const insertDataCourse = async (data) => {
     await axiosInstance
-      .post(`api/admin/course?categoryId=${idCategory}`, data, {
+      .post(`/api/admin/course?categoryId=${idCategory}`, data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

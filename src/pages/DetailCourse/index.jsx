@@ -103,7 +103,7 @@ const Index = () => {
 
   const createOrder = async (idCourse) => {
     await axiosInstance
-      .post(`api/auth/order?courseId=${idCourse}`, {
+      .post(`/api/auth/order?courseId=${idCourse}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -257,7 +257,7 @@ const Index = () => {
                 <div className="heading_4_user my-2">Free Course</div>
                 <button
                   className="subtitle_2_user btn-enrol col-12"
-                  onClick={() => handleCreateOrder(12)}
+                  onClick={() => handleCreateOrder(idCourse)}
                 >
                   Enrol Course
                 </button>

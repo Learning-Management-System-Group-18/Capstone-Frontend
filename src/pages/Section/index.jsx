@@ -80,7 +80,7 @@ function Index() {
 
   const getAllContentById = async () => {
     await axiosInstance
-      .get(`api/content?sectionId=${idSection}`, {
+      .get(`/api/content?sectionId=${idSection}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -98,7 +98,7 @@ function Index() {
   const create = async (type, newData) => {
     const types = type.toLowerCase();
     await axiosInstance
-      .post(`api/admin/${types}?sectionId=${idSection}`, newData, {
+      .post(`/api/admin/${types}?sectionId=${idSection}`, newData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -117,7 +117,7 @@ function Index() {
     const types = type.toLowerCase();
     console.log(types);
     await axiosInstance
-      .delete(`api/admin/${types}?id=${id}`, {
+      .delete(`/api/admin/${types}?id=${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -134,7 +134,7 @@ function Index() {
   const update = async (type, newData, id) => {
     const types = type.toLowerCase();
     await axiosInstance
-      .put(`api/admin/${types}?id=${id}`, newData, {
+      .put(`/api/admin/${types}?id=${id}`, newData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
