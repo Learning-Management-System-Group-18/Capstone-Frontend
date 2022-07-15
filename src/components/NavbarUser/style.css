@@ -45,9 +45,8 @@
   color: white !important;
 }
 
-.decorationuser {
-  border: 1.5px solid white;
-  border-radius: 100px;
+.decoration-Navuser {
+  color: #ff8819 !important;
 }
 
 .drop-nav-user {
@@ -56,15 +55,22 @@
 }
 .drop-item-nav-user,
 .drop-item-nav-user a {
-  text-decoration: none;
-  font-family: 'Inter';
+  font-family: 'Urbanist';
   font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  color: black;
+  font-weight: 400;
+  font-size: 16px;
+  color: #425466;
+  text-decoration: none !important;
 }
-
-.searchNavUser {
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: transparent !important;
+}
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background-color: #f5f8fb !important;
+}
+.navuser-Search {
   background: #f1f5ff;
   border-radius: 100px;
   width: 380px;
@@ -72,7 +78,7 @@
   margin-right: 20px;
 }
 
-.input-searchnav-user {
+.navuser-SearchInput {
   color: #7c8b99;
   font-family: 'Inter';
   font-weight: 400;
@@ -83,7 +89,7 @@
   margin-left: 10px;
   background: transparent;
 }
-.icon-searchusernav {
+.navuser-SearchIcon {
   margin-left: 4%;
   color: #7c8b99;
   width: 20px;

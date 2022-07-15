@@ -16,22 +16,21 @@ const Index = () => {
   const tHead = ["Category Name", "Description", "Course", "Employee", ""];
   const [dataCategory, setDataCategory] = useState([]);
   const full_name = localStorage.getItem("full_name");
+  const [success, setSuccess] = useState(false);
+
+  // API HANDLE
 
   const getDataCategory = async () => {
     await axiosInstance
-      .get("api/categories", {
-        params: { page: 1, size: 20 },
-      })
+      .get("api/categories")
       .then((response) => {
-        console.log(response.data.data);
+        // console.log(response.data.data);
         setDataCategory(response.data.data);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
-  const [success, setSuccess] = useState(false);
 
   const insertDataCategory = async (data) => {
     await axiosInstance
@@ -72,6 +71,7 @@ const Index = () => {
         console.log(r);
       });
   };
+
   useEffect(() => {
     getDataCategory();
   }, []);

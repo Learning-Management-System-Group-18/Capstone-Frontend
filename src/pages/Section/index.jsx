@@ -8,6 +8,7 @@ import {
   Preview,
 } from "../../components";
 import { Row, Col } from "react-bootstrap";
+import { arrowRightIcon, slideIcon, videoIcon, quizIcon } from "../../assets";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import {
@@ -18,104 +19,112 @@ import {
   AiFillCheckCircle,
   AiOutlineClose,
 } from "react-icons/ai";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axiosInstance from "../../networks/apis";
 
 function Index() {
+  const navigate = useNavigate();
+  const { title, idSection } = useParams();
+  const [video, setVideo] = useState([]);
+  const [quiz, setQuiz] = useState([]);
+  const [slide, setSlide] = useState([]);
+
   const section = [];
 
   const [show, setShow] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const [modalType, setModalType] = useState("");
   const [edit, setEdit] = useState();
-  const { categoryName } = useParams();
+  const [idEdit, setIdEdit] = useState();
+  const [success, setSuccess] = useState(false);
+  const [data, setData] = useState(section);
+  const [preview, setPreview] = useState("");
+  const [typePreview, setTypePreview] = useState("");
+
+  const handlePreview = (type, data) => {
+    setPreview(data[0]);
+    setTypePreview(type);
+    setShowPreview(true);
+  };
+
   const handleClose = () => {
     setShow(false);
-    setEdit();
+    setEdit("");
+    setPreview("");
+    setTypePreview("");
     setShowPreview(false);
   };
-  const [data, setData] = useState(section);
+
   const handleShow = (type) => {
     setShow(true);
     setModalType(type);
   };
 
-  const handleEdit = (data) => {
-    setEdit(data);
+  const handleEdit = (type, data, id) => {
+    setEdit(data[0]);
+    setIdEdit(id);
+    console.log("data", edit);
     setShow(true);
-    setModalType(data.jenis);
+    setModalType(type);
   };
 
-  const handlePreview = (data) => {
-    setShowPreview(true);
+  const buttonBack = () => {
+    navigate(-1);
   };
 
   const tambah = (newData) => {
     setData(data.concat(newData));
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const allVideo = await axiosInstance.get("api/videos", {
-        params: { sectionId: 1, page: 1, size: 7 },
-      });
-      const allSlide = await axiosInstance.get("api/slides", {
-        params: { sectionId: 1, page: 1, size: 7 },
-      });
-      const allQuiz = await axiosInstance.get("api/quizzes", {
-        params: { sectionId: 1, page: 1, size: 7 },
-      });
+  // API HANDLE
 
-      const video = allVideo.data.data;
-      const quiz = allSlide.data.data;
-      const slide = allQuiz.data.data;
-      const videos = {
-        jenis: "Video",
-      };
-      const slides = {
-        jenis: "Slide",
-      };
-      const tasks = {
-        jenis: "Quiz",
-      };
-      const mapVideo = video.map((data) => ({ ...data, ...videos }));
-      const mapQuiz = quiz.map((data) => ({ ...data, ...slides }));
-      const mapSlide = slide.map((data) => ({ ...data, ...tasks }));
-
-      setData(data.concat(mapVideo, mapQuiz, mapSlide));
-    };
-    fetchData();
-  }, []);
+  const getAllContentById = async () => {
+    await axiosInstance
+      .get(`api/content?sectionId=${idSection}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data.data);
+        let res = response.data.data;
+        setVideo(res.video);
+        setQuiz(res.quiz);
+        setSlide(res.slide);
+      })
+      .catch((error) => console.log(error));
+  };
 
   const create = async (type, newData) => {
     const types = type.toLowerCase();
     await axiosInstance
-      .post(
-        `api/admin/${types}`,
-        newData,
-
-        {
-          params: { sectionId: 1 },
-        }
-      )
+      .post(`api/admin/${types}?sectionId=${idSection}`, newData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((response) => {
         console.log(response);
+        setSuccess(!success);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const handleDelete = async (id, type) => {
+  const handleDelete = async (type, id) => {
     console.log(id);
-    console.log(type);
     const types = type.toLowerCase();
+    console.log(types);
     await axiosInstance
-      .delete(`api/admin/${types}`, {
-        params: { id: id },
+      .delete(`api/admin/${types}?id=${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       })
       .then((response) => {
         console.log(response);
+        setSuccess(!success);
       })
       .catch((error) => {
         console.log(error);
@@ -125,32 +134,50 @@ function Index() {
   const update = async (type, newData, id) => {
     const types = type.toLowerCase();
     await axiosInstance
-      .put(`api/admin/${types}`, newData, {
-        params: { id: id },
+      .put(`api/admin/${types}?id=${id}`, newData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       })
       .then((response) => {
         console.log(response);
+        setSuccess(!success);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
+  useEffect(() => {
+    getAllContentById();
+  }, [idSection, success]);
+
+  const bg = {
+    height: video.length == 0 ? "100vh" : "100%",
+    backgroundColor: "#F5F8FB",
+  };
+
   return (
-    <div>
+    <div style={bg}>
       <NavbarAdmin />
       <div className="nav-info">
-        <div className="container d-flex justify-content-between py-3">
+        <div className="container d-flex justify-content-between pt-3">
           <span className="align-middle caption_2">
-            Dashboard {categoryName}
+            Dashboard <img src={arrowRightIcon} alt="arrow-right" /> Create
+            Course <img src={arrowRightIcon} alt="arrow-right" /> Create Section
           </span>
           <Notification />
         </div>
       </div>
-      <div className="container mb-3">
+      <div className="container">
         <div className=" d-flex justify-content-between mt-4 mb-5">
           <div className="margin-content">
-            <p style={{ fontSize: "20px" }}> Introduction Class</p>
+            <p
+              style={{ fontSize: "20px", textTransform: "capitalize" }}
+              className="heading_1 secondary_2"
+            >
+              {title.replaceAll("-", " ")}
+            </p>
           </div>
           <div className=" notif-box d-flex justify-content-around invisible">
             <AiFillCheckCircle className="mt-3 me-5" />
@@ -167,7 +194,7 @@ function Index() {
           <div className="text-center margin-content">
             <DropdownButton
               id="dropdown-item-button"
-              title="ADD"
+              title="+ ADD"
               bsPrefix=" dropdown-toggle-1"
             >
               <Dropdown.Item
@@ -201,30 +228,22 @@ function Index() {
           </div>
         </div>
 
-        {data.map((data, i) => (
+        {/* {data?.map((data, i) => (
           <Row key={i}>
             <Col xs={2} className="me-4 mb-5">
               <div
                 className="thumbnail"
                 style={
-                  data.jenis === "Video"
+                  data[i]?.video !== null
                     ? {
-                        backgroundImage: `url(${`https://i.ytimg.com/vi/${data.link.substring(
-                          17
-                        )}/hq720.jpg`})`,
+                        backgroundColor: `black`,
                       }
-                    : data.jenis === "Reading"
+                    : data[i]?.slide !== null
                     ? {
-                        backgroundImage: `url(${`https://lh3.google.com/u/0/d/${data.link.substring(
-                          39,
-                          83
-                        )}=w208-h117`})`,
+                        backgroundColor: `blue`,
                       }
                     : {
-                        backgroundImage: `url(${`https://lh3.google.com/u/0/d/${data.link.substring(
-                          34,
-                          90
-                        )}=w208-h117`})`,
+                        backgroundColor: `red`,
                       }
                 }
               >
@@ -260,30 +279,149 @@ function Index() {
               </button>
             </Col>
           </Row>
-        ))}
+        ))} */}
+        <Preview
+          handleClose={handleClose}
+          showPreview={showPreview}
+          handlePreview={handlePreview}
+          show={show}
+          data={preview}
+          type={typePreview}
+        />
+        <FormSection
+          show={show}
+          modalType={modalType}
+          handleClose={handleClose}
+          handleShow={handleShow}
+          edit={edit}
+          tambah={tambah}
+          data={data}
+          create={create}
+          update={update}
+        />
       </div>
-      <div className="my-5 d-flex justify-content-end me-5">
-        <Button type={"btn-back"} />
-        <Button type={"btn-save"} />
-      </div>
+      <div className="container">
+        <div className="row">
+          {video?.map((x, i, array) => (
+            <>
+              <div className="col-2" key={i}>
+                <div className="thumbnail">
+                  <img
+                    src={videoIcon}
+                    alt="icon"
+                    onClick={() => handlePreview("video", array)}
+                  />
+                </div>
+              </div>
+              <div className="col-8">
+                <div className="body_2 secondary_2">Title </div>
+                <div className="caption_1 neutral_3"> {x.title}</div>
+                <div className="body_2 secondary_2">Description</div>
 
-      <Preview
-        handleClose={handleClose}
-        showPreview={showPreview}
-        handlePreview={handlePreview}
-        show={show}
-      />
-      <FormSection
-        show={show}
-        modalType={modalType}
-        handleClose={handleClose}
-        handleShow={handleShow}
-        edit={edit}
-        tambah={tambah}
-        data={data}
-        create={create}
-        update={update}
-      />
+                <div className="caption_1 neutral_3">{x.description}</div>
+                <div className="Video mt-2">Video</div>
+              </div>
+              <div className="col-2">
+                <div className="ms-5 mt-2">
+                  <button
+                    className="function-button"
+                    onClick={() => handleEdit("video", array, x.id)}
+                  >
+                    <AiFillEdit />
+                  </button>
+                  <br />
+                  <button
+                    className="function-button"
+                    onClick={() => handleDelete("video", x.id)}
+                  >
+                    <AiFillDelete />
+                  </button>
+                </div>
+              </div>
+            </>
+          ))}
+          {slide?.map((x, i, array) => (
+            <>
+              <div className="col-2 my-5" key={i}>
+                <div className="thumbnail">
+                  <img
+                    src={slideIcon}
+                    alt="icon"
+                    onClick={() => handlePreview("slide", array)}
+                  />
+                </div>
+              </div>
+              <div className="col-8 my-5">
+                <div className="body_2 secondary_2">Title </div>
+                <div className="caption_1 neutral_3"> {x.title}</div>
+                <div className="body_2 secondary_2">Description</div>
+
+                <div className="caption_1 neutral_3">{x.description}</div>
+                <div className="Slide mt-2">Slide</div>
+              </div>
+              <div className="col-2 my-5">
+                <div className="ms-5 mt-2">
+                  <button
+                    className="function-button"
+                    onClick={() => handleEdit("slide", array, x.id)}
+                  >
+                    <AiFillEdit />
+                  </button>
+                  <br />
+                  <button
+                    className="function-button"
+                    onClick={() => handleDelete("slide", x.id)}
+                  >
+                    <AiFillDelete />
+                  </button>
+                </div>
+              </div>
+            </>
+          ))}
+          {quiz?.map((x, i, array) => (
+            <>
+              <div className="col-2" key={i}>
+                <div className="thumbnail">
+                  <img
+                    src={quizIcon}
+                    alt="icon"
+                    onClick={() => handlePreview("quiz", array)}
+                  />
+                </div>
+              </div>
+              <div className="col-8">
+                <div className="body_2 secondary_2">Title </div>
+                <div className="caption_1 neutral_3"> {x.title}</div>
+                <div className="body_2 secondary_2">Description</div>
+
+                <div className="caption_1 neutral_3">{x.description}</div>
+                <div className="Quiz mt-2">Quiz</div>
+              </div>
+              <div className="col-2">
+                <div className="ms-5 mt-2">
+                  <button
+                    className="function-button"
+                    onClick={() => handleEdit("quiz", array, x.id)}
+                  >
+                    <AiFillEdit />
+                  </button>
+                  <br />
+                  <button
+                    className="function-button"
+                    onClick={() => handleDelete("quiz", x.id)}
+                  >
+                    <AiFillDelete />
+                  </button>
+                </div>
+              </div>
+            </>
+          ))}
+        </div>
+        <div className="py-5 d-flex justify-content-end">
+          <Button type={"btn-back"} onClick={buttonBack} />
+          <Button type={"btn-save"} onClick={buttonBack} />
+        </div>
+      </div>
     </div>
   );
 }

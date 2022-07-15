@@ -6,6 +6,7 @@ import {
   NavbarAdmin,
   SearchBar,
   Notification,
+  FormCategory,
 } from "../../components";
 import {
   employIcon,
@@ -16,39 +17,87 @@ import {
 } from "../../assets";
 import "./style.css";
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axiosInstance from "./../../networks/apis";
 
 const Index = () => {
-  const { categoryName } = useParams();
-
-  console.log(categoryName);
-
+  const { categoryName, idCategory } = useParams();
+  const nameCategory = categoryName.replaceAll("-", " ");
   const tableTitle = ["Course"];
-  const tHead = ["Course Title", "Mentor", "Section", "Employee", ""];
-  const data = [
-    {
-      title: "Android Developer",
-      mentor: ["mentor 1", "mentor 2"],
-      section: "12 Section",
-      employee: "34 Employees",
-      iconTitle:
-        "https://img.icons8.com/ultraviolet/344/play-button-circled.png",
-      mentorImg: [
-        "https://akcdn.detik.net.id/visual/2016/08/31/46968e0b-a0db-4348-920b-94a64aad2efd_169.jpg?w=650",
-        "https://akcdn.detik.net.id/visual/2016/08/31/46968e0b-a0db-4348-920b-94a64aad2efd_169.jpg?w=650",
-      ],
-    },
-    {
-      title: "Android Developer",
-      mentor: ["mentor 1", "mentor 2"],
-      section: "12 Section",
-      employee: "34 Employees",
-      iconTitle: "https://img.icons8.com/color/344/apple-app-store--v1.png",
-      mentorImg: [
-        "https://akcdn.detik.net.id/visual/2016/08/31/46968e0b-a0db-4348-920b-94a64aad2efd_169.jpg?w=650",
-        "https://akcdn.detik.net.id/visual/2016/08/31/46968e0b-a0db-4348-920b-94a64aad2efd_169.jpg?w=650",
-      ],
-    },
-  ];
+  const tHead = ["Course Title", "Description", "Level", "Rating", ""];
+
+  const [success, setSuccess] = useState(false);
+  const [dataCourse, setDataCourse] = useState([]);
+
+  console.log(nameCategory, idCategory);
+  console.log("dataCourse", dataCourse);
+
+  // API HANDLE
+
+  const getDataCourseById = async (id) => {
+    await axiosInstance
+      .get(`api/courses?categoryId=${id}`)
+      .then((response) => {
+        setDataCourse(response.data.data);
+        // console.log(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const insertDataCourse = async (data) => {
+    await axiosInstance
+      .post(`api/admin/course?categoryId=${idCategory}`, data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        setSuccess(!success);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const editDataCourse = async (data, id) => {
+    await axiosInstance
+      .put(`api/admin/course?id=${id}`, data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        setSuccess(!success);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const deleteDataCourse = async (idDelete) => {
+    await axiosInstance
+      .delete("api/admin/course", {
+        params: { id: idDelete },
+      })
+      .then((x) => {
+        setSuccess(!success);
+      })
+      .catch((r) => {
+        console.log(r);
+      });
+  };
+
+  useEffect(() => {
+    if (idCategory !== null) {
+      getDataCourseById(idCategory);
+    }
+  }, []);
+
+  useEffect(() => {
+    getDataCourseById(idCategory);
+  }, [idCategory]);
+
+  useEffect(() => {
+    getDataCourseById(idCategory);
+  }, [success]);
 
   return (
     <>
@@ -59,7 +108,9 @@ const Index = () => {
             <div className="nav-name">
               <span className="align-middle caption_2">
                 Dashboard <img src={arrowRightIcon} alt="arrow-right" />{" "}
-                {categoryName}{" "}
+                <span style={{ textTransform: "capitalize" }}>
+                  {nameCategory}
+                </span>
               </span>
             </div>
 
@@ -71,14 +122,16 @@ const Index = () => {
         </div>
         <div className="container mt-4">
           <div className="d-flex mb-1">
-            <h1 className="me-3 heading_4 secondary_2">{categoryName}</h1>
+            <h1
+              className="me-3 heading_4 secondary_2"
+              style={{ textTransform: "capitalize" }}
+            >
+              {nameCategory}
+            </h1>
             <Button type={"btn-edit"} />
           </div>
           <p className="caption_1 neutral_3">
-            Marketing adalah proses mengenalkan produk atau jasa agar diketahui
-            oleh masyarakat. Marketing juga berarti proses pemasaran <br />{" "}
-            produk atau jasa, mulai dari pembuatan strategi hingga apa yang
-            dirasakan oleh konsumen.
+            {dataCourse[0]?.category.description}
           </p>
         </div>
 
@@ -89,7 +142,14 @@ const Index = () => {
         </div>
 
         <div className="container background-table px-5 pb-5 mt-4">
-          <Table tHead={tHead} data={data} tableTitle={tableTitle} />
+          <Table
+            tHead={tHead}
+            data={dataCourse || []}
+            deleteDataCourse={deleteDataCourse}
+            editDataCourse={editDataCourse}
+            insertDataCourse={insertDataCourse}
+            tableTitle={tableTitle}
+          />
         </div>
       </div>
     </>

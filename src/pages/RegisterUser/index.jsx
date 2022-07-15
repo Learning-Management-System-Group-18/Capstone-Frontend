@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
-import "./style.css";
-import { Rafiki, Ellipse, Ellipse2 } from "../../assets";
-import axiosInstance from "../../networks/apis";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import './style.css';
+import { Rafiki, Ellipse, Ellipse2 } from '../../assets';
+import axiosInstance from '../../networks/apis';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { Form } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 const Index = () => {
   const newData = {
-    nama: "",
-    email: "",
-    password: "",
+    nama: '',
+    email: '',
+    password: '',
   };
   const userRegister = [];
   const [user, setUser] = useState(userRegister);
@@ -19,44 +20,44 @@ const Index = () => {
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
   const navigate = useNavigate();
   const [errMsg, SetErrMsg] = useState({
-    nama: "",
-    email: "",
-    password: "",
+    nama: '',
+    email: '',
+    password: '',
   });
-  const [passwordType, setPasswordType] = useState("password");
+  const [passwordType, setPasswordType] = useState('password');
   const togglePassword = () => {
-    if (passwordType === "password") {
-      setPasswordType("text");
+    if (passwordType === 'password') {
+      setPasswordType('text');
       return;
     }
-    setPasswordType("password");
+    setPasswordType('password');
   };
   const handleInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     const err = { ...errMsg };
 
-    if (name === "nama") {
+    if (name === 'nama') {
       if (namaRegex.test(value)) {
-        SetErrMsg("");
+        SetErrMsg('');
       } else {
         SetErrMsg({
           ...err,
           nama: <i>Nama Yang Anda Masukan Harus Berupa Huruf</i>,
         });
       }
-    } else if (name === "email") {
-      if (emailRegex.test(value) || value === "") {
-        SetErrMsg("");
+    } else if (name === 'email') {
+      if (emailRegex.test(value) || value === '') {
+        SetErrMsg('');
       } else {
         SetErrMsg({
           ...err,
           email: <i>Email Yang Anda Masukan Tidak Sesuai</i>,
         });
       }
-    } else if (name === "password") {
-      if (passwordRegex.test(value) || value === "") {
-        SetErrMsg("");
+    } else if (name === 'password') {
+      if (passwordRegex.test(value) || value === '') {
+        SetErrMsg('');
       } else {
         SetErrMsg({
           ...err,
@@ -74,40 +75,55 @@ const Index = () => {
       ...data,
       [name]: value,
     });
-    console.log("data", data);
+    console.log('data', data);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    if (errMsg !== "") {
-      alert(
-        "Data Pendaftaran Ada Yang Tidak Sesuai Silahkan Anda Cek Kembali Form Pengisian Anda"
-      );
+    if (errMsg !== '') {
+      Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'Data Pendaftar Gagal Di Terima',
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } else {
-      alert(`Data Pendaftaran atas nama "${data.nama}"Berhasil Diterima`);
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Data Pendaftar Berhasil Di Terima',
+        showConfirmButton: false,
+        timer: 1500,
+      });
       const newUser = {
         fullName: data.nama,
         email: data.email,
         password: data.password,
       };
       setUser(user.concat(newUser));
+      await register(newUser);
+      navigate('/login');
     }
   };
 
-  useEffect(() => {
-    if (user.length !== 0) {
-      console.log(user[0]);
-      axiosInstance
-        .post("/api/register", user[0])
-        .then((response) => {
-          console.log(user);
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, [user]);
+  const register = async (data) => {
+    await axiosInstance
+      .post('/api/register', data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  // useEffect(() => {
+  //   if (user.length !== 0) {
+  //     console.log(user[0]);
+
+  //   }
+  // }, [user]);
 
   return (
     <div className="container-fluid">
@@ -120,18 +136,18 @@ const Index = () => {
           </div>
           <h3 className="text-center text-light ">Welcome to Level Up 🙌</h3>
           <p className="text-light text-center">
-            Upgrade your skills, increase salary.{" "}
+            Upgrade your skills, increase salary.{' '}
           </p>
         </div>
         <div className="col">
-          <div className="row mx-auto py-5" style={{ padding: "54px 95px" }}>
+          <div className="row mx-auto py-5" style={{ padding: '54px 95px' }}>
             <h1 className="title">Create Account</h1>
             <p className="text-start mt-1 mb-5">
               Already have an account?
               <button
                 className="button-navigate"
                 onClick={() => {
-                  navigate("/login");
+                  navigate('/login');
                 }}
               >
                 Login
@@ -150,7 +166,7 @@ const Index = () => {
                     name="nama"
                     required
                   ></input>
-                  <span className="err-Msg">{errMsg.nama ?? ""}</span>
+                  <span className="err-Msg">{errMsg.nama ?? ''}</span>
                 </div>
                 <Form.Label className="title">Email</Form.Label>
                 <div className="mb-3 text-start">
@@ -163,7 +179,7 @@ const Index = () => {
                     name="email"
                     required
                   ></input>
-                  <span className="err-Msg">{errMsg.email ?? ""}</span>
+                  <span className="err-Msg">{errMsg.email ?? ''}</span>
                 </div>
                 <Form.Label className="title">Password</Form.Label>
                 <div className="input-group">
@@ -188,7 +204,7 @@ const Index = () => {
                     }
                     onClick={togglePassword}
                   >
-                    {passwordType === "password" ? (
+                    {passwordType === 'password' ? (
                       <AiOutlineEye />
                     ) : (
                       <AiOutlineEyeInvisible />

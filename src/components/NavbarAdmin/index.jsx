@@ -1,14 +1,14 @@
-import { React, useState } from 'react';
-import './style.css';
-import { Link, useLocation } from 'react-router-dom';
-import { Dropdown, NavDropdown, Nav, Navbar, Container } from 'react-bootstrap';
-import { logoutIcon } from '../../assets';
-import { PopupLogout } from '../';
+import { React, useState } from "react";
+import "./style.css";
+import { Link, useLocation } from "react-router-dom";
+import { Nav } from "react-bootstrap";
+import { logoutIcon, navUserIcon } from "../../assets";
+import { PopupLogout } from "../";
 
 const Index = () => {
   const location = useLocation();
   const locationLink = location.pathname;
-  const link = locationLink.split('/');
+  const link = locationLink.split("/");
   // console.log(link[1]);
 
   const [showLogout, setShowLogout] = useState(false);
@@ -22,15 +22,15 @@ const Index = () => {
       <nav className="navbar navbar-expand-lg navbar-dark navbar-admin">
         <div className="container">
           <Link to="/dashboard" className="navbar-brand">
-            Logo
+            <img src={navUserIcon} alt="navUserIcon" />
           </Link>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <Nav className="mx-auto">
+            <Nav style={{ marginLeft: "33%" }}>
               <Nav>
                 <Link
                   to="/dashboard"
                   className={`${
-                    link[1] == 'dashboard' ? `item-nav decoration` : `item-nav`
+                    link[1] == "dashboard" ? `item-nav decoration` : `item-nav`
                   }`}
                 >
                   Dasboard
@@ -40,7 +40,7 @@ const Index = () => {
                 <Link
                   to="/order"
                   className={`${
-                    link[1] == 'order' ? `item-nav decoration` : `item-nav`
+                    link[1] == "order" ? `item-nav decoration` : `item-nav`
                   }`}
                 >
                   Order
@@ -73,7 +73,7 @@ const Index = () => {
 
                 <div
                   className={`${
-                    link[1] == 'profile'
+                    link[1] == "profile"
                       ? `dropdown-admin decoration`
                       : `dropdown-admin`
                   }`}
@@ -83,7 +83,7 @@ const Index = () => {
                     <Link to="/profile">Account Setting</Link>
                     <div
                       className="px-3 py-2 "
-                      style={{ background: 'white' }}
+                      style={{ background: "white" }}
                       onClick={logoutShow}
                     >
                       Logout

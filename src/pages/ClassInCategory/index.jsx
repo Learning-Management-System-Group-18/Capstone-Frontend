@@ -2,149 +2,83 @@ import React from "react";
 import { NavbarUser, FooterUser, PopularClassCard } from "../../components";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
+import { useEffect, useState } from "react";
+import axiosInstance from "../../networks/apis";
+import { noData } from "../../assets";
 import "./style.css";
-
+import { useParams } from "react-router-dom";
 const Index = () => {
-  const data = [
-    {
-      img: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=812&q=80",
-      title: "Overview of Data Analyst",
-      price: "Free Course",
-      class_level: "Intermediate",
-      total_employee: "70",
-      star: "4.5",
-      total_review: "65",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=812&q=80",
-      title: "Overview of Data Analyst",
-      price: "Free Course",
-      class_level: "Intermediate",
-      total_employee: "70",
-      star: "4.5",
-      total_review: "65",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=812&q=80",
-      title: "Overview of Data Analyst",
-      price: "Free Course",
-      class_level: "Intermediate",
-      total_employee: "70",
-      star: "4.5",
-      total_review: "65",
-    },
-  ];
+  const { categoryName, idCategory } = useParams();
 
-  const popularClassData = [
-    {
-      class_category: "Business Development",
-      img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Social Media Marketing",
-      price: 0,
-      level: "Intermediate",
-      total_employee: 120,
-      star: 3,
-      total_review: 110,
-    },
-    {
-      class_category: "Android Development",
-      img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Android Dev",
-      price: 0,
-      level: "Beginner",
-      total_employee: 150,
-      star: 4,
-      total_review: 120,
-    },
-    {
-      class_category: "Business Development",
-      img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Social Media Marketing",
-      price: 0,
-      level: "Advanced",
-      total_employee: 120,
-      star: 3,
-      total_review: 110,
-    },
-    {
-      class_category: "Android Development",
-      img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Android Dev",
-      price: 0,
-      level: "Beginner",
-      total_employee: 150,
-      star: 4,
-      total_review: 120,
-    },
-    {
-      class_category: "Business Development",
-      img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Social Media Marketing",
-      price: 0,
-      level: "Intermediate",
-      total_employee: 120,
-      star: 3,
-      total_review: 110,
-    },
-    {
-      class_category: "Android Development",
-      img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Android Dev",
-      price: 0,
-      level: "Beginner",
-      total_employee: 150,
-      star: 4,
-      total_review: 120,
-    },
-    {
-      class_category: "Business Development",
-      img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Social Media Marketing",
-      price: 0,
-      level: "Intermediate",
-      total_employee: 120,
-      star: 3,
-      total_review: 110,
-    },
-    {
-      class_category: "Android Development",
-      img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Android Dev",
-      price: 0,
-      level: "Beginner",
-      total_employee: 150,
-      star: 4,
-      total_review: 120,
-    },
-    {
-      class_category: "Android Development",
-      img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Android Dev",
-      price: 0,
-      level: "Beginner",
-      total_employee: 150,
-      star: 4,
-      total_review: 120,
-    },
-  ];
+  console.log(typeof idCategory);
+
+  const [popularCourse, setPopularCourse] = useState([]);
+  useEffect(async () => {
+    await axiosInstance
+      .get("/api/course/popular")
+      .then((response) => {
+        // console.log(response.data.data);
+        setPopularCourse(response.data.data);
+        // console.log(popularCourse);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  const newData = popularCourse.filter((x) => {
+    if (x.category.id === Number(idCategory)) {
+      return x;
+      console.log("first");
+    } else {
+      // return x;
+      console.log(x.category.id);
+    }
+  });
+
+  console.log("dataFilter ", newData);
+
+  // console.log(popularCourse);
+
   return (
     <>
       <NavbarUser />
 
       <div className="container d-flex justify-content-between py-5 px-4">
-        <div className="titleClassCategory"> Marketing </div>
+        <div
+          className="titleClassCategory"
+          style={{ textTransform: "capitalize" }}
+        >
+          {categoryName.replaceAll("-", " ")}
+        </div>
         <DropdownButton
           id="dropdown-basic-button"
           title="Filter by level"
           className="filterClassCategory"
         >
-          <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+          <Dropdown.Item className="dropitem-ClassCategory">
+            Beginner
+          </Dropdown.Item>
+          <Dropdown.Item className="dropitem-ClassCategory">
+            Intermediate
+          </Dropdown.Item>
+          <Dropdown.Item className="dropitem-ClassCategory">
+            Advaced
+          </Dropdown.Item>
         </DropdownButton>
       </div>
 
-      <PopularClassCard data={popularClassData} />
+      {newData?.length > 0 ? (
+        <PopularClassCard data={newData || []} />
+      ) : (
+        <div className="container text-center my-5 ">
+          <img src={noData} alt="no-data" />
+          <div className="body_1 mt-3">
+            Data Kategori {categoryName.replaceAll("-", " ")} Masih Belum
+            Tersedia{" "}
+          </div>
+        </div>
+      )}
 
       <footer>
         <FooterUser />

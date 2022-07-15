@@ -11,59 +11,29 @@ import { AiOutlineClose } from "react-icons/ai";
 
 const Index = ({
   handleClose,
-  handleShow,
   show,
-  setShow,
   modalType,
-  insertDataCategory,
-  editDataCategory,
-  idEdit,
+  insertDataCourse,
+  editDataCourse,
+  idEditCourse,
 }) => {
-  // const [imageBase64, setImageBase64] = useState("");
-
-  // const onDrop = useCallback((acceptedFiles) => {
-  //   getBase64(acceptedFiles[0])
-  //     .then((result) => {
-  //       if (result) {
-  //         setImageBase64(result);
-  //       } else {
-  //         setImageBase64("");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
-
-  // const { getRootProps, getInputProps } = useDropzone({ onDrop });
-
-  // const getBase64 = (file) => {
-  //   return new Promise((resolve, reject) => {
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(file);
-  //     reader.onload = () => resolve(reader.result);
-  //     reader.onerror = (error) => reject(error);
-  //   });
-  // };
-
   const newData = {
     title: "",
     description: "",
-    image: "",
+    level: "",
   };
 
-  const newCategoryData = [];
-  const [category, setCategory] = useState(newCategoryData);
+  // const [course, setCourse] = useState([]);
   const [data, setData] = useState(newData);
   const [newDataEdit, setNewDataEdit] = useState({});
   const [defaultData, setDefaultData] = useState({});
 
   // for Edit Data
-  const getDataIdCategory = async () => {
+  const getDataIdCourse = async () => {
     await axiosInstance
-      .get("api/category", {
+      .get("api/course", {
         params: {
-          id: idEdit,
+          id: idEditCourse,
         },
       })
       .then((response) => {
@@ -78,7 +48,7 @@ const Index = ({
     const name = e.target.name;
     const value = e.target.value;
 
-    if (modalType == "create") {
+    if (modalType == "createCourse") {
       setData({
         ...data,
         [name]: value,
@@ -93,6 +63,8 @@ const Index = ({
     // console.log("data", newDataEdit);
   };
 
+  console.log("data", newDataEdit);
+
   const [file, setFile] = useState(null);
   const handleFileUpload = async (e) => {
     if (e.target.files[0]) setFile(e.target.files[0]);
@@ -100,39 +72,31 @@ const Index = ({
 
   // console.log(file);
 
-  const handleSubmit = async (event) => {
+  const handleSubmitCourse = async (event) => {
     event.preventDefault();
-    if (modalType === "create") {
-      const newCategory = {
+    if (modalType === "createCourse") {
+      const newCourse = await {
         title: data.title,
         description: data.description,
-        image: file,
+        level: data.level.toUpperCase(),
+        // rating: data.rating,
+        // image: file,
       };
-      await insertDataCategory(newCategory);
-      console.log(newCategory);
-      setCategory(category.concat(newCategory));
+      await insertDataCourse(newCourse);
+      console.log(newCourse);
       setData(newData);
-    } else if (modalType === "edit") {
-      console.log(newDataEdit);
+    } else if (modalType === "editCourse") {
+      console.log("data edit course", newDataEdit);
 
       const id = newDataEdit.id;
-      let dataUpdate = {};
-      if (file === null) {
-        dataUpdate = {
-          title: newDataEdit.title,
-          description: newDataEdit.description,
-        };
-        await editDataCategory(dataUpdate, id);
-        console.log("without Image :", dataUpdate, file);
-      } else {
-        dataUpdate = {
-          title: newDataEdit.title,
-          description: newDataEdit.description,
-          image: file,
-        };
-        await editDataCategory(dataUpdate, id);
-        console.log("with Image", dataUpdate, file);
-      }
+
+      const dataUpdate = await {
+        title: newDataEdit.title,
+        description: newDataEdit.description,
+        level: newDataEdit.level.toUpperCase(),
+      };
+
+      await editDataCourse(dataUpdate, id);
 
       console.log(id, dataUpdate);
     }
@@ -148,12 +112,12 @@ const Index = ({
   };
 
   useEffect(() => {
-    if (idEdit !== 0) {
-      getDataIdCategory();
+    if (idEditCourse !== 0) {
+      getDataIdCourse();
     }
-  }, [idEdit]);
+  }, [idEditCourse]);
 
-  if (modalType === "create") {
+  if (modalType === "createCourse") {
     return (
       <div>
         <Modal show={show} onHide={handleClose}>
@@ -163,16 +127,16 @@ const Index = ({
                 className="icon-title"
                 onClick={handleClose}
               />
-              Create Category
+              Create Course
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmitCourse}>
               <Form.Label className="title-form-category">
                 Input Title
               </Form.Label>
               <div className="mb-3 text-start">
                 <input
                   type="text"
-                  placeholder="Enter category title"
+                  placeholder="Enter course title"
                   className="form-control mr-3 mb-4 radiusborder"
                   onChange={handleInput}
                   value={data.title}
@@ -195,7 +159,37 @@ const Index = ({
                   required
                 ></textarea>
               </div>
+              {/* <Form.Label className="title-form-category">
+                Input Rating
+              </Form.Label>
+              <div className="mb-3 text-start">
+                <input
+                  type="number"
+                  placeholder="max 5"
+                  className="form-control mr-3 mb-4 radiusborder"
+                  onChange={handleInput}
+                  value={data.rating >= 5 ? 5 : data.rating}
+                  name="rating"
+                  max="5"
+                  required
+                ></input>
+              </div> */}
               <Form.Label className="title-form-category">
+                Input Level
+              </Form.Label>
+              <div className="mb-3 text-start">
+                <input
+                  type="text"
+                  placeholder="BEGINNER / INTERMEDIATE / ADVANCED"
+                  className="form-control mr-3 mb-4 radiusborder"
+                  style={{ textTransform: "uppercase" }}
+                  onChange={handleInput}
+                  value={data.level}
+                  name="level"
+                  required
+                ></input>
+              </div>
+              {/* <Form.Label className="title-form-category">
                 Upload Image
               </Form.Label>
               <div className="box-upload">
@@ -211,7 +205,7 @@ const Index = ({
                   id="uploadImage"
                   accept="image/x-png,image/gif,image/jpeg, image/jpg, image/svg"
                 />
-              </div>
+              </div> */}
 
               <div className="warpbtn-popup">
                 <Button
@@ -225,7 +219,7 @@ const Index = ({
         </Modal>
       </div>
     );
-  } else {
+  } else if (modalType === "editCourse") {
     return (
       <div>
         <Modal show={show} onHide={handleClose}>
@@ -235,9 +229,9 @@ const Index = ({
                 className="icon-title"
                 onClick={handleClose}
               />
-              Edit Category
+              Edit Course
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmitCourse}>
               <Form.Label className="title-form-category">
                 Input Title
               </Form.Label>
@@ -267,7 +261,37 @@ const Index = ({
                   required
                 ></textarea>
               </div>
+              {/* <Form.Label className="title-form-category">
+                Input Rating
+              </Form.Label>
+              <div className="mb-3 text-start">
+                <input
+                  type="number"
+                  placeholder="max 5"
+                  className="form-control mr-3 mb-4 radiusborder"
+                  onChange={handleInput}
+                  value={newDataEdit.rating >= 5 ? 5 : newDataEdit.rating}
+                  name="rating"
+                  max="5"
+                  required
+                ></input>
+              </div> */}
               <Form.Label className="title-form-category">
+                Input Level
+              </Form.Label>
+              <div className="mb-3 text-start">
+                <input
+                  type="text"
+                  placeholder="BEGINNER / INTERMEDIATE / ADVANCED"
+                  className="form-control mr-3 mb-4 radiusborder"
+                  style={{ textTransform: "uppercase" }}
+                  onChange={handleInput}
+                  value={newDataEdit.level}
+                  name="level"
+                  required
+                ></input>
+              </div>
+              {/* <Form.Label className="title-form-category">
                 Upload Image
               </Form.Label>
               <div className="d-flex flex-column gap-2 mb-5">
@@ -277,7 +301,7 @@ const Index = ({
                       file ? URL.createObjectURL(file) : newDataEdit.url_image
                     }
                     alt=""
-                    className="image-before-section"
+                    className="image-before"
                   />
 
                   <input
@@ -306,7 +330,7 @@ const Index = ({
                 ) : (
                   ""
                 )}
-              </div>
+              </div> */}
 
               <div className="warpbtn-popup mt-4">
                 <Button
@@ -320,6 +344,8 @@ const Index = ({
         </Modal>
       </div>
     );
+  } else {
+    return " ";
   }
 };
 

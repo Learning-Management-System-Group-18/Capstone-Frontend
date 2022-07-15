@@ -35,6 +35,14 @@ import LandingPagePhoto from "./img/LandingPagePhoto.png";
 import VideoCourse from "./img/videoCourse.png";
 import SlideCourse from "./img/slideCourse.png";
 import QuizCourse from "./img/quizCourse.png";
+import uploadIcon from "./img/upload-icon.svg";
+import quizIcon from "./img/quiz.png";
+import slideIcon from "./img/slide.png";
+import videoIcon from "./img/video.png";
+import noData from "./img/nodata.png";
+import noSection from "./img/nodatasection.png";
+import avatarProfil from "./img/avatarprofile.png";
+
 
 export {
   Rafiki,
@@ -74,4 +82,12 @@ export {
   VideoCourse,
   SlideCourse,
   QuizCourse,
+  uploadIcon,
+  quizIcon,
+  slideIcon,
+  videoIcon,
+  noData,
+  noSection,
+  avatarProfil,
+
 };

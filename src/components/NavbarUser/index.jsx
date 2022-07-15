@@ -1,35 +1,75 @@
 import { React, useState } from "react";
 import "./style.css";
-import { Dropdown, NavDropdown, Nav, Navbar, Container } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
+import { NavDropdown, Nav } from "react-bootstrap";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import { navUserIcon, profileUserIcon } from "../../assets";
+import { useEffect } from "react";
+import axiosInstance from "../../networks/apis";
 
 const Index = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const locationLink = location.pathname;
   const link = locationLink.split("/");
 
-  // const [showLogout, setShowLogout] = useState(false);
+  const [categories, setCategories] = useState([]);
 
-  // const handleCloseLogout = () => setShowLogout(false);
-  // const logoutShow = () => {
-  //   setShowLogout(true);
-  // };
+  const handleCategoryClass = (id, name) => {
+    let titleSlug = name
+      .replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, " ")
+      .toLowerCase();
+    titleSlug = titleSlug.replace(/^\s+|\s+$/gm, "");
+    titleSlug = titleSlug.replace(/\s+/g, "-");
+
+    console.log(titleSlug);
+    navigate(`/class-category/${titleSlug}/${id}`);
+  };
+
+  console.log(categories);
+
+  const [ProfileUser, setProfileUser] = useState();
+
+  useEffect(async () => {
+    await axiosInstance
+      .get(`api/auth/profile`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        // console.log("getAllContentByCourseId ", response.data.data);
+        let res = response.data.data;
+        setProfileUser(res);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  useEffect(async () => {
+    await axiosInstance
+      .get("api/categories")
+      .then((response) => {
+        // console.log(response.data.data);
+        setCategories(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark" id="nav-user">
       <div className="container ms-4">
-        <Link to="/home">
+        <Link to="/">
           <img src={navUserIcon} alt="navUserIcon" className="icon-navuser" />
         </Link>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <Nav className="mx-auto">
             <Nav>
               <Link
-                to="/"
+                to="/home"
                 className={`${
                   link[1] == "home"
-                    ? `item-nav-user decorationuser`
+                    ? `item-nav-user decoration-Navuser `
                     : `item-nav-user`
                 }`}
               >
@@ -38,10 +78,10 @@ const Index = () => {
             </Nav>
             <Nav>
               <Link
-                to="/mycourse"
+                to="/my-class"
                 className={`${
-                  link[1] == "myclass"
-                    ? `item-nav-user decorationuser`
+                  link[1] == "my-class"
+                    ? `item-nav-user decoration-Navuser `
                     : `item-nav-user`
                 }`}
               >
@@ -54,32 +94,43 @@ const Index = () => {
                 id="basic-nav-dropdown"
                 className={`${
                   link[1] == "profile"
-                    ? `drop-nav-user decorationuser`
+                    ? `drop-nav-user decoration-Navuser`
                     : `drop-nav-user`
                 }`}
                 style={{ color: "black" }}
               >
-                <NavDropdown.Item className="drop-item-nav-user">
-                  <Link to="/none">None</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item className="drop-item-nav-user">
-                  <Link to="/none">None</Link>
-                </NavDropdown.Item>
+                {categories?.map((category, i) => (
+                  <NavDropdown.Item
+                    className="drop-item-nav-user"
+                    key={i}
+                    onClick={() =>
+                      handleCategoryClass(category.id, category.title)
+                    }
+                  >
+                    {category.title}
+                  </NavDropdown.Item>
+                ))}
               </NavDropdown>
             </Nav>
           </Nav>
         </div>
       </div>
-      <div className="searchNavUser">
-        <FiSearch className="icon-searchusernav" />
+      <div className="navuser-Search">
+        <FiSearch className="navuser-SearchIcon" />
         <input
           type="text"
           placeholder="Social media specialist"
-          className="input-searchnav-user"
+          className="navuser-SearchInput"
         ></input>
       </div>
       <div className="iconProfileUser">
-        <img src={profileUserIcon} className="img-usernav" alt="icon" />
+        <Link to="/user-profile">
+          <img
+            src={ProfileUser?.url_image || profileUserIcon}
+            className="img-usernav"
+            alt="icon"
+          />
+        </Link>
       </div>
     </nav>
   );
