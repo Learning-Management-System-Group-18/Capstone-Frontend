@@ -27,11 +27,7 @@ const Index = () => {
 
   const getDetailCourse = async (idCourse) => {
     await axiosInstance
-      .get(`/api/course?id=${idCourse}`, {
-        params: {
-          id: idCourse,
-        },
-      })
+      .get(`/api/course?id=${idCourse}`)
       .then((response) => {
         // console.log("from API", response.data.data);
         setData(response.data.data);
