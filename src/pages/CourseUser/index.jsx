@@ -17,7 +17,7 @@ function Index() {
       });
       setTitle(courseTitle.data.data.title);
 
-      const section = await axiosInstance.get("api/sections", {
+      const section = await axiosInstance.get(`api/sections?courseId=${idCourse}`, {
         params: { courseId: idCourse },
       });
       setSection(section.data.data);
