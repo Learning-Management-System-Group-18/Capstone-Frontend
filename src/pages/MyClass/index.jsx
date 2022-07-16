@@ -1,21 +1,21 @@
-import { React, useState, useEffect } from 'react';
-import './style.css';
-import { NavbarUser, MyCourse } from '../../components';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import { React, useState, useEffect } from "react";
+import "./style.css";
+import { NavbarUser, MyCourse } from "../../components";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 import axiosInstance from "../../networks/apis";
 
 const Index = () => {
-  const [tabs, setTabs] = useState('ongoing');
+  const [tabs, setTabs] = useState("ongoing");
 
   const [ongoingClass, setOngoingClass] = useState([]);
   const [completedClass, setCompletedClass] = useState([]);
 
   useEffect(() => {
     axiosInstance
-      .get("api/auth/order/ongoing", {
+      .get("/api/auth/order/ongoing", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((response) => {
@@ -28,9 +28,9 @@ const Index = () => {
   }, []);
   useEffect(() => {
     axiosInstance
-      .get("api/auth/order/completed", {
+      .get("/api/auth/order/completed", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((response) => {
@@ -59,8 +59,8 @@ const Index = () => {
                 ? `myclass-Ongoing-btn textdecor-MyClass`
                 : `myclass-Ongoing-btn`
             }
-            onClick={() => setTabs('ongoing')}
-            style={{ cursor: 'pointer' }}
+            onClick={() => setTabs("ongoing")}
+            style={{ cursor: "pointer" }}
           >
             Ongoing
           </div>
@@ -70,8 +70,8 @@ const Index = () => {
                 ? `myclass-Completed-btn textdecor-MyClass`
                 : `myclass-Completed-btn`
             }
-            onClick={() => setTabs('completed')}
-            style={{ cursor: 'pointer' }}
+            onClick={() => setTabs("completed")}
+            style={{ cursor: "pointer" }}
           >
             Completed
           </div>
@@ -102,13 +102,15 @@ const Index = () => {
         <div className="col-6 mt-2">
           <div className="d-flex">
             <div
-              className={`${tabs === 'ongoing' ? `bottom-brdrMyClassOngoing` : ``
-                }`}
+              className={`${
+                tabs === "ongoing" ? `bottom-brdrMyClassOngoing` : ``
+              }`}
             ></div>
 
             <div
-              className={`${tabs === 'completed' ? `bottom-brdrMyClassCompleted` : ` `
-                }`}
+              className={`${
+                tabs === "completed" ? `bottom-brdrMyClassCompleted` : ` `
+              }`}
             ></div>
           </div>
         </div>
@@ -116,49 +118,22 @@ const Index = () => {
       {/* Tabs Decoration Bottom */}
 
       {/* <- Start Content Page My Class Ongoing -> */}
-      <div className={`${tabs === 'ongoing' ? `` : `d-none`}`}>
+      <div className={`${tabs === "ongoing" ? `` : `d-none`}`}>
         <div className="heading_2_user mt-5 ms-5">Ongoing Course</div>
         <div className="body_1_user mt-1 ms-5">
           Let’s continue your enrolled course to improve your skill
         </div>
         <div className="row d-flex contentmyclass-Ongoing ">
-          {ongoingClass.length > 0 ? (
-            ongoingClass.map((item, index) => (
-              <div className="col-6">
-                <MyCourse
-                  key={index}
-                  status={item.count_all - item.count_completed === 0 ? 'completed' : 'ongoing'}
-                  id={item.course.id}
-                  titleCourse={item.course.title}
-                  categoryCourse={item.course.category.title}
-                  imgCourse={item.course.url_image}
-                  totalSection={item.count_all}
-                  isCompleted={item.count_completed}
-                  level={item.level}
-                />
-              </div>
-            ))
-          ) : ("")
-          }
-        </div>
-      </div>
-      {/* <- Start Content Page My Class Ongoing -> */}
-
-      {/* <- Start Content Page My Class Completed -> */}
-      <div className={`${tabs === 'completed' ? `` : `d-none`}`}>
-        <div className="heading_2_user mt-5 ms-5">Completed Course</div>
-        <div className="body_1_user mt-1 ms-5">
-          Congratulation for finish your course, you can download your
-          certificate here and don’t forget to give a reivew.
-        </div>
-        <div className="row d-flex contentmyclass-Completed ">
-          {
-            completedClass.length > 0 ? (
-              completedClass.map((item, index) => (
+          {ongoingClass.length > 0
+            ? ongoingClass.map((item, index) => (
                 <div className="col-6">
                   <MyCourse
                     key={index}
-                    status={item.count_all - item.count_completed === 0 ? 'completed' : 'ongoing'}
+                    status={
+                      item.count_all - item.count_completed === 0
+                        ? "completed"
+                        : "ongoing"
+                    }
                     id={item.course.id}
                     titleCourse={item.course.title}
                     categoryCourse={item.course.category.title}
@@ -169,8 +144,40 @@ const Index = () => {
                   />
                 </div>
               ))
-            ) : ("")
-          }
+            : ""}
+        </div>
+      </div>
+      {/* <- Start Content Page My Class Ongoing -> */}
+
+      {/* <- Start Content Page My Class Completed -> */}
+      <div className={`${tabs === "completed" ? `` : `d-none`}`}>
+        <div className="heading_2_user mt-5 ms-5">Completed Course</div>
+        <div className="body_1_user mt-1 ms-5">
+          Congratulation for finish your course, you can download your
+          certificate here and don’t forget to give a reivew.
+        </div>
+        <div className="row d-flex contentmyclass-Completed ">
+          {completedClass.length > 0
+            ? completedClass.map((item, index) => (
+                <div className="col-6">
+                  <MyCourse
+                    key={index}
+                    status={
+                      item.count_all - item.count_completed === 0
+                        ? "completed"
+                        : "ongoing"
+                    }
+                    id={item.course.id}
+                    titleCourse={item.course.title}
+                    categoryCourse={item.course.category.title}
+                    imgCourse={item.course.url_image}
+                    totalSection={item.count_all}
+                    isCompleted={item.count_completed}
+                    level={item.level}
+                  />
+                </div>
+              ))
+            : ""}
         </div>
       </div>
       {/* <- End Content Page My Class Completed  -> */}

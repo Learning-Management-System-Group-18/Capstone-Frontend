@@ -27,7 +27,7 @@ const Index = () => {
 
   const getDetailCourse = async (idCourse) => {
     await axiosInstance
-      .get("/api/course", {
+      .get(`/api/course?id=${idCourse}`, {
         params: {
           id: idCourse,
         },

@@ -61,7 +61,7 @@ const Index = () => {
 
   const editDataCourse = async (data, id) => {
     await axiosInstance
-      .put(`api/admin/course?id=${id}`, data, {
+      .put(`/api/admin/course?id=${id}`, data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -74,7 +74,7 @@ const Index = () => {
 
   const deleteDataCourse = async (idDelete) => {
     await axiosInstance
-      .delete("api/admin/course", {
+      .delete("/api/admin/course", {
         params: { id: idDelete },
       })
       .then((x) => {
