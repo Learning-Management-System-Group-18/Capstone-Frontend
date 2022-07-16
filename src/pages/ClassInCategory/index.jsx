@@ -18,7 +18,7 @@ const Index = () => {
       .get("/api/course/popular")
       .then((response) => {
         // console.log(response.data.data);
-        setPopularCourse(response.data.data);
+        setPopularCourse(...popularCourse, response.data.data);
         // console.log(popularCourse);
       })
       .catch((error) => {
@@ -29,7 +29,7 @@ const Index = () => {
   const newData = popularCourse.filter((x) => {
     if (x.category.id === Number(idCategory)) {
       return x;
-      console.log("first");
+      // console.log("first");
     } else {
       // return x;
       console.log(x.category.id);

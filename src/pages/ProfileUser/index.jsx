@@ -1,15 +1,15 @@
-import { NavbarUser, PopupLogout } from '../../components';
-import { profileUserIcon } from '../../assets';
-import { BgUserProfile } from '../../assets';
-import { BsFillCameraFill } from 'react-icons/bs';
-import Form from 'react-bootstrap/Form';
-import './style.css';
-import { useState, React } from 'react';
-import { useEffect } from 'react';
-import axiosInstance from '../../networks/apis';
+import { NavbarUser, PopupLogout } from "../../components";
+import { profileUserIcon } from "../../assets";
+import { BgUserProfile } from "../../assets";
+import { BsFillCameraFill } from "react-icons/bs";
+import Form from "react-bootstrap/Form";
+import "./style.css";
+import { useState, React } from "react";
+import { useEffect } from "react";
+import axiosInstance from "../../networks/apis";
 
 const Index = () => {
-  const [Tab, setTab] = useState('Profile');
+  const [Tab, setTab] = useState("Profile");
   const [ProfileUser, setProfileUser] = useState();
   console.log(Tab);
 
@@ -23,7 +23,7 @@ const Index = () => {
 
   const [data, setData] = useState({});
 
-  console.log('dataa', data);
+  // console.log('dataa', data);
 
   const handleInput = (e) => {
     const name = e.target.name;
@@ -51,10 +51,10 @@ const Index = () => {
 
   const editImgProfileUser = async (data) => {
     await axiosInstance
-      .put(`api/auth/profile/image`, data, {
+      .put(`/api/auth/profile/image`, data, {
         headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((response) => {
@@ -66,9 +66,9 @@ const Index = () => {
 
   useEffect(async () => {
     await axiosInstance
-      .get(`api/auth/profile`, {
+      .get(`/api/auth/profile`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((response) => {
@@ -90,7 +90,7 @@ const Index = () => {
     await axiosInstance
       .put(`api/auth/profile`, data, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((response) => {
@@ -107,12 +107,12 @@ const Index = () => {
       full_name: data.full_name,
       email: data.email,
       phone_number: data.phone_number,
-      date_of_brith: '01-01-1999',
-      gender: 'MALE',
-      role: 'Costumer Service',
-      status: 'FullTime',
-      address: 'Jalan Tan Malaka',
-      employee_id: '123456',
+      date_of_brith: "01-01-1999",
+      gender: "MALE",
+      role: "Costumer Service",
+      status: "FullTime",
+      address: "Jalan Tan Malaka",
+      employee_id: "123456",
     };
     await updateProfileUser(datasubmit);
 
@@ -154,7 +154,7 @@ const Index = () => {
                 ? `btn btn-profileuser decoration-btnprofile`
                 : `btn btn-profileuser`
             }
-            onClick={() => setTab('Profile')}
+            onClick={() => setTab("Profile")}
           >
             Profile
           </button>
@@ -165,7 +165,7 @@ const Index = () => {
                 ? `btn btn-editprofileuser decoration-btnprofile`
                 : `btn btn-editprofileuser`
             }
-            onClick={() => setTab('EditProfile')}
+            onClick={() => setTab("EditProfile")}
           >
             Edit Profile
           </button>
@@ -176,7 +176,7 @@ const Index = () => {
                 ? `btn btn-resetprofileuser decoration-btnprofile`
                 : `btn btn-resetprofileuser`
             }
-            onClick={() => setTab('ResetPasswordUser')}
+            onClick={() => setTab("ResetPasswordUser")}
           >
             Reset Password
           </button>

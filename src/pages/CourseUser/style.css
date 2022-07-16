@@ -1,0 +1,61 @@
+.header-section {
+  background-color: rgba(51, 94, 247, 0.2);
+  border-bottom: none;
+}
+.body-section {
+  background-color: #f5f8fb;
+  border-bottom-left-radius: 21px;
+  border-bottom-right-radius: 21px;
+}
+
+.tittle-section {
+  margin: 50px 0px 48px 231px;
+}
+
+.content-section {
+  margin-left: 231px;
+  border-radius: 15px;
+}
+
+.btn-completed {
+  box-sizing: border-box;
+  padding: 15px 112px 15px 112px;
+  color: white;
+  border: none;
+  background: #335ef7;
+  border-radius: 100px;
+  font-size: 28px;
+}
+.btn-completed:hover {
+  background: #232945;
+}
+.btn-completed:active {
+  background: #157f40;
+}
+.btn-completed-true {
+  box-sizing: border-box;
+  padding: 15px 112px 15px 112px;
+  color: white;
+  border: none;
+  background: #157f40;
+  border-radius: 100px;
+  font-size: 28px;
+}
+.arrow-left {
+  color: black;
+  background-color: white;
+  transform: rotate(270deg);
+  border-radius: 100px;
+  font-size: 300%;
+}
+
+.arrow-right {
+  color: black;
+  background-color: white;
+  transform: rotate(90deg);
+  border-radius: 100px;
+  font-size: 300%;
+}
+.card-header:first-child {
+  border-radius: 0px 0px 0px 0px;
+}

@@ -1,25 +1,8 @@
 import React from "react";
 import "./style.css";
 import { NavbarUser, FooterUser } from "../../components";
-import { GoPrimitiveDot } from "react-icons/go";
-import { AiFillStar, AiFillHeart } from "react-icons/ai";
-import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
-import {
-  Accordion,
-  Card,
-  useAccordionButton,
-  AccordionContext,
-} from "react-bootstrap";
-import {
-  sertifikat,
-  user,
-  jadwal,
-  level,
-  ProfileImg,
-  tool,
-  lockKey,
-} from "../../assets";
-import { useState, useContext } from "react";
+import { sertifikat, user, jadwal, level } from "../../assets";
+import { useState } from "react";
 import ReactPlayer from "react-player";
 import { useEffect } from "react";
 import axiosInstance from "../../networks/apis";
@@ -27,10 +10,12 @@ import Category from "./Category";
 import About from "./About";
 import Lesson from "./Lesson";
 import Review from "./Review";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Index = () => {
   const { idCourse } = useParams();
+  const navigate = useNavigate();
 
   const [tabs, setTabs] = useState("about");
 
@@ -42,7 +27,7 @@ const Index = () => {
 
   const getDetailCourse = async (idCourse) => {
     await axiosInstance
-      .get("api/course", {
+      .get(`api/course?id=${idCourse}`, {
         params: {
           id: idCourse,
         },
@@ -101,25 +86,55 @@ const Index = () => {
 
   const [success, setSuccess] = useState(false);
 
+  const successCreateOrder = (idCourse) => {
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Selamat Anda Berhasil Mendaftar Pada Course Ini",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+
+    navigate(`/user-course/${idCourse}`);
+  };
+
+  const failedCreateOrder = () => {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Maaf Pendaftaran Gagal",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
+
+  const [load, setLoad] = useState(false);
+
   const createOrder = async (idCourse) => {
     await axiosInstance
-      .post(`api/auth/order?courseId=${idCourse}`, {
+      .post(`/api/auth/order?courseId=${idCourse}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((response) => {
-        console.log(response);
         let res = response.data.data;
+        console.log("Berhasil Create Order");
+        setLoad(!load);
+        successCreateOrder(idCourse);
         // setSection(res);
-        setSuccess(!success);
+        // setSuccess(!success);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        setLoad(!load);
+        failedCreateOrder();
+      });
   };
 
   const handleCreateOrder = async (id) => {
     await createOrder(id);
-    console.log(success);
+    // console.log(success);
   };
 
   useEffect(() => {
@@ -130,11 +145,19 @@ const Index = () => {
     getAllContentByCourseId(idCourse);
   }, []);
 
-  console.log("data ", data);
-  console.log("mentor ", mentor);
-  console.log("tool ", tool);
-  console.log("section ", section);
-  console.log("review ", review);
+  useEffect(() => {
+    getDetailCourse(idCourse);
+    getAllMentorByCourseId(idCourse);
+    getAllToolByCourseId(idCourse);
+    getAllReviewByCourseId(idCourse);
+    getAllContentByCourseId(idCourse);
+  }, [load]);
+
+  // console.log("data ", data);
+  // console.log("mentor ", mentor);
+  // console.log("tool ", tool);
+  // console.log("section ", section);
+  // console.log("review ", review);
 
   return (
     <>
@@ -237,7 +260,7 @@ const Index = () => {
             <div className="mt-5">
               <div className="text-center px-1">
                 <ReactPlayer
-                  url={section[0]?.content.video[0].link}
+                  url={section[0]?.content.video[0]?.link || " "}
                   width={"100%"}
                   height={"250px"}
                   className="video"
@@ -257,7 +280,7 @@ const Index = () => {
                 <div className="heading_4_user my-2">Free Course</div>
                 <button
                   className="subtitle_2_user btn-enrol col-12"
-                  onClick={() => handleCreateOrder(12)}
+                  onClick={() => handleCreateOrder(idCourse)}
                 >
                   Enrol Course
                 </button>

@@ -31,7 +31,7 @@ const Index = ({
   // for Edit Data
   const getDataIdCourse = async () => {
     await axiosInstance
-      .get("api/course", {
+      .get("/api/course", {
         params: {
           id: idEditCourse,
         },

@@ -66,7 +66,7 @@ const AddSection = () => {
 
   const getDataIdCourse = async () => {
     await axiosInstance
-      .get("api/course", {
+      .get("/api/course", {
         params: {
           id: idCourse,
         },
@@ -80,7 +80,7 @@ const AddSection = () => {
 
   const getAllMentorByCourseId = async () => {
     await axiosInstance
-      .get(`api/mentors?courseId=${idCourse}`)
+      .get(`/api/mentors?courseId=${idCourse}`)
       .then((response) => {
         // console.log("from API", response.data.data);
         setMentor(response.data.data);
@@ -90,7 +90,7 @@ const AddSection = () => {
 
   const getAllToolByCourseId = async () => {
     await axiosInstance
-      .get(`api/tools?courseId=${idCourse}`)
+      .get(`/api/tools?courseId=${idCourse}`)
       .then((response) => {
         // console.log("from API", response.data.data);
         setTool(response.data.data);
@@ -100,7 +100,7 @@ const AddSection = () => {
 
   const getAllSectionByCourseId = async () => {
     await axiosInstance
-      .get(`api/sections?courseId=${idCourse}`)
+      .get(`/api/sections?courseId=${idCourse}`)
       .then((response) => {
         // console.log("from API", response.data.data);
         setSection(response.data.data);
@@ -110,7 +110,7 @@ const AddSection = () => {
 
   const addImgCourse = async (data) => {
     await axiosInstance
-      .put(`api/admin/course/image?id=${idCourse}`, data, {
+      .put(`/api/admin/course/image?id=${idCourse}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -124,7 +124,7 @@ const AddSection = () => {
 
   const addMentor = async (data) => {
     await axiosInstance
-      .post(`api/admin/mentor?courseId=${idCourse}`, data, {
+      .post(`/api/admin/mentor?courseId=${idCourse}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -138,7 +138,7 @@ const AddSection = () => {
 
   const addTool = async (data) => {
     await axiosInstance
-      .post(`api/admin/tool?courseId=${idCourse}`, data, {
+      .post(`/api/admin/tool?courseId=${idCourse}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -153,7 +153,7 @@ const AddSection = () => {
 
   const addSection = async (data) => {
     await axiosInstance
-      .post(`api/admin/section?courseId=${idCourse}`, data)
+      .post(`/api/admin/section?courseId=${idCourse}`, data)
       .then((response) => {
         // console.log("from API Mentor", response.data.data);
         setSucces(!success);
@@ -163,7 +163,7 @@ const AddSection = () => {
 
   const editMentor = async (data, id) => {
     await axiosInstance
-      .put(`api/admin/mentor?id=${id}`, data, {
+      .put(`/api/admin/mentor?id=${id}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -177,7 +177,7 @@ const AddSection = () => {
 
   const editTool = async (data, id) => {
     await axiosInstance
-      .put(`api/admin/tool?id=${id}`, data, {
+      .put(`/api/admin/tool?id=${id}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

@@ -22,7 +22,7 @@ const Index = () => {
 
   const getDataCategory = async () => {
     await axiosInstance
-      .get("api/categories")
+      .get("/api/categories")
       .then((response) => {
         // console.log(response.data.data);
         setDataCategory(response.data.data);
@@ -34,7 +34,7 @@ const Index = () => {
 
   const insertDataCategory = async (data) => {
     await axiosInstance
-      .post("api/admin/category", data, {
+      .post("/api/admin/category", data, {
         headers: {
           "content-type": "multipart/form-data",
         },
@@ -48,7 +48,7 @@ const Index = () => {
   const editDataCategory = async (data, id) => {
     const params = `?id=` + id;
     await axiosInstance
-      .put(`api/admin/category${params}`, data, {
+      .put(`/api/admin/category${params}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -61,7 +61,7 @@ const Index = () => {
 
   const deleteDataCategory = async (idDelete) => {
     await axiosInstance
-      .delete("api/admin/category", {
+      .delete("/api/admin/category", {
         params: { id: idDelete },
       })
       .then((x) => {

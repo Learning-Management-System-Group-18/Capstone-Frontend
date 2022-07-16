@@ -32,7 +32,7 @@ const Index = () => {
 
   useEffect(async () => {
     await axiosInstance
-      .get(`api/auth/profile`, {
+      .get(`/api/auth/profile`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -40,17 +40,17 @@ const Index = () => {
       .then((response) => {
         // console.log("getAllContentByCourseId ", response.data.data);
         let res = response.data.data;
-        setProfileUser(res);
+        setProfileUser(...ProfileUser, res);
       })
       .catch((error) => console.log(error));
   }, []);
 
   useEffect(async () => {
     await axiosInstance
-      .get("api/categories")
+      .get("/api/categories")
       .then((response) => {
         // console.log(response.data.data);
-        setCategories(response.data.data);
+        setCategories(...categories, response.data.data);
       })
       .catch((error) => {
         console.log(error);
