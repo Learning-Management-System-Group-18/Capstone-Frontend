@@ -27,7 +27,7 @@ function CourseSideBar({ title, section, watchContent }) {
   };
   const getAllContentById = async (id, title) => {
     await axiosInstance
-      .get(`api/content?sectionId=${id}`, {
+      .get(`/api/content?sectionId=${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

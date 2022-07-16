@@ -27,11 +27,7 @@ const Index = () => {
 
   const getDetailCourse = async (idCourse) => {
     await axiosInstance
-      .get(`api/course?id=${idCourse}`, {
-        params: {
-          id: idCourse,
-        },
-      })
+      .get(`/api/course?id=${idCourse}`)
       .then((response) => {
         // console.log("from API", response.data.data);
         setData(response.data.data);
@@ -41,7 +37,7 @@ const Index = () => {
 
   const getAllMentorByCourseId = async (idCourse) => {
     await axiosInstance
-      .get(`api/mentors?courseId=${idCourse}`)
+      .get(`/api/mentors?courseId=${idCourse}`)
       .then((response) => {
         // console.log("from API", response.data.data);
         setMentor(response.data.data);
@@ -51,7 +47,7 @@ const Index = () => {
 
   const getAllToolByCourseId = async (idCourse) => {
     await axiosInstance
-      .get(`api/tools?courseId=${idCourse}`)
+      .get(`/api/tools?courseId=${idCourse}`)
       .then((response) => {
         // console.log("from API", response.data.data);
         setTool(response.data.data);
@@ -61,7 +57,7 @@ const Index = () => {
 
   const getAllReviewByCourseId = async (idCourse) => {
     await axiosInstance
-      .get(`api/review?courseId=${idCourse}&page=${0}&size=${1}`)
+      .get(`/api/review?courseId=${idCourse}&page=${0}&size=${1}`)
       .then((response) => {
         // console.log("from API", response.data.data);
         setReview(response.data.data);
@@ -71,7 +67,7 @@ const Index = () => {
 
   const getAllContentByCourseId = async (idCourse) => {
     await axiosInstance
-      .get(`api/section/content?courseId=${idCourse}`, {
+      .get(`/api/section/content?courseId=${idCourse}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -83,8 +79,6 @@ const Index = () => {
       })
       .catch((error) => console.log(error));
   };
-
-  const [success, setSuccess] = useState(false);
 
   const successCreateOrder = (idCourse) => {
     Swal.fire({

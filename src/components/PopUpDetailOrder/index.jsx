@@ -1,10 +1,13 @@
-import React from 'react';
-import { Modal } from 'react-bootstrap';
-import './style.css';
-import { useState } from 'react';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
+import React from "react";
+import { Modal } from "react-bootstrap";
+import "./style.css";
+import { useState } from "react";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import { useEffect } from "react";
 
-const Index = ({ handleClose, show }) => {
+const Index = ({ handleClose, show, data }) => {
+  // console.log("detail : ", data);
+  useEffect(() => {}, [data]);
   return (
     <div>
       <Modal show={show} onHide={handleClose} backdrop="static">
@@ -33,7 +36,7 @@ const Index = ({ handleClose, show }) => {
                   type="text"
                   name="date_order"
                   className="inputDetailDate"
-                  value="Saturday, 28 Mei 2022"
+                  value={data?.order_date}
                 />
               </div>
               <div>
@@ -42,7 +45,7 @@ const Index = ({ handleClose, show }) => {
                   type="text"
                   name="nama"
                   className="inputDetailNama"
-                  value="Latifa Hanum"
+                  value={data?.user?.full_name || " "}
                 />
               </div>
               <div>
@@ -51,7 +54,7 @@ const Index = ({ handleClose, show }) => {
                   type="text"
                   name="email"
                   className="inputDetailEmail"
-                  value="Latifahanum@gmail.com"
+                  value={data?.user?.email}
                 />
               </div>
               <div>
@@ -63,7 +66,7 @@ const Index = ({ handleClose, show }) => {
                   type="text"
                   name="course_id"
                   className="inputDetailCourseId"
-                  value="#M2"
+                  value={`#${data?.id}`}
                 />
               </div>
               <div>
@@ -72,7 +75,7 @@ const Index = ({ handleClose, show }) => {
                   type="text"
                   name="course_name"
                   className="inputDetailCourseName"
-                  value="Social Media Management"
+                  value={data?.course?.title}
                 />
               </div>
               <div>
@@ -81,7 +84,7 @@ const Index = ({ handleClose, show }) => {
                   type="text"
                   name="category"
                   className="inputDetailCategory"
-                  value="Marketing"
+                  value={data?.course?.category?.title}
                 />
               </div>
               <div>
@@ -90,7 +93,7 @@ const Index = ({ handleClose, show }) => {
                   type="text"
                   name="Level"
                   className="inputDetailLevel"
-                  value="Beginner"
+                  value={data?.course?.level}
                 />
               </div>
             </form>

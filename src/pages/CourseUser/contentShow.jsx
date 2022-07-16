@@ -10,7 +10,7 @@ function ContentShow({ currentContent }) {
     const idString = id.toString();
 
     await axiosInstance
-      .post(`api/auth/${tipe}?id=${idString}`, {
+      .post(`/api/auth/${tipe}?id=${idString}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

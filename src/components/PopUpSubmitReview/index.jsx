@@ -53,7 +53,7 @@ const Index = ({ handleCloseReview, showReview, idCourse }) => {
 
   const createReview = async (idCourse, data) => {
     await axiosInstance
-      .post(`api/auth/review?courseId=${idCourse}`, data, {
+      .post(`/api/auth/review?courseId=${idCourse}`, data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

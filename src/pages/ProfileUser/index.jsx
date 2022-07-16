@@ -88,7 +88,7 @@ const Index = () => {
 
   const updateProfileUser = async (data) => {
     await axiosInstance
-      .put(`api/auth/profile`, data, {
+      .put(`/api/auth/profile`, data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

@@ -15,6 +15,7 @@ const Index = () => {
   const tableTitle = ["Category"];
   const tHead = ["Category Name", "Description", "Course", "Employee", ""];
   const [dataCategory, setDataCategory] = useState([]);
+  const [courses, setCourses] = useState([]);
   const full_name = localStorage.getItem("full_name");
   const [success, setSuccess] = useState(false);
 
@@ -72,13 +73,29 @@ const Index = () => {
       });
   };
 
+  const getAllCourses = async () => {
+    await axiosInstance
+      .get(`/api/courses`)
+      .then((response) => {
+        // console.log(response.data.data);
+        setCourses(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     getDataCategory();
+    getAllCourses();
   }, []);
 
   useEffect(() => {
     getDataCategory();
+    getAllCourses();
   }, [success]);
+
+  console.log("Panjang Data Category ", dataCategory.length);
 
   // const data = [
   //   {
@@ -116,8 +133,16 @@ const Index = () => {
         </div>
 
         <div className="container d-flex gap-4 mt-4">
-          <Card icon={categoriesIcon} total={7} desc={"Total of Categories"} />
-          <Card icon={courseIcon} total={7} desc={"Total of Course"} />
+          <Card
+            icon={categoriesIcon}
+            total={dataCategory.length}
+            desc={"Total of Categories"}
+          />
+          <Card
+            icon={courseIcon}
+            total={courses.length}
+            desc={"Total of Course"}
+          />
           <Card icon={employIcon} total={7} desc={"Total of Employess"} />
         </div>
 
