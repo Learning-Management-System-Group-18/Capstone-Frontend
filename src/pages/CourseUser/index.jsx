@@ -12,12 +12,12 @@ function Index() {
   const [currentContent, setCurrentContent] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const courseTitle = await axiosInstance.get("api/course", {
+      const courseTitle = await axiosInstance.get("/api/course", {
         params: { id: idCourse },
       });
       setTitle(courseTitle.data.data.title);
 
-      const section = await axiosInstance.get("api/sections", {
+      const section = await axiosInstance.get("/api/sections", {
         params: { courseId: idCourse },
       });
       setSection(section.data.data);
