@@ -109,7 +109,7 @@ const Index = ({ type, onClick, disabled }) => {
       )}
       {type == "btn-savechange-profile" ? (
         <button
-          type="button"
+          type="submit"
           className="btn btn-savechange-profile"
           onClick={onClick}
           disabled={disabled || false}

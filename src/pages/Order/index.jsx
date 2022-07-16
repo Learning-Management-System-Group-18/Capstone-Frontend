@@ -9,18 +9,82 @@ import { Dropdown, DropdownButton, Form } from "react-bootstrap";
 import { GoDash } from "react-icons/go";
 import { useState } from "react";
 import "./style.css";
+import axiosInstance from "../../networks/apis";
+import { useEffect } from "react";
 
 const Index = () => {
   const [showDetail, setShowDetail] = useState(false);
-
+  const [detail, setDetail] = useState([]);
   const handleCloseDetail = () => setShowDetail(false);
-  const detailShow = () => {
+  const detailShow = (data) => {
+    setDetail(data);
     setShowDetail(true);
   };
 
   const bg = {
     height: "100vh",
     backgroundColor: "#F5F8FB",
+  };
+
+  const [orders, setOrders] = useState([]);
+
+  const getAllOrders = async () => {
+    await axiosInstance
+      .get(`/api/auth/orders`)
+      .then((response) => {
+        console.log(response.data.data);
+        setOrders(response.data.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    getAllOrders();
+  }, []);
+
+  const getTheDate = () => {
+    const months = [
+      "Januari",
+      "Februari",
+      "Maret",
+      "April",
+      "Mei",
+      "Juni",
+      "Juli",
+      "Agustus",
+      "September",
+      "Oktober",
+      "November",
+      "Desember",
+    ];
+
+    const myDays = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const date = new Date();
+
+    const thisDay = date.getDay();
+    const theDay = myDays[thisDay];
+
+    const yy = date.getYear();
+
+    const year = yy < 1000 ? yy + 1900 : yy;
+
+    const month = months[date.getMonth()];
+    const getDate = date.getDate();
+
+    const thisDate = getDate + " " + month + " " + year;
+
+    return {
+      theDay,
+      thisDate,
+    };
   };
 
   return (
@@ -30,8 +94,10 @@ const Index = () => {
         <div className="nav-info">
           <div className="container d-flex justify-content-between py-3">
             <div className="nav-name">
-              <span className="title-nav">Saturday</span>
-              <h5 className="date-order-page neutral_3">23 Mei 2022</h5>
+              <span className="title-nav">{getTheDate().theDay}</span>
+              <h5 className="date-order-page neutral_3">
+                {getTheDate().thisDate}
+              </h5>
             </div>
 
             <div className="d-flex align-items-center gap-3">
@@ -103,38 +169,41 @@ const Index = () => {
                 <th scope="col" className="pb-2">
                   Course ID
                 </th>
-                <th scope="col" className="pb-2">
+                <th scope="col" className="pb-2 ps-1">
                   Course Name
                 </th>
-                <th scope="col" className="pb-2">
+                <th scope="col " className="pb-2">
                   Category
                 </th>
                 <th scope="col" className="pb-2"></th>
               </tr>
             </thead>
+            <PopupDetailOrder
+              show={showDetail}
+              handleClose={handleCloseDetail}
+              data={detail || []}
+            />
             <tbody>
-              <tr className="caption_1 neutral_3 data-order">
-                <td scope="row" className="py-3 ps-3">
-                  #1
-                </td>
-                <td className="py-3">28-08-2000</td>
-                <td className="py-3">Latifa@gmail.com</td>
-                <td className="py-3">223433</td>
-                <td className="py-3">Android Development</td>
-                <td className="py-3">Programming</td>
-                <td className="py-3">
-                  <button
-                    className="btn detail bg_primary"
-                    onClick={detailShow}
-                  >
-                    See Detail
-                  </button>
-                  <PopupDetailOrder
-                    show={showDetail}
-                    handleClose={handleCloseDetail}
-                  />
-                </td>
-              </tr>
+              {orders?.map((order, i) => (
+                <tr className="caption_1 neutral_3 data-order" key={i}>
+                  <td scope="row" className="py-3 ps-3">
+                    #{i + 1}
+                  </td>
+                  <td className="py-3">{order.order_date}</td>
+                  <td className="py-3">{order.user.email}</td>
+                  <td className="py-3 ps-3">{order.id}</td>
+                  <td className="py-3 ps-1">{order.course.title}</td>
+                  <td className="py-3">{order.course.category.title}</td>
+                  <td className="py-3">
+                    <button
+                      className="btn detail bg_primary"
+                      onClick={() => detailShow(order)}
+                    >
+                      See Detail
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
