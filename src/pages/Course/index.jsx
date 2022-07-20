@@ -31,6 +31,7 @@ const Index = () => {
   const [dataCourse, setDataCourse] = useState([]);
   const [mentorData, setMentorData] = useState([]);
   const [courses, setCourses] = useState([]);
+  const [totalEmployee, setTotalEmployee] = useState(0);
 
   // console.log(nameCategory, idCategory);
   // console.log("dataCourse", dataCourse);
@@ -42,7 +43,12 @@ const Index = () => {
       .get(`/api/courses?categoryId=${id}`)
       .then((response) => {
         setDataCourse(response.data.data);
-        // console.log(response.data.data);
+        // console.log(response.data);
+        let total = 0
+        response.data.data.map((course) => {
+          total = total + course.count_user
+          return setTotalEmployee(total)
+        })
       })
       .catch((error) => {
         console.log(error);
@@ -178,7 +184,7 @@ const Index = () => {
             total={mentorData.length}
             desc={"Total of Mentor"}
           />
-          <Card icon={employIcon} total={20} desc={"Total of Employees"} />
+          <Card icon={employIcon} total={totalEmployee} desc={"Total of Employees"} />
         </div>
 
         <div className="container background-table px-5 pb-5 mt-4">

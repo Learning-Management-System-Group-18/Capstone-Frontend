@@ -18,6 +18,7 @@ const Index = () => {
   const [courses, setCourses] = useState([]);
   const full_name = localStorage.getItem("full_name");
   const [success, setSuccess] = useState(false);
+  const [totalEmployee, setTotalEmployee] = useState(0);
 
   // API HANDLE
 
@@ -25,13 +26,18 @@ const Index = () => {
     await axiosInstance
       .get("/api/categories")
       .then((response) => {
-        // console.log(response.data.data);
         setDataCategory(response.data.data);
+        let total = 0
+        response.data.data.map((category) => {
+          total = total + category.count_user
+          return setTotalEmployee(total)
+        })
       })
       .catch((error) => {
         console.log(error);
       });
   };
+  console.log(totalEmployee)
 
   const insertDataCategory = async (data) => {
     await axiosInstance
@@ -77,7 +83,7 @@ const Index = () => {
     await axiosInstance
       .get(`/api/courses`)
       .then((response) => {
-        // console.log(response.data.data);
+        console.log("courses", response.data.data);
         setCourses(response.data.data);
       })
       .catch((error) => {
@@ -89,6 +95,14 @@ const Index = () => {
     getDataCategory();
     getAllCourses();
   }, []);
+
+  // useEffect(() => {
+  //   dataCategory.map((item) => (
+  //     // console.log(course.count_user)
+  //     setTotalEmployee(totalEmployee + item.count_user)
+  //     // console.log(totalEmployee)
+  //   ))
+  // }, []);
 
   useEffect(() => {
     getDataCategory();
@@ -143,7 +157,7 @@ const Index = () => {
             total={courses.length}
             desc={"Total of Course"}
           />
-          <Card icon={employIcon} total={7} desc={"Total of Employess"} />
+          <Card icon={employIcon} total={totalEmployee} desc={"Total of Employess"} />
         </div>
 
         <div className="container background-table px-5 pt-2 pb-5 mt-5">
