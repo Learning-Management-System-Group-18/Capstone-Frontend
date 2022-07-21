@@ -62,7 +62,7 @@ const Index = ({
               <div className="body_2_user d-flex align-items-center gap-1 category-course secondary_1">
                 <GoPrimitiveDot /> {categoryCourse}
               </div>
-              <div className="heading_4_user my-2">{titleCourse}</div>
+              <div className="heading_5_user my-2">{titleCourse}</div>
               <div className="d-flex align-items-center gap-2">
                 <div className="parent-div">
                   <div style={Childdiv}></div>
