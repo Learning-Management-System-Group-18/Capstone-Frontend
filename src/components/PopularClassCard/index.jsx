@@ -1,8 +1,8 @@
-import React from "react";
-import "./style.css";
-import { useNavigate } from "react-router-dom";
-import { employeeTotalIcon, starOrange, starWhite } from "../../assets";
-import { Button, StarRating } from "../index";
+import React from 'react';
+import './style.css';
+import { useNavigate } from 'react-router-dom';
+import { employeeTotalIcon, starOrange, starWhite } from '../../assets';
+import { Button, StarRating } from '../index';
 
 const Index = ({ data }) => {
   const navigate = useNavigate();
@@ -17,8 +17,8 @@ const Index = ({ data }) => {
         <div
           className={
             item.category.title !== undefined
-              ? "col-3 mb-3 bg_neutral_4 card_popular_class mx-2 shadow-sm container"
-              : "col-4 bg_neutral_4 card_popular_class_2 mx-2 shadow-sm container"
+              ? 'col-3 mb-3 bg_neutral_4 card_popular_class mx-2 shadow-sm container'
+              : 'col-4 bg_neutral_4 card_popular_class_2 mx-2 shadow-sm container'
           }
           key={itemIdx}
         >
@@ -30,13 +30,11 @@ const Index = ({ data }) => {
               <p className="body_2 secondary_1">{item.category.title}</p>
             </div>
           ) : (
-            ""
+            ''
           )}
-          <h2 className="mt-3 heading_5">{item.title}</h2>
+          <h2 className="mt-3 subtitle_1">{item.title}</h2>
           <div className="box_inline">
-            <h5 className="subtitle_3 me-3">
-              {item.price === 0 ? "Free Course" : item.price}
-            </h5>
+            <h5 className="subtitle_2 me-3">Free Course</h5>
             <div className="class_level_card">
               <p className="body_2 primary">{item.level}</p>
             </div>
@@ -53,7 +51,7 @@ const Index = ({ data }) => {
             {/* <img className='d-inline me-2' src="" alt="icon" /> */}
             <StarRating rating={item.rating} />
             <h4 className="d-inline neutral_2 body_2">
-              {Math.round(item.rating) + " (" + item.count_review + ") Reviews"}
+              {Math.round(item.rating) + ' (' + item.count_review + ') Reviews'}
             </h4>
           </div>
           <div className="mt-4 text-center">
